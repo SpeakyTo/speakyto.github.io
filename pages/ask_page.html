@@ -1,0 +1,447 @@
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    
+    <!-- ICON SDK JS is required by Ancilia -->
+    <script src="https://cdn.jsdelivr.net/gh/icon-project/icon-sdk-js@latest/build/icon-sdk-js.min.js"></script>
+    <!-- Ancilia is required by SpeakyTo -->
+    <script src="/scripts/Ancilia.js"></script>
+    <script src="/scripts/SpeakyTo.js"></script>
+
+    <!-- iso_639-1 is required by render purposes -->
+    <script src="/scripts/iso_639-1.js"></script>
+
+    <!-- JQuery is required by render purposes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        // SpeakyTo constants
+        const NETWORK = IconNetworks.YEOUIDO
+        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+
+        // Instanciate Ancilia + SpeakyTo
+        const ancilia = new Ancilia(NETWORK)
+        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+    </script>
+    
+    <link rel="stylesheet" href="/styles/ask_page_styles.css"></link>
+    
+    </head>
+    
+    <body>
+        <div id="main-container">
+            <img src="/images/SpeakyTo_Typeography.png" width="200px" onclick="window.location.href='qa_home.html'" style="cursor: pointer; margin-top: 15px;">
+            <div id="ask-container">
+                <div id="ask-level-choice-container">
+                    <div id="image-info-container">
+                    <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="300px">
+                        <h3 style="text-align: center; color:white; background-color: blueviolet; padding: 20px; border-radius: 50px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
+                    </div>
+                    <div id="choices-container">
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x1" name="howtosay">
+                                    <span class="list-level-type">Level 1</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> How To Say</h3>
+                                        <p style="margin: 0;"> Ask a simple, "how to say" question.</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x1" name="howtopronounce">
+                                    <span class="list-level-type">Level 1</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> How To Pronounce</h3>
+                                        <p style="margin: 0;"> Ask a simple, "how to pronounce" question.</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x2" name="whatdoesthismean">
+                                    <span class="list-level-type">Level 2</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> What Does This Mean?</h3>
+                                        <p style="margin: 0;"> What does this mean?</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x3" name="whatsthedifference">
+                                    <span class="list-level-type">Level 3</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> What's the difference?</h3>
+                                        <p style="margin: 0;"> What's the difference between this and that?</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x4" name="showmeanexample">
+                                    <span class="list-level-type">Level 4</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> Show Me An Example</h3>
+                                        <p style="margin: 0;"> Ask for an example about a language</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        <div class="choices-list-item-container">
+                            <span id="image-box"></span>
+                                <div class="choices-list-item" data-value="0x5" name="asksomethingelse">
+                                    <span class="list-level-type">Level 5</span>
+                                    <div class="choices-list-text">
+                                        <h3 style="margin: 0;"> Ask Something Else</h3>
+                                        <p style="margin: 0;"> Ask something creative and different</p>
+                                    </div> 
+                                </div>      
+                        </div>
+                        
+                        
+                </div>
+                    
+                
+            </div>
+                <div id="ask-form-level">
+                     <h1 id="question-heading"> Ask a Question</h1>
+                    <div id="ask-form-inner-section">
+                    <div id="info-interaction">
+                        <h2 style="background-color: rebeccapurple; padding: 20px; border-radius: 20px;" id="info-level-status"> Level 1</h2>
+                        <span style="font-size: 18px; padding: 10px;background-color: " >ICX Reward</span>
+                        <input type="number" id="icx-reward" class="input-style-small" placeholder="10..." ></input>
+                    </div>
+                    
+                    <div id="ask-box">  
+                        <span style="font-size: 24px;" id="question-type-header"></span>
+                        <textarea id="question-input" class="input-style" placeholder="Example: Orange..." rows="1"></textarea>
+                        <div id="from-to-container">
+                        <span style="font-size: 24px;" id="question-type-before"></span>
+                        <div id="from-container">
+                        <button class="lang-dropdown-button" onclick="dropDownListFrom()">
+                            <option id="from-lang" class="lang-select-from" value="">Language...</option></button>
+                        <ul class="lang-content-from">
+                                <option class="lang-item" value="">English</option>
+                                <option class="lang-item" value="">Spanish</option>
+                                <option class="lang-item" value="">Chinese</option>
+                                <option class="lang-item" value="">French</option>
+                                <option class="lang-item" value="">German</option>
+                                <option class="lang-item" value="">Korean</option>
+                                <option class="lang-item" value="">Russian</option>
+                                <option class="lang-item" value="">Japanese</option>
+                            </ul>
+                        </div>
+                        <span id="question-type-mid"></span>
+                        <div id="to-container">
+                        <button class="lang-dropdown-button" onclick="dropDownListTo()">
+                            <option id="to-lang" class="lang-select-to" value="">Language...</option></button>
+                        <ul class="lang-content-to">
+                                <option class="lang-item" value="">English</option>
+                                <option class="lang-item" value="">Spanish</option>
+                                <option class="lang-item" value="">Chinese</option>
+                                <option class="lang-item" value="">French</option>
+                                <option class="lang-item" value="">German</option>
+                                <option class="lang-item" value="">Korean</option>
+                                <option class="lang-item" value="">Russian</option>
+                                <option class="lang-item" value="">Japanese</option>
+                            </ul>
+                        </div>
+                    <span style="font-size: 24px;" id="question-type-end"></span>
+                        </div>
+                        
+                    </div>
+                    
+                    </div>
+                    <button id="submit-question-button" onclick="onAskQuestion()">Submit</button>
+                    
+                </div>
+        </div> 
+    
+    <script>
+        window.onload = () => {
+            // init account
+            accountRefresh()
+            selectionListener()
+            levelsListener()
+            getLanguages()
+            questionTypeListener()
+            //listLang()
+        }
+        
+        function levelsListener(){
+            const listItem = $(".choices-list-item")
+            if (ancilia.isLoggedIn()) {
+                const address = ancilia.getLoggedInWallet()
+                $("#user-address").text(address)
+
+                speakyto.getUserLevel(address).then(level => {
+                    //const levelTest = "0x5"
+                    console.log(level)
+                    console.log(listItem.data("value"))
+
+                    listItem.each(function(){
+                        if ($(this).data("value") != level && level == "0x1"){
+                            $(this).css("background-color", "rgba(35,35,35,0.8)")
+                            $(this).unbind()
+                            $(this).find(".list-level-type").css("background-color", "grey")
+                            $(this).find(".list-level-type").css("color", "darkgrey")
+                            
+                                $(this).hover(function(){
+                                    $(this).css("cursor", "context-menu")
+                                    $(this).css("background-color","rgba(35,35,35,0.8)")
+                                })
+                        }
+                        else if ($(this).data("value") != level && level == "0x2"){
+                            if ($(this).data("value") != "0x1"){
+                                $(this).css("background-color", "rgba(35,35,35,0.8)")
+                                $(this).unbind()
+                                $(this).find(".list-level-type").css("background-color", "grey")
+                            $(this).find(".list-level-type").css("color", "darkgrey")
+                            
+                            $(this).hover(function(){
+                                
+                                $(this).css("cursor", "context-menu")
+                                $(this).css("background-color","rgba(35,35,35,0.8)")
+                                })
+                            }
+                        }
+                        
+                        else if ($(this).data("value") != level && level == "0x3"){
+                            if ($(this).data("value") != "0x1" && $(this).data("value") != "0x2"){
+                                $(this).css("background-color", "rgba(35,35,35,0.8)")
+                                $(this).unbind()
+                                $(this).find(".list-level-type").css("background-color", "grey")
+                            $(this).find(".list-level-type").css("color", "darkgrey")
+                            
+                            $(this).hover(function(){
+                                
+                                $(this).css("cursor", "context-menu")
+                                $(this).css("background-color","rgba(35,35,35,0.8)")
+                                })
+                            }
+                        }
+                        
+                        else if ($(this).data("value") != level && level == "0x4"){
+                            if ($(this).data("value") != "0x1" && $(this).data("value") != "0x2" && $(this).data("value") != "0x3"  ){
+                                $(this).css("background-color", "rgba(35,35,35,0.8)")
+                                $(this).unbind()
+                                $(this).find(".list-level-type").css("background-color", "grey")
+                            $(this).find(".list-level-type").css("color", "darkgrey")
+                            
+                            $(this).hover(function(){
+                                
+                                $(this).css("cursor", "context-menu")
+                                $(this).css("background-color","rgba(35,35,35,0.8)")
+                                })
+                            }
+                        }
+                        
+                        else if ($(this).data("value") != level && level == "0x5"){
+                            if ($(this).data("value") != "0x1" && $(this).data("value") != "0x2" && $(this).data("value") != "0x3" && $(this).data("value") != "0x4" ){
+                                $(this).css("background-color", "rgba(35,35,35,0.8)")
+                                $(this).unbind()
+                                $(this).find(".list-level-type").css("background-color", "grey")
+                            $(this).find(".list-level-type").css("color", "darkgrey")
+                            
+                            $(this).hover(function(){
+                                
+                                $(this).css("cursor", "context-menu")
+                                $(this).css("background-color","rgba(35,35,35,0.8)")
+                                })
+                            }
+                        }
+                    })
+                    $("#user-level").text(level)      
+                })
+                speakyto.getUserExperience(address).then(experience => {
+                    $("#user-experience").text(experience)
+                })  
+            }
+        }
+        
+        
+        function questionTypeListener(){
+            listItem = $(".choices-list-item")
+            
+            function closeContainer(){  
+                $("#ask-level-choice-container").css("display", "none")
+                $("#ask-form-level").css("display", "flex")
+            }
+            
+            function openContainer(){  
+                $("#ask-level-choice-container").css("display", "flex")
+                $("#ask-form-level").css("display", "none")
+            }
+            
+            listItem.bind("click", function(){
+                if($(this).data("value") == "0x1" && $(this).attr("name") == "howtosay"){
+                    location.hash = "How-To-Say"
+                    $("#question-type-header").text("How To Say")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 1")
+                    closeContainer()
+                      
+                }
+                
+                else if ($(this).data("value") == "0x1" && $(this).attr("name") == "howtopronounce"){
+                    location.hash = "How-To-Prounounce"
+                    $("#question-type-header").text("How To Pronounce")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 1")
+                    closeContainer()
+                }
+                
+                else if ($(this).data("value") == "0x2" && $(this).attr("name") == "whatdoesthismean"){
+                    location.hash = "What-Does-This-Mean"
+                    $("#question-type-header").text("What Does This Mean")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 2")
+                    closeContainer()
+                }
+                
+                else if ($(this).data("value") == "0x3" && $(this).attr("name") == "whatsthedifference"){
+                    location.hash = "Whats-The-Difference"
+                    $("#question-type-header").text("What's The Difference?")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 3")
+                    closeContainer()
+                }
+                
+                else if ($(this).data("value") == "0x4" && $(this).attr("name") == "showmeanexample"){
+                    location.hash = "Show-Me-An-Example"
+                    $("#question-type-header").text("Show Me An Example")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 4")
+                    closeContainer()
+                }
+                
+                else if ($(this).data("value") == "0x5" && $(this).attr("name") == "asksomethingelse"){
+                    location.hash = "Ask-Something-Else"
+                    $("#question-type-header").text("Ask Something Else")
+                    $("#question-type-before").text("From")
+                    $("#question-type-mid").text("To")
+                    $("#question-type-end").text("?")
+                    $("#info-level-status").text("Level 5")
+                    closeContainer()
+                }
+                
+                
+            })
+            
+            if ($("#ask-form-level").css("display", "none")){
+                $(window).on("popstate", function(){
+                    openContainer()
+                } )
+            }
+        }
+        
+        function getLanguages() {
+            const langContentTo = $(".lang-content-to")
+            const langContentFrom = $(".lang-content-from")
+            
+            speakyto.getSupportedLanguages().then(supported_languages => {
+                
+                langContentTo.children().each(function(index){
+                    $(this).val(supported_languages[index])           
+                })
+                langContentFrom.children().each(function(index){
+                    $(this).val(supported_languages[index])           
+                })
+            })
+        }
+        
+        function accountRefresh() {
+            if (ancilia.isLoggedIn()) {
+                console.log('currently logged in...')   
+                
+            } else {          
+                window.location.replace('/login.html')
+            }
+        }
+        
+        function listLang(){
+            
+            for(const langs in iso_6391){
+                $("#from-lang").append(`<option value=${langs} class='selector-content'>${iso_6391[langs].name} </option>`)    
+                $("#to-lang").append(`<option value=${langs}> ${iso_6391[langs].name} </option>`)
+            }                      
+        }
+        
+        function dropDownListFrom(){
+            $(".lang-content-from").toggle()
+            $(".lang-content-to").toggle(false)
+            
+        }
+        
+        function dropDownListTo(){
+            $(".lang-content-from").toggle(false)
+            $(".lang-content-to").toggle()
+            
+        }
+        
+        function onAskQuestion() {
+            const data = $("#question-input").val()
+            const from = $("#from-lang").val()
+            const to = $("#to-lang").val()
+            const icx = $("#icx-reward").val()
+            console.log(data,from,to,icx)
+            speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
+                console.log("Question created : ", questionUid)
+            })
+        }
+        
+        function backToQA(){
+            window.location.replace("/pages/qa_home.html")           
+        }
+        
+        function selectionListener(){
+            
+            // Assign to language list item
+            
+            const langItem = $(".lang-item")
+            
+            
+            langItem.bind("click", function(){
+                
+                // Set Values
+                
+                const langSelectFrom = $(".lang-select-from")
+                const langSelectTo = $(".lang-select-to")
+                
+                
+                
+                // Check if list is open
+                
+                if ($(".lang-content-from").is(":visible") && $(".lang-content-to").is(":hidden")){
+                    langSelectFrom.val($(this).val())
+                    langSelectFrom.text($(this).text())
+                    
+                    $(".lang-content-from").toggle()
+                    
+                }
+                
+                else if ($(".lang-content-from").is(":hidden") && $(".lang-content-to").is(":visible") ){
+                    langSelectTo.val($(this).val())
+                    langSelectTo.text($(this).text())
+                    
+                    $(".lang-content-to").toggle()
+                }        
+                
+            })
+        }
+        
+        </script>
+    </body>
+</html>

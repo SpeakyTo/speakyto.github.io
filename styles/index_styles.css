@@ -1,0 +1,87 @@
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+html, body{
+    margin: 0;
+    
+}
+
+a{
+    color: deepskyblue;
+    text-decoration-line: none;
+    
+}
+
+h1{
+    font-size: 40px;
+    font-weight: 20;
+    color:  white;
+}
+
+h2{
+    color:white;
+    font-size: 25px;
+    font-weight: 300;
+    
+}
+
+h3{
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    
+    
+}
+
+button:hover{
+    cursor: pointer;
+    
+}
+
+#main-container{
+    /* background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);*/
+    background-image: url("/images/SpeakyTo_Hero_Simple.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 200px 50px 200px 50px;
+    height: 100vh;
+    max-width: 100%;
+    
+}
+
+#page-contents{
+    padding: 50px;
+    margin: 0 20 0 20;
+    border-radius: 100px;
+    box-shadow: -10px 25px 0px rgba(0,0,0,0.9);
+    background-color: blueviolet;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 40%;
+}
+
+#get-started-button{
+    background-color: blue;
+    margin-top: 5%;
+    box-shadow: 0px 10px 10px rgba(0,0,0, 0.5); 
+    padding: 15px;
+    color: white;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    width: 30%;   
+    text-align: center;
+    
+}
+
+
+#get-started-button:hover{
+    background-color: dodgerblue;
+    
+}

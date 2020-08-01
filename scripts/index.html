@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>SpeakyTo SCORE Demo</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- ICON SDK JS is required by Ancilia -->
+    <script src="https://cdn.jsdelivr.net/gh/icon-project/icon-sdk-js@latest/build/icon-sdk-js.min.js"></script>
+    <!-- Ancilia is required by SpeakyTo -->
+    <script src="./Ancilia.js"></script>
+    <script src="./SpeakyTo.js"></script>
+
+    <!-- iso_639-1 is required by render purposes -->
+    <script src="./iso_639-1.js"></script>
+
+    <!-- JQuery is required by render purposes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        // SpeakyTo constants
+        const NETWORK = IconNetworks.YEOUIDO
+        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+
+        // Instanciate Ancilia + SpeakyTo
+        const ancilia = new Ancilia(NETWORK)
+        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+    </script>
+
+    <style>
+        .answer {
+            padding-left: 20px
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Account</h3>
+    <div id="account">
+        <button id="login" onClick="onLogin()">Login</button>
+        <span id="address"></span>
+    </div>
+    <hr />
+
+    <h3>Ask Question</h3>
+    <div id="ask">
+        Word: <input type="text" id="data" /><br />
+        From (iso_639-1 code): <input type="text" id="from" /><br />
+        To (iso_639-1 code): <input type="text" id="to" /><br />
+        ICX Reward: <input type="number" id="icx" value="1" /><br />
+        <button onClick="onAskQuestion()">Ask</button>
+    </div>
+    <hr />
+
+    <h3>Questions</h3>
+    <div id="questions">
+    </div>
+    <hr />
+
+    <h3>Answer Question</h3>
+    <div id="answer">
+        Question UID: <input type="number" id="question" value="1" /><br />
+        Data: <input type="text" id="data" /><br />
+        <button onClick="onAnswerQuestion()">Answer</button>
+    </div>
+    <hr />
+
+    <h3>Select Answer</h3>
+    <div id="select_answer">
+        Answer UID: <input type="number" id="answer" value="1" /><br />
+        <button onClick="onSelectAnswer()">Select Answer</button>
+    </div>
+    <hr />
+
+    <h3>Cancel Question</h3>
+    <div id="cancel_question">
+        Question UID: <input type="number" id="question" value="1" /><br />
+        <button onClick="onCancelQuestion()">Cancel</button>
+    </div>
+    <hr />
+
+    <script>
+        window.onload = () => {
+            // init account
+            accountRefresh()
+            questionsRefresh()
+        }
+
+        function questionsRefresh() {
+
+            $("#questions").empty()
+
+            const questionRender = (question => {
+                return `(Question UID = ${question['uid']} 
+                        | State: ${question['state']} 
+                        | Reward: ${ancilia.convertDecimalsToUnit(question['reward'], 18)} ICX)
+                        ${question['user_uid']} asked: How to say "${question['data']}" 
+                        from ${iso_6391_name(question['from_language'])} 
+                        to ${iso_6391_name(question['to_language'])} ?`
+            })
+
+            const answerRender = (answer => {
+                return `(Answer UID = ${answer['uid']}) ${answer['user_uid']} answered : ${answer['data']}`
+            })
+
+            speakyto.getQuestions(0).then(questions => {
+                questions.forEach(question => {
+                    const questionDiv = $("<div>" + questionRender(question) + "</div>")
+                    $("#questions").append(questionDiv)
+                    speakyto.getAnswers(question['uid'], 0).then(answers => {
+                        answers.forEach(answer => {
+                            const answerDiv = $("<div class='answer'>" + answerRender(answer) + "</div>")
+                            questionDiv.append(answerDiv)
+                        })
+                    })
+                })
+            })
+        }
+
+        function accountRefresh() {
+            if (ancilia.isLoggedIn()) {
+                const address = ancilia.getLoggedInWallet()
+                $("#account #address").text(address)
+                $("#account #login").html('Logout')
+            } else {
+                $("#account #address").text("?")
+                $("#account #login").html('Login')
+            }
+        }
+
+        function onLogin() {
+            if (ancilia.isLoggedIn()) {
+                ancilia.logout()
+                accountRefresh()
+            }
+            else {
+                ancilia.login().then(address => {
+                    accountRefresh()
+                })
+            }
+        }
+
+        function onAskQuestion() {
+            const data = $("#ask #data").val()
+            const from = $("#ask #from").val()
+            const to = $("#ask #to").val()
+            const icx = $("#ask #icx").val()
+            speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
+                console.log("Question created : ", questionUid)
+                questionsRefresh()
+            })
+        }
+
+        function onAnswerQuestion() {
+            const questionUid = $("#answer #question").val()
+            const data = $("#answer #data").val()
+            speakyto.answerQuestion(questionUid, data).then(answerUid => {
+                console.log("Answer created : ", questionUid)
+                questionsRefresh()
+            })
+        }
+
+        function onSelectAnswer() {
+            const answerUid = $("#select_answer #answer").val()
+            speakyto.selectAnswer(answerUid).then(tx => {
+                // Wait for the state to be changed
+                ancilia.__txResult(tx['result']).then(() => {
+                    console.log("Answer selected")
+                    questionsRefresh()
+                })
+            })
+        }
+
+        function onCancelQuestion() {
+            const questionUid = $("#cancel_question #question").val()
+            speakyto.cancelQuestion(questionUid).then(tx => {
+                // Wait for the state to be changed
+                ancilia.__txResult(tx['result']).then(() => {
+                    // Wait for the next block
+                    console.log("Question cancelled")
+                    questionsRefresh()
+                })
+            })
+        }
+
+    </script>
+
+</body>
