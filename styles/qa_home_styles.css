@@ -67,27 +67,39 @@ h1{
 #main-container{
     display: flex;
     flex-direction: column;
+    padding: 10 25 10 
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
     background-color: white;
     height: 100%;
     width: 100%;
-    
-
+    overflow: hidden
 }
 
 #header-logo{
+    margin: 10;
+    align-self: center;
     padding: 10px;
     width: 175px;
     cursor: pointer;
 }
 
+#content-container-wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
 #content-container{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    border-radius: 50px;
+    border-radius: 25px;
     width: 100%;
-    min-height: 98%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     background-color: rgb(252,252,252);
@@ -110,26 +122,24 @@ h1{
 #qa-dashboard{
     display: flex;
     flex-direction: column;
-    margin: 1 1 1 1;
-    padding: 100px 25px 100px 25px;
-    box-shadow: 10px 0px 5px rgb(0,0,0,0.03);
+    padding: 25px 25px 25px 25px;
+    box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
     background-color: rgb(35,35,35);
-    border-radius: 50px 150px 50px 50px;
     z-index: 1;
     min-height: 100%;
-    width: 27%; 
+    width: 30%; 
     
 }
 
 #user-container{
-    padding: 30px;
-    border-radius: 20px 75px 50px 50px;
+    padding: 50 25 50 25;
+    border-radius: 25px;
     background: linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: auto;
+    min-height: 50%;
     width: 100%;
 }
 
@@ -141,10 +151,15 @@ h1{
     
 }
 
+h2.user-content{
+    background-color: rgb(33,33,33);
+    border-radius: 6px;
+}
+
 #avatar{
-    margin: -25px; 
-    height: 150px;
-    width: 150px;
+
+    height: 200px;
+    width: 200px;
 }
 
 #address{
@@ -160,11 +175,13 @@ h1{
 #user-account{
     text-align: center;
     width: 100%;
-    border-radius: 50px;
-    padding: 5px;
+    align-self: flex-start;
+    border-radius: 6px;
+    padding: 15px;
     background-color: rgb(35,35,35);
     color: lime;
-    font-size: 14px;
+    font-size: 16px;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
 }
 
 #user-account-profile{
@@ -182,19 +199,20 @@ h1{
 
 #my-profile{
     margin: 15px;
-    width: 75%;
+    width: 100%;
     padding: 10px;
-    font-size: 14px;
-    border-radius: 16px;
-    background-color: black;
-    color: lime;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
     outline: 0;
     border: 0;
     box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
 }
 
 #my-profile:hover{
-    background-color: rgb(33,33,33);
+    background-color: dodgerblue;
 }
 
 .close-buttons{
@@ -247,7 +265,7 @@ h1{
     border: none;
     outline: none;
     background-color: rgba(0,0,0,0);
-    font-size: 14px;
+    font-size: 16px;
     color: white;   
 }
 
@@ -269,10 +287,10 @@ h1{
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-content: flex-start;
     border-radius: 10px;
-    width: 100%;
+    width: 85%;
     height: 100%;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
     background-color: white;
@@ -300,7 +318,7 @@ h1{
     text-align: center;
     background: linear-gradient(90deg, rgba(0,172,255,1) 0%, rgba(145,0,255,1) 100%);
     color: white;
-    width: 35%;
+    width: 50%;
     border-radius: 10px;  
 }
 
@@ -332,56 +350,49 @@ h1{
 
 
 #qa-section-level-meter{
-    border-radius: 0px 50px 50px 0px;
-    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    padding: 0 20 0 20;
     display: flex;
-    height: 100%;
-    width: 20%;
-    flex-direction: column;
+    height: 50%;
+    width: 70%;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(30,30,30)
+    background-color: rgb(30,30,30);
     
 }
 
 #level-meter-img{
     clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
     margin: 5 0 5 0; 
-    height: 150px;
-    width: 150px;
+    height: 75px;
+    width: 75px;
     
 }
 
 #point-slider-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
 .point-slider{
-    transform: rotate(-90deg);
     border-color: white;
     border-style: solid;
-    border-width: thick;
+    border-width: thin;
     -webkit-appearance: none;
     appearance: none;
     background-image:  linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
-    width: 200%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     outline: none;
 }
 
-@media only screen and (max-height: 950px){
-    .point-slider{
-        width: 150%;
-        background-color: purple;
-    }
-}
 
 .point-slider::-webkit-slider-thumb{
     -webkit-appearance: none;
@@ -394,7 +405,7 @@ h1{
 
 .exp-level-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 25 0 25 0;
@@ -403,12 +414,11 @@ h1{
 }
 
 .exp-style{
-
     padding: 5px;
     text-align: center;
     font-size: 12px;
     border-radius: 10px;
-    width: 100%;
+    width: 25%;
     background-image:  linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,0.5) 100%);
     color: white;
 }
@@ -423,8 +433,7 @@ h1{
     font-weight: 800px;
     border-radius: 15px;
     background: linear-gradient(90deg, rgba(0,172,255,1) 0%, rgba(145,0,255,1) 100%);
-    height: %;
-    width: 80%;
+    width: 15%;
     
 }
 
@@ -459,20 +468,31 @@ h1{
     
 }
 
-
 #qa-section-container{
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     overflow-y: scroll;
 }
 
-#questions-list{
-    padding: 75px;
+#qa-section-top-content{
+    /*position: sticky;
+    top:0;*/
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+}
+
+#questions-list{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     height: 100%;
     width: 100%;
@@ -488,26 +508,16 @@ h1{
 
 #qa-section-nav{
     display: flex; 
-    position: absolute;
-    margin: auto;
-    top: -76%;
-    bottom: 0;
-    right: 0;
-    left: 0;
     padding: 25px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    box-shadow: 0px 10px 2px rgba(0,0,0,0.2);
-    background-color: white;
     color: black;
     border-style: solid;
     outline: none;
     border-color: transparent;
-    border-bottom-color: dodgerblue;
     width: 50%; 
     height: 5%; 
-    
 }
 
 .qa-section-nav-content{
@@ -555,14 +565,12 @@ h1{
 
 
 #question-section{
-    padding: 30px;
-    border-radius: 0px 0px 0px 300px;
+    padding: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px 0px 40px 0px;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     height: auto;
     background-color: blueviolet;
 }
@@ -672,7 +680,7 @@ h1{
     width: 25%;
     outline: 0px;
     border: 0px;
-    border-radius: 10px 50px 10px 50px;
+    border-radius: 6px;
     margin-right: 5%;
     background-color: #5200FF;
     color: white;
@@ -684,13 +692,14 @@ h1{
 }
 
 .close-question-button-style{
+    border-radius: 6px;
     padding: 10px;
     font-size: 14px;
     height: 50px;
     width: 25%;
     outline: 0px;
     border: 0px;
-    border-radius: 10px 50px 10px 50px;
+    border-radius: 6x;
     margin-right: 5%;
     background-color: #FF0036;
     color: white;
@@ -721,7 +730,7 @@ h1{
 
 .submit-button{
     margin-left: 35%;
-    border-radius: 100px;
+    border-radius: 6px;
     padding: 10px;
     font-size: 15px;
     width: 25%;
@@ -748,18 +757,14 @@ h1{
 
 
 #answer-section{
-    padding: 25px;
+    padding: 50px;
     display: flex;
-    border-radius: 0px 300px 0px 0px;
     flex-direction: column;
     background-color: blue;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     min-height: 100%;
-    width: 95%;
-    height: auto;
-    background-color: blue;
+    width: 100%;
 }
 
 #answers{
@@ -998,7 +1003,7 @@ h1{
 }
 
 #my-profile-page{
-    background: linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
+    background-color: rgb(33,33,33);
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -1009,7 +1014,7 @@ h1{
 }
 
 #my-profile-page-content-container{
-    clip-path: circle(90% at 75% 50%);
+
     background-color: white;
     border-radius: 35px;
     padding: 25px;
@@ -1035,7 +1040,7 @@ h1{
 }
 
 #split{
-        box-shadow: 0px 0px 7px rgba(0,0,0,0.5) inset;
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.5) inset;
     display: flex;
     flex-direction: row;
     justify-content: center;

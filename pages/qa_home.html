@@ -28,50 +28,54 @@
     <link rel="stylesheet" href="/styles/qa_home_styles.css"></link>  
     </head>        
     <body>
-        <div id='loader-screen' style="background-color:white; height:100%; width:100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; ">
-            <img src="/images/SpeakyTo_Logo_V1.png" width="300px" id="loader-image">    
+        <div id='loader-screen' style="background-color:white; height:100vh; width:100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; ">
+            <img src="/images/SpeakyTo_Logo_V1.png" width="250px" height="330px" id="loader-image">    
             <h1 style="text-align: center"> Getting things ready...</h1>
             <span id="history-check" data-qn-number='none' hidden></span> 
         </div>
     <div id="main-container">
-            <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index.html'" >
-        <div id="content-container">
-            <div id="qa-dashboard">
-                <div id="user-container">
-                    <h2 style="color: white;" class="user-content"> Welcome Back</h2>
-                    <span id="user-account" class="user-content"></span>
-                    <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
-                    </div>
-                <hr style="border: 2px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
-                <div id="qa-dashboard-links-container">
-                    <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
-                    <button class="qa-dashboard-content" onclick="askQuestion()">Ask a question</button>
-                    <!--<button class="qa-dashboard-content" onclick="qaBackButton()">View Questions</button>-->
-                    <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
-                    </div>
-            </div>
-            
-            <!--<div id="qa-section-sidebar">
-                <button class="qa-section-buttons" onclick="qaBackButton()">Back</button>
-            
-            </div>-->
-            <div id="qa-section-container">
-                <div id="questions-and-answers"></div>
-            </div>
-            <div id="qa-section-level-meter">
-                <img id="level-meter-img"src="/images/avatar.png" alt="avatar" class="user-content">
-                <span id="level" class="my-level"></span>
-                <div class="exp-level-container">
-                    <div id="point-slider-container">
-                        <span id="exp-notify" class="exp-style" style="background-image:none;">Experience To Next Level</span>
-                        <span id="next-level" class="exp-style" style="font-size: 18px;"></span>
-                        <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
-                        <span class="exp-style" style="background-image:none;">Current Experience</span>
-                        <span id="exp-level" class="exp-style" style="font-size: 18px;"></span>
-                    </div>  
+        <div id="content-container-wrap">
+            <div id="content-container">
+                <div id="qa-dashboard">
+                    <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index.html'" >
+                    <div id="user-container">
+                        <h2 style="color: white;" class="user-content"> Welcome Back</h2>
+                        <span id="user-account" class="user-content"></span>
+                        <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
+                        </div>
+                    <hr style="border: 2px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
+                    <div id="qa-dashboard-links-container">
+                        <button class="qa-dashboard-content" onclick="askQuestion()">Ask a question</button>
+                        <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
+                        <!--<button class="qa-dashboard-content" onclick="qaBackButton()">View Questions</button>-->
+                        <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
+                        </div>
                 </div>
+
+                <!--<div id="qa-section-sidebar">
+                    <button class="qa-section-buttons" onclick="qaBackButton()">Back</button>
+
+                </div>-->
+                <div id="qa-section-container">
+                    <div id="qa-section-top-content">
+                        <div id="qa-section-level-meter">
+                            <img id="level-meter-img"src="/images/avatar.png" alt="avatar" class="user-content">
+                            <span id="level" class="my-level"></span>
+                            <div class="exp-level-container">
+                                <div id="point-slider-container">
+                                    <span id="next-level" class="exp-style" style="font-size: 14px;"></span>
+                                    <span id="exp-notify" class="exp-style" style="background-image:none;">Experience To Next Level</span>
+                                    <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
+                                    <span id="exp-level" class="exp-style" style="font-size: 14px;"></span>
+                                    <!--<span class="exp-style" style="background-image:none;">Current Experience</span>-->
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div id="questions-and-answers"></div>
+                </div>
+                <div id="test"></div>
             </div>
-            <div id="test"></div>
         </div>
         
         <script>
@@ -103,7 +107,7 @@
                         
                         //Load Username
                         console.log(account)
-                        $("#user-account").text(account['username'])
+                        $("#user-account").text("Username: " + account['username'])
                         return getAvatar
                     })
                 })
@@ -149,6 +153,7 @@
                 $("#questions-and-answers").empty()
                 $("#questions-list").show()
                 $("#qa-section-nav").show()
+                $("#qa-section-level-meter").show()
                 
                  //Scroll to top of viewport
                 $("#questions-list").animate({scrollTop: 0}, 'slow')
@@ -224,7 +229,7 @@
                 </div>
                 <div id='my-questions'></div>`)
                 
-                if ($("#my-questions").empty()){
+                if ($("#my-questions").length < 0){
                     $("#my-questions").append(`<h1>You haven't asked any questions yet</h1>`)
                     
                 } else {  
@@ -374,7 +379,8 @@
             
             $("#questions-and-answers").hide()
                                               
-            $("#content-container").prepend(`<div id="qa-section-nav">
+            $("#qa-section-top-content").append(`
+                    <div id="qa-section-nav">
                     <button id="sort-lang" class="qa-section-nav-content" onclick="sortByLanguage()">Filter by language</button>
                     <button id ="sort-levels" class="qa-section-nav-content" onclick="sortByLevel()">Sort By Levels</button>
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
@@ -435,6 +441,7 @@
                 $("#questions-and-answers").show()
                 $("#questions-list").hide()
                 $("#qa-section-nav").hide()
+                $("#qa-section-level-meter").hide()
                 
                 
                 
@@ -455,7 +462,7 @@
                 speakyto.getQuestions(0).then(questions => {
                     document.location.href = `#${questions[qn]['uid']}`
                     const qaSection = $("#questions-and-answers").append(`
-            <button style="padding:10px; margin:5 0 5 0; background-color: black; color:white; outline: none; border-radius:25px; width: 10%; border:none; position:fixed;" onclick="qaBackButton()">Close</button>        
+            <button style="padding:10px; margin:5 0 5 0; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 50px; height: 50px; border:none; position:fixed; clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>     
             <div id="question-section">
                 <h2 class="qa-headings-style-q">Question</h2>
                 <div id="question">
@@ -492,7 +499,7 @@
                    // Create Answers Section
                     
                     $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:black; color: lime;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
+                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:#ee0290; color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
                     speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
                         console.log(answers.length)
                         if(answers.length >= 1){
@@ -578,7 +585,7 @@
                     <div style="display: flex; flex-direction: column; height: auto; width: 25%; background-color:white; padding: 50px; border-radius: 35px; box-shadow: 0px 0px 10px black;">
                         <span style="margin: 25px 0px 25px 0px;">Are you sure you want to go to the home page?</span>
                             <div style="display:flex; flex-direction:row; justify-content: space-around; align-items: center;" >
-                                <button id="yesBTN" style="margin: 0px 10px 0px 10px; background-color:black; color: lime; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%";>Yes</button>
+                                <button id="yesBTN" style="margin: 0px 10px 0px 10px; background-color:#00d300; color: black; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%";>Yes</button>
                                 <button id="noBTN" style="margin: 0px 10px 0px 10px;background-color:red; color: white; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%; height: 100%;"">No</button>
                             </div>
                     </div> 
@@ -745,6 +752,7 @@
                             
                             else if (level == 6){
                                 $("#next-level").text("You're at max level")
+                                $("#exp-notify").hide()
                                 minExp == 40000
                                 maxExp == Infinity
                             }
