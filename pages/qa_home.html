@@ -492,13 +492,14 @@
                    // Create Answers Section
                     
                     $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:black; color: lime;" onclick="scrollTopQA()">Answer This</button>`)
+                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:black; color: lime;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
                     speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
-                        answers.forEach(answer =>{
-                            
-                            if(answers.length > 0){
-                                $("#answer-placeholder").remove()
+                        console.log(answers.length)
+                        if(answers.length >= 1){
+                            $("#answer-placeholder").remove()
+                            $("#answer-this-button").remove()
                             }
+                        answers.forEach(answer =>{
                             
                             const appendAnswers = $("#answer-section").append(`
                     <div id="answers"> 
@@ -671,7 +672,7 @@
                                         minExp.min = 0
                                         maxExp.max = 999
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
                                    if (currExp >= maxExp && level == 1){
                                     alert("You made it to level 2!")
@@ -687,7 +688,7 @@
                                         minExp == 1000
                                         maxExp == 4000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
                                     if (currExp >= maxExp && level == 2){
                                     alert("You made it to level 3!")
@@ -702,7 +703,7 @@
                                         minExp == 4000
                                         maxExp == 12000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
                                     if (currExp >= maxExp && level == 3){
                                     alert("You made it to level 4!")
@@ -718,7 +719,7 @@
                                         minExp == 12000
                                         maxExp == 24000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
                                     if (currExp >= maxExp && level == 4){
                                     alert("You made it to level 5!")
@@ -734,7 +735,7 @@
                                         minExp == 24000
                                         maxExp == 40000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
                                     if (currExp >= maxExp && level == 5){
                                     alert("You made it to level 6!")
