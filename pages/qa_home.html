@@ -65,7 +65,10 @@
                                 <div id="point-slider-container">
                                     <span id="next-level" class="exp-style" style="font-size: 14px;"></span>
                                     <span id="exp-notify" class="exp-style" style="background-image:none;">Experience To Next Level</span>
-                                    <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
+                                    <div id="slider-content">
+                                        <span style="color:white; font-size: 14px;margin: 0;">Ask and Answer Questions To Gain Experience!</span>
+                                        <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
+                                    </div>
                                     <span id="exp-level" class="exp-style" style="font-size: 14px;"></span>
                                     <!--<span class="exp-style" style="background-image:none;">Current Experience</span>-->
                                 </div>  
@@ -381,6 +384,7 @@
                                               
             $("#qa-section-top-content").append(`
                     <div id="qa-section-nav">
+                    <button class="qa-section-nav-content" onclick="askQuestion()" style="background-color: #6002ee;">Ask A Question</button>
                     <button id="sort-lang" class="qa-section-nav-content" onclick="sortByLanguage()">Filter by language</button>
                     <button id ="sort-levels" class="qa-section-nav-content" onclick="sortByLevel()">Sort By Levels</button>
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
