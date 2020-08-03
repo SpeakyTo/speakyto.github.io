@@ -106,7 +106,10 @@ span{
 }
 
 #image-info-container{
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 50px;
     width: 40%;
     height: 100%;   

@@ -18,11 +18,11 @@
     <script>
         // SpeakyTo constants
         const NETWORK = IconNetworks.YEOUIDO
-        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+        const SPEAKYTO_SCORE = 'cxcc72743ef0614030397918b5c51c2a4d6fcfc5dd'
 
         // Instanciate Ancilia + SpeakyTo
         const ancilia = new Ancilia(NETWORK)
-        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+        const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
     
     <link rel="stylesheet" href="/styles/qa_home_styles.css"></link>  
@@ -31,22 +31,22 @@
         <div id='loader-screen' style="background-color:white; height:100%; width:100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; ">
             <img src="/images/SpeakyTo_Logo_V1.png" width="300px" id="loader-image">    
             <h1 style="text-align: center"> Getting things ready...</h1>
+            <span id="history-check" data-qn-number='none' hidden></span> 
         </div>
     <div id="main-container">
-            <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='qa_home.html'" >
+            <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index.html'" >
         <div id="content-container">
             <div id="qa-dashboard">
                 <div id="user-container">
-                    <img id="avatar"src="/images/avatar.png" alt="avatar" class="user-content">
                     <h2 style="color: white;" class="user-content"> Welcome Back</h2>
-                    <span id="address" class="usercontent"></span>
+                    <span id="user-account" class="user-content"></span>
                     <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
                     </div>
                 <hr style="border: 2px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
                 <div id="qa-dashboard-links-container">
                     <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
                     <button class="qa-dashboard-content" onclick="askQuestion()">Ask a question</button>
-                    <button class="qa-dashboard-content" onclick="qaBackButton()">View Questions</button>
+                    <!--<button class="qa-dashboard-content" onclick="qaBackButton()">View Questions</button>-->
                     <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
                     </div>
             </div>
@@ -59,9 +59,17 @@
                 <div id="questions-and-answers"></div>
             </div>
             <div id="qa-section-level-meter">
-                <div class="point-slider"></div>
-                <div class="level-meter"></div>
+                <img id="level-meter-img"src="/images/avatar.png" alt="avatar" class="user-content">
                 <span id="level" class="my-level"></span>
+                <div class="exp-level-container">
+                    <div id="point-slider-container">
+                        <span id="exp-notify" class="exp-style" style="background-image:none;">Experience To Next Level</span>
+                        <span id="next-level" class="exp-style" style="font-size: 18px;"></span>
+                        <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
+                        <span class="exp-style" style="background-image:none;">Current Experience</span>
+                        <span id="exp-level" class="exp-style" style="font-size: 18px;"></span>
+                    </div>  
+                </div>
             </div>
             <div id="test"></div>
         </div>
@@ -70,28 +78,71 @@
         window.onload = () => {
             
             // init account
-            historyListener()
+            //historyListener()
             accountRefresh()
+            userLoader()
             questionsListView()
             otherRefresh()
             sortedLanguages()
             sortedLevels()
         }
     
+        function userLoader(){
+            window.location.hash = ''
+            if (ancilia.isLoggedIn()){
+                const address = ancilia.getLoggedInWallet()
+                
+                speakyto.getUserUid(address).then(user_uid => {
+                    speakyto.getUserAccount(user_uid).then (account => {
+                        
+                        // Load Avatar
+                        const avatarID = parseInt(account['avatar_uid'])
+                        const getAvatar = $("#user-container").prepend(`
+                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `)
+                        
+                        
+                        //Load Username
+                        console.log(account)
+                        $("#user-account").text(account['username'])
+                        return getAvatar
+                    })
+                })
+            }
+        }
+            
         
         function historyListener(){
-            window.onpopstate = function(){
-                if ($("#question-section").is(':visible')){
+            
+            if ($("#question-section").length === 0){
+                
+                $("#history-check").text("false")
+                window.location.hash = ''
+                }
+            
+            let lastUrl = null
+            
+            window.addEventListener("popstate", (event) =>{
+                console.log(event)
+                
+                if ($("#question-section").length > 0 && lastUrl === null && $("#history-check").text("false") ){
+                    lastUrl = $("#history-check").attr("data-qn-number")
                     qaBackButton()
+                    $("#history-check").text("true")
                 }
                 
-                if ($("#sort-lang-container").is(':visible') || $("#sort-levels-container").is(':visible') || $("#my-profile-page-container").is(':visible')){
+                else if ($("#question-section").length === 0 && lastUrl !== null && $("#history-check").text("true") ){
+                    activateQA()
+                    lastUrl = null
+                    $("#history-check").text("false")
+                }
+            })
+            if ($("#sort-lang-container").is(':visible') || $("#sort-levels-container").is(':visible') || $("#my-profile-page-container").is(':visible')){
                     $("#sort-lang-container").hide()
                     $("#sort-levels-container").hide()
                     $("#my-profile-page-container").hide()
                 }
-            }
         }
+            
         
             function qaBackButton(){
                 $("#questions-and-answers").hide()
@@ -110,32 +161,46 @@
                 }
             
             function viewMyProfile(){
-                const profilePage = $("#main-container").prepend(`
-                <div id="my-profile-page-container">
-                    <div id="my-profile-page">
-                        <div id="my-profile-page-content-container">
-                            <div id="my-profile-content">
-                                <button onclick="closeProfilePage()" class="close-buttons">Close</button>
-                                <h2> My Profile </h2>
-                                <div id="split">
-                                    <div id="split-left">
-                                        <img id="my-profile-avatar"src="/images/avatar.png" alt="avatar" class="user-content">
-                                        <span> Currently signed in as </span>
-                                        <span id="address"></span>        
+                window.location.hash = ''
+                if(ancilia.isLoggedIn()){
+                    
+                   const address = ancilia.getLoggedInWallet()
+                   speakyto.getUserUid(address).then(user_uid => {
+                       speakyto.getUserAccount(user_uid).then(account => {
+                           const getAvatar = parseInt(account['avatar_uid'])
+                           
+                           const profilePage = $("#main-container").prepend(`
+                            <div id="my-profile-page-container">
+                                <div id="my-profile-page">
+                                    <div id="my-profile-page-content-container">
+                                        <div id="my-profile-content">
+                                            <button onclick="closeProfilePage()" class="close-buttons">Close</button>
+                                            <h2> My Profile </h2>
+                                            <div id="split">
+                                                <div id="split-left">
+                                                    <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">
+                                                    <span> Your address </span>
+                                                    <span id="my-user-id" hidden>${account['uid']}</span>
+                                                    <span id="address"></span>  
+                                                    <span> Currently signed in as </span>
+                                                    <span id="user-account-profile"></span>        
+                                                </div>
+                                                <div class="my-profile-page-content">
+                                                <button id="my-questions-header-button" onclick="showMyQuestions()">View My Questions</button> 
+                                                <span id="level" class="my-profile-stats"></span>
+                                                <span id="experience" class="my-profile-stats"></span>
+                                            </div>
+                                            </div>  
+                                        </div>  
                                     </div>
-                                    <div class="my-profile-page-content">
-                                    <button id="my-questions-header-button" onclick="showMyQuestions()">View My Questions</button> 
-                                    <span id="level" class="my-profile-stats"></span>
-                                    <span id="experience" class="my-profile-stats"></span>
                                 </div>
-                                </div>  
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-                `)
-                accountRefresh()
-                getMyQuestions()
+                            </div>
+                            `)
+                                accountRefresh()
+                                getMyQuestions()
+                       })
+                   })
+                }
             }
             
             function closeMyQuestions(){
@@ -159,26 +224,30 @@
                 </div>
                 <div id='my-questions'></div>`)
                 
+                if ($("#my-questions").empty()){
+                    $("#my-questions").append(`<h1>You haven't asked any questions yet</h1>`)
+                    
+                } else {  
+                    $("#my-questions").empty()
+                }
+                
+                
                 speakyto.getQuestions(0).then(questions => {
                     
                     questions.forEach(question => {
                         const myQuestionID = question['user_uid']
-                        myQuestionID.replace("0x", '')
-                        console.log(myQuestionID)
-                        console.log($("#address-profile").text())
-                        if ($("#address").text() == myQuestionID){
+                        const questionValue = parseInt(question['uid']) - 1
+                        if ($("#my-user-id").text() == myQuestionID){
                             $("#my-questions").append(`
                             <div id="my-questions-container">
                                 <span class="my-question-style" style="background-color:dodgerblue; color:white;font-weight:600;">Status:  ${question['state']}</span>
                                 <span class="my-question-style" style="background-color:blueviolet; color:white;"> You asked... </span>
                                 <span class="my-question-style">${question['data']}?</span>
                                 <span class="my-question-style"> From ${iso_6391_name(question['from_language'])} To ${iso_6391_name(question['to_language'])}</span>
-                                <button id="${question['uid']}"class="my-question-button"> View question</button>
+                                <button id="${parseInt(question['uid'])}" class="my-question-button" onclick="activateQA(this)" value="${questionValue}"> View question</button>
                             </div>
                             `)   
                         }
-
-                        
                     })
                     
                 })
@@ -253,7 +322,6 @@
                         <option value="Level4" class="sort-levels-options">Level 4</option>
                         <option value="Level5" class="sort-levels-options">Level 5</option>
                         <option value="Level6" class="sort-levels-options">Level 6</option>
-
                     </div>
                 </div>`)
                 
@@ -286,6 +354,8 @@
             
             
         function otherRefresh() {
+            document.getElementById("point-slider-target").disabled = true
+            
             speakyto.getSupportedLanguages().then(supported_languages => {
                 $("#other #supported_languages").text(supported_languages)
             })
@@ -319,24 +389,25 @@
                 const userLevel = ""
                 return `
                         <div id="question-list-style">
-                            <span id="question-list-state" class="question-list-state-style">${question['state']}<span class="user-address" hidden\>${question['user_uid']}</span><span class="q-level">${userLevel}</span></span>
+                            <span id="question-list-state" class="question-list-state-style">${question['state']}<span class="question-level">Level: ${parseInt(question['level'])}</span><span class="q-level">${userLevel}</span></span>
                             <div id=question-list-text>
                                 <span></span>
                                 <span id="question-list-text"> "${question['data']}"</span>
                                 <span id="sort-from"> from ${iso_6391_name(question['from_language'])}</span>
-                                <span> to ${iso_6391_name(question['to_language'])}?</span>
+                                <span> to ${iso_6391_name(question['to_language'])} ?</span>
                             </div>
                             <button onclick="activateQA(this)" id="btnAQ-${i}" value=${i} class="view-question-button"> View Question </button>  
                         <div>`
             })
             
-            
+
             // Assign Question Value
             
             let i = -1
             
             speakyto.getQuestions(0).then(questions => {
                 questions.forEach(question => { 
+                    console.log(question)
                     x = i++
                     if (question['state'] == "CANCELLED"){
                         // Skip
@@ -351,57 +422,48 @@
             })
             
             $(document).ready(function (){
-                
-                addressList = $(".user-address") // Get list of addresses
-                
-                addressList.each(function(index) { // Loop through address list
-                    addressText = $(this).text()
-                    speakyto.getUserLevel(addressText).then(currentLevel => {
-                        
-                        const levelsArray = [currentLevel]
-                        levelsArray.forEach(level => {
-                            const remove0x = level.replace("0x", "")
-                            $(this).text("Level " + remove0x) // Append levels next to question state
-                            if ($(this).text() == "Level 1"){
-                                $(this).css("background-color","red")   
-                            } else if ($(this).text() == "Level 2"){
-                                $(this).css("background-color", "blue")
-                            }
-                            $(this).show() // Show the question level
-                            
-                        })
-                        
-                    })
-                    
-                })
                 $("#loader-screen").toggle()
             }) 
             
         }
+            function scrollTopQA(){
+                    $('#qa-section-container').animate({scrollTop: 0}, 'slow') 
+                }
             
             function activateQA(e){  
-                document.location.href = "#"
                 $('#qa-section-container').animate({scrollTop: 0}, 'slow')
                 $("#questions-and-answers").show()
                 $("#questions-list").hide()
                 $("#qa-section-nav").hide()
                 
-                const get_id = e.id
-                const qn = $('#' + get_id).val()
-                console.log(qn)
-
+                
+                
+                let qn = ''
+                // Get question history state
+                
+                    const get_id = e.id
+                    qn = $('#' + get_id).val() 
+                    $("#history-check").attr("data-qn-number", qn)
+                // Is user profile open?
+                
+                if ($("#my-profile-page-container").length > 0){
+                    $("#my-profile-page-container").remove()
+                }
+                
                $("#qa-section-sidebar").css("display", "flex") 
                 
                 speakyto.getQuestions(0).then(questions => {
+                    document.location.href = `#${questions[qn]['uid']}`
                     const qaSection = $("#questions-and-answers").append(`
-
+            <button style="padding:10px; margin:5 0 5 0; background-color: black; color:white; outline: none; border-radius:25px; width: 10%; border:none; position:fixed;" onclick="qaBackButton()">Close</button>        
             <div id="question-section">
                 <h2 class="qa-headings-style-q">Question</h2>
                 <div id="question">
                 <div id="question-header">
                     <div id="question-header-contents">
+                        <span id="question-number" hidden>${qn}</span>
                         <span id="question-status">${questions[qn]['state']}</span>
-                        <span id="question-user">User: ${questions[qn]['user_uid']}</span>
+                        <span id="question-user"></span>
                         <span id="question-reward">${ancilia.convertDecimalsToUnit(questions[qn]['reward'], 18)} ICX</span>
                     </div>
                     </div>
@@ -418,56 +480,71 @@
                 </div>
             </div>`)
                     
+                    //Append this question's username & avatar
+                    
+                    speakyto.getUserAccount(questions[qn]['user_uid']).then(account => {
+                        const getAvatar = parseInt(account['avatar_uid'])
+                        $("#question-header").prepend(`<img id="question-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">`)
+                      $("#question-user").text("User: " + account['username'])  
+                    })
+                    
                     
                    // Create Answers Section
                     
                     $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    
+                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:black; color: lime;" onclick="scrollTopQA()">Answer This</button>`)
                     speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
                         answers.forEach(answer =>{
-                            //console.log(answer)
-                         const appendAnswers = $("#answer-section").append(`
-                <div id="answers"> 
-                    <div id="answer-header">
-                        <div id="answer-header-contents">
-                            <span id="answer-user">User: ${answer['user_uid']}</span>
-                            <span id="answer-has-replied"> Has replied </span>
+                            
+                            if(answers.length > 0){
+                                $("#answer-placeholder").remove()
+                            }
+                            
+                            const appendAnswers = $("#answer-section").append(`
+                    <div id="answers"> 
+                        <div id="answer-header">
+                            <div id="answer-header-contents">
+                                <span id="answer-user"></span>
+                                <span id="answer-has-replied"> Has replied </span>
+                            </div>
+                        </div>
+                        <span id="answer-text-area">${answer['data']}</span>
+                        <div id="answer-select-area">
+                            <button id="select-answer-button" class="answer-btn" value=${answer['uid']} onclick="onSelectAnswer()" style="display:none;">Select Answer</button> 
                         </div>
                     </div>
-                    <span id="answer-text-area">${answer['data']}</span>
-                    <div id="answer-select-area">
-                        <button id="select-answer-button" class="answer-btn" value=${answer['uid']} onclick="onSelectAnswer()" style="display:none;">Select Answer</button> 
-                    </div>
-                </div>
-            </div>`) 
+                </div>`) 
                          
-                         
+                        speakyto.getUserAccount(answer['user_uid']).then(account => {
+                        const getAvatar = parseInt(account['avatar_uid'])
+                        $("#answer-header").prepend(`<img id="answer-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">`)
+                        $("#answer-user").text("User: " + account['username']) 
+                         })
                         })
-                           
                     })
+                    
                 })
                 
+                // Are there answers?
                 
+                    
                 
                 // Handle logic between user interaction buttons
                 
                 $(document).ready(function() {
-                 const currentUser = ancilia.getLoggedInWallet()
                     
-                    const getWalletQuestion = $("#question-user").text()
-                    const walletQuestion = getWalletQuestion.split('User: ').join('')
+                    const currentUser = $("#user-account").text()
                     
-                    const getWalletAnswer = $("#answer-user").text()
-                    const walletAnswer = getWalletAnswer.split('User: ').join('')
+                    const questionUserInitial = $("#question-user").text()
+                    const questionUser = questionUserInitial.replace("User: ", "")
                     const questionStatus = $("#question-status").text()
                     
-                            
-                    if (walletQuestion == currentUser){
+                    if (questionUser == currentUser){
                         $("#close-question-button").show()
                         $("#select-answer-button").show()
                         $("reply-button").show()
                         
-                    } else if (walletQuestion != currentUser) {
+                    } else if (questionUser != currentUser) {
                         $("#close-question-button").hide()
                         $("#select-answer-button").hide()
                         $("#reply-button").show()
@@ -482,7 +559,8 @@
                     }
                 })               
                 
-        }      
+        }
+            
             
             // Toggles The Reply box
             
@@ -499,8 +577,8 @@
                     <div style="display: flex; flex-direction: column; height: auto; width: 25%; background-color:white; padding: 50px; border-radius: 35px; box-shadow: 0px 0px 10px black;">
                         <span style="margin: 25px 0px 25px 0px;">Are you sure you want to go to the home page?</span>
                             <div style="display:flex; flex-direction:row; justify-content: space-around; align-items: center;" >
-                                <button id="yesBTN" style="margin: 0px 10px 0px 10px; background-color:green; color: white; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%";>Yes</button>
-                                <button id="noBTN" style="margin: 0px 10px 0px 10px;background-color:red; color: white; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%; height: 100%;"">Go Back</button>
+                                <button id="yesBTN" style="margin: 0px 10px 0px 10px; background-color:black; color: lime; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%";>Yes</button>
+                                <button id="noBTN" style="margin: 0px 10px 0px 10px;background-color:red; color: white; padding: 10px; border-radius: 10px; outline: none; border: none; width: 50%; height: 100%;"">No</button>
                             </div>
                     </div> 
                 </div>`)
@@ -541,7 +619,6 @@
                 
                 const answerID = e.id
                 const questionUid = $("#" + answerID).val()
-                console.log(questionUid)
                 const textArea = "#text-data-"
                 const data = textArea.concat(questionUid)        
                 
@@ -552,9 +629,8 @@
                     } else {
                         speakyto.answerQuestion(questionUid, $(data).val()).then(answerUid => {
                             console.log("Answer created : ", questionUid)
-                            
-                            questionsListView()
                             alert('Submitted Successfully')
+                            window.location.reload()
                         })
                     }
             }
@@ -564,16 +640,121 @@
                     const address = ancilia.getLoggedInWallet()
                     $("#address").text(address)
                     $("#address-profile").text(address)
-
-                    speakyto.getUserLevel(address).then(level => {
-                        const levelVar = level.replace("0x", "")
-                        $("#level").text("Level: " + levelVar)
-                    })
                     
-                    speakyto.getUserExperience(address).then(experience => {
-                        console.log(experience)
-                        $("#experience").text("Experience Level: " +experience)
+                    speakyto.getUserUid(address).then(user_uid => {
+                        
+                        speakyto.getUserAccount(user_uid).then(account => {
+                        console.log(account['username'])
+                        $("#user-account-profile").text(account['username'])   
+                        })
+                        
+                        speakyto.getUserLevel(user_uid).then(level => {
+                        const levelVar = parseInt(level)
+                        $("#level").text("Level: " + levelVar)
+                        expTest = 1000
+                        levelTest = 2
+                        
+                        speakyto.getUserExperience(user_uid).then(experience => {
+                            const minExp = document.getElementById("point-slider-target")
+                            const maxExp = document.getElementById("point-slider-target")
+                            const currExp = parseInt(experience)
+                            console.log(currExp)
+                            document.getElementById("point-slider-target").value = currExp
+                            $("#experience").text(currExp.toLocaleString() + " SPKT")
+                            $("#exp-level").text(currExp.toLocaleString() + " SPKT")
+                        
+                        // Level 1
+                            if (level == 1){
+                                
+                                $(document).ready(function(){
+                                    if (currExp >= 0 && currExp <= 999 && level == 1){
+                                        minExp.min = 0
+                                        maxExp.max = 999
+                                        
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "XP")
+                                    }
+                                   if (currExp >= maxExp && level == 1){
+                                    alert("You made it to level 2!")
+                                   }
+                                })    
+                            }
+                        
+                        // Level 2
+                            else if (level == 2){
+                                
+                                $(document).ready(function(){
+                                    if (currExp >= 1000 && currExp <= 3999 && level == 2){
+                                        minExp == 1000
+                                        maxExp == 4000
+                                        
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                    }
+                                    if (currExp >= maxExp && level == 2){
+                                    alert("You made it to level 3!")
+                                   }
+                                }) 
+                            }
+                        // Level 3
+                            else if (level == 3){
+                                
+                                $(document).ready(function(){
+                                    if (currExp >= 4000 && currExp <= 11999 && level == 3){
+                                        minExp == 4000
+                                        maxExp == 12000
+                                        
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                    }
+                                    if (currExp >= maxExp && level == 3){
+                                    alert("You made it to level 4!")
+                                   }
+                                }) 
+                            }
+                        
+                        // Level 4  
+                            else if (level == 4){
+                                
+                                $(document).ready(function(){
+                                    if (currExp >= 12000 && currExp <= 23999 && level == 4){
+                                        minExp == 12000
+                                        maxExp == 24000
+                                        
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                    }
+                                    if (currExp >= maxExp && level == 4){
+                                    alert("You made it to level 5!")
+                                   }
+                                }) 
+                            }
+                        
+                        // Level 5 
+                            else if (level == 5){
+                                
+                                $(document).ready(function(){
+                                    if (currExp >= 24000 && currExp <= 39999 && level == 5){
+                                        minExp == 24000
+                                        maxExp == 40000
+                                        
+                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + "SPKT")
+                                    }
+                                    if (currExp >= maxExp && level == 5){
+                                    alert("You made it to level 6!")
+                                   }
+                                }) 
+                            }
+                            
+                            else if (level == 6){
+                                $("#next-level").text("You're at max level")
+                                minExp == 40000
+                                maxExp == Infinity
+                            }
+                        })
+                        })
+                        
                     })
+
+                    
+                    
+                    
                 } else {
                     window.location.replace("/index.html")
                 }

@@ -41,13 +41,18 @@ hr{
     
 }
 
+span{
+    font-size: 24px;
+    padding: 20px;
+}
+
 button:hover{
     cursor: pointer;
     
 }
 
 #main-container{
-    background-color: white;
+    background-color: rgb(33,33,33);
     min-height: 100%;
     max-width: 100%;
     
@@ -61,6 +66,100 @@ button:hover{
     align-items: center;
     height: 100vh;
     width: 100%
+}
+
+#create-account-container{
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgb(33,33,33);
+    overflow: hidden;
+}
+
+#create-account{
+    background-color: white;
+    border-radius: 20px;
+    margin: 20px;
+    padding: 25 50 25 50;
+    display: flex;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width 100%;
+    height: 100%;
+    
+}
+
+#header-logo{
+    padding: 10px;
+    width: 175px;
+    cursor: pointer;
+}
+
+#avatar-list{
+    display: flex;
+    flex-direction: row;
+    height: 35%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar-class{
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    margin: 20px;
+    padding: 20px;
+    width: 128px;
+}
+
+.avatar-class:hover{
+    background-color: whitesmoke;
+}
+
+#input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+    width: 100%;
+}
+
+#create-account-input{
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    border: none;
+    outline:  none;
+    margin: 20px;
+    width: 35%;
+    height: 15%;
+    
+}
+
+#create-submit-button{
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    margin: 20px;
+    padding: 20px;
+    width: 25%;
+    outline: none;
+    border:none; 
+    background-color: blueviolet;
+    font-size: 16px;
+    color: white;
+}
+
+#create-submit-button:hover{
+    background-color: rebeccapurple;
+    
 }
 
 #login-box{

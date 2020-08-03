@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <title>SpeakyTo SCORE Demo</title>
-    <link rel="stylesheet" href="styles.css">
 
     <!-- ICON SDK JS is required by Ancilia -->
     <script src="https://cdn.jsdelivr.net/gh/icon-project/icon-sdk-js@latest/build/icon-sdk-js.min.js"></script>
@@ -21,36 +20,96 @@
     <script>
         // SpeakyTo constants
         const NETWORK = IconNetworks.YEOUIDO
-        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+        const SPEAKYTO_SCORE = 'cxcc72743ef0614030397918b5c51c2a4d6fcfc5dd'
+        // const NETWORK = IconNetworks.LOCALHOST
+        // const SPEAKYTO_SCORE = 'cx086c74e819f3840d7b49fe3d157ece7d365e55e9'
 
         // Instanciate Ancilia + SpeakyTo
         const ancilia = new Ancilia(NETWORK)
-        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+        const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
 
     <style>
         .answer {
             padding-left: 20px
         }
+
+        .question {
+            padding-top: 20px
+        }
     </style>
 </head>
 
 <body>
+
     <h3>Account</h3>
     <div id="account">
-        <button id="login" onClick="onLogin()">Login</button>
-        <span id="address"></span>
+        <button id="login" onClick="onLogin()">Login</button><br />
+        Address: <span id="address"></span><br />
+        Experience: <span id="experience"></span><br />
+        Level: <span id="level"></span><br />
+        Account UID: <span id="uid"></span><br />
+        Username: <span id="username"></span><br />
+        Avatar UID: <span id="avatar"></span><br />
+    </div>
+
+    <hr />
+
+    <h3>Create Account</h3>
+    <div id="create_account">
+        Avatar UID: <input type="number" id="avatar" value="1" /><br />
+        Username: <input type="text" id="username" /><br />
+        <button onClick="onCreateAccount()">Create Account</button>
     </div>
     <hr />
 
     <h3>Ask Question</h3>
-    <div id="ask">
+    <h4>Question Level 1 (How do you say [word] from [language1] to [language2] ?)</h4>
+    <div id="ask_1">
         Word: <input type="text" id="data" /><br />
         From (iso_639-1 code): <input type="text" id="from" /><br />
         To (iso_639-1 code): <input type="text" id="to" /><br />
         ICX Reward: <input type="number" id="icx" value="1" /><br />
-        <button onClick="onAskQuestion()">Ask</button>
+        <button onClick="onAskQuestion1()">Ask</button>
     </div>
+
+    <h4>Question Level 2 (What does [word or sentence] means from [language1] to [language2] ?)</h4>
+    <div id="ask_2">
+        Word: <input type="text" id="data" /><br />
+        From (iso_639-1 code): <input type="text" id="from" /><br />
+        To (iso_639-1 code): <input type="text" id="to" /><br />
+        ICX Reward: <input type="number" id="icx" value="1" /><br />
+        <button onClick="onAskQuestion2()">Ask</button>
+    </div>
+
+    <h4>Question Level 3 (What's the difference between [word1] and [word2] from [language1] to [language2] ?)</h4>
+    <div id="ask_3">
+        Word 1: <input type="text" id="word1" /><br />
+        Word 2: <input type="text" id="word2" /><br />
+        From (iso_639-1 code): <input type="text" id="from" /><br />
+        To (iso_639-1 code): <input type="text" id="to" /><br />
+        ICX Reward: <input type="number" id="icx" value="1" /><br />
+        <button onClick="onAskQuestion3()">Ask</button>
+    </div>
+
+    <h4>Question Level 4 (Show me an example of [data] from [language1] to [language2] ?)</h4>
+    <div id="ask_4">
+        Data: <input type="text" id="data" /><br />
+        From (iso_639-1 code): <input type="text" id="from" /><br />
+        To (iso_639-1 code): <input type="text" id="to" /><br />
+        ICX Reward: <input type="number" id="icx" value="1" /><br />
+        <button onClick="onAskQuestion4()">Ask</button>
+    </div>
+
+    <h4>Question Level 5 ([Ask any question] from [language1] to [language2] ?)</h4>
+    <div id="ask_5">
+        Data: <input type="text" id="data" /><br />
+        From (iso_639-1 code): <input type="text" id="from" /><br />
+        To (iso_639-1 code): <input type="text" id="to" /><br />
+        ICX Reward: <input type="number" id="icx" value="1" /><br />
+        <button onClick="onAskQuestion5()">Ask</button>
+    </div>
+
     <hr />
 
     <h3>Questions</h3>
@@ -80,11 +139,24 @@
     </div>
     <hr />
 
+    <h3>Other</h3>
+    <div id="other">
+        Supported Languages: <span id="supported_languages"></span><br />
+    </div>
+    <hr />
+
     <script>
         window.onload = () => {
             // init account
             accountRefresh()
             questionsRefresh()
+            otherRefresh()
+        }
+
+        function otherRefresh() {
+            speakyto.getSupportedLanguages().then(supported_languages => {
+                $("#other #supported_languages").text(supported_languages)
+            })
         }
 
         function questionsRefresh() {
@@ -92,12 +164,46 @@
             $("#questions").empty()
 
             const questionRender = (question => {
-                return `(Question UID = ${question['uid']} 
+                var render = `(Question UID = ${question['uid']} 
                         | State: ${question['state']} 
-                        | Reward: ${ancilia.convertDecimalsToUnit(question['reward'], 18)} ICX)
-                        ${question['user_uid']} asked: How to say "${question['data']}" 
-                        from ${iso_6391_name(question['from_language'])} 
-                        to ${iso_6391_name(question['to_language'])} ?`
+                        | Level: ${question['level']} 
+                        | Reward: ${ancilia.convertDecimalsToUnit(question['reward'], 18)} ICX) <br/>`
+
+                switch (parseInt(question['level'])) {
+                    case 1:
+                        render += `${question['user_uid']} asked: How to say "${question['data']}" 
+                                from ${iso_6391_name(question['from_language'])} 
+                                to ${iso_6391_name(question['to_language'])} ?`
+                        break
+
+                    case 2:
+                        render += `${question['user_uid']} asked: What does "${question['data']}" means
+                            from ${iso_6391_name(question['from_language'])} 
+                            to ${iso_6391_name(question['to_language'])} ?`
+                        break
+
+                    case 3:
+                        const data = JSON.parse(question['data'])
+                        render += `${question['user_uid']} asked: What's the difference 
+                                between "${data['word1']}" and "${data['word2']}"
+                                from ${iso_6391_name(question['from_language'])} 
+                                to ${iso_6391_name(question['to_language'])} ?`
+                        break
+
+                    case 4:
+                        render += `${question['user_uid']} asked: Show me an example of ${question['data']}
+                                from ${iso_6391_name(question['from_language'])} 
+                                to ${iso_6391_name(question['to_language'])} ?`
+                        break
+
+                    case 5:
+                        render += `${question['user_uid']} asked: ${question['data']}
+                                from ${iso_6391_name(question['from_language'])} 
+                                to ${iso_6391_name(question['to_language'])} ?`
+                        break
+                }
+
+                return render
             })
 
             const answerRender = (answer => {
@@ -106,7 +212,8 @@
 
             speakyto.getQuestions(0).then(questions => {
                 questions.forEach(question => {
-                    const questionDiv = $("<div>" + questionRender(question) + "</div>")
+                    console.log(question)
+                    const questionDiv = $("<div class='question'>" + questionRender(question) + "</div>")
                     $("#questions").append(questionDiv)
                     speakyto.getAnswers(question['uid'], 0).then(answers => {
                         answers.forEach(answer => {
@@ -122,6 +229,27 @@
             if (ancilia.isLoggedIn()) {
                 const address = ancilia.getLoggedInWallet()
                 $("#account #address").text(address)
+
+                speakyto.getUserUid(address).then(user_uid => {
+
+                    $("#account #uid").text(user_uid)
+
+                    speakyto.getUserLevel(user_uid).then(level => {
+                        $("#account #level").text(level)
+                    })
+                    speakyto.getUserExperience(user_uid).then(experience => {
+                        $("#account #experience").text(experience)
+                    })
+                    speakyto.getUserAccount(user_uid).then(account => {
+                        $("#account #username").text(account['username'])
+                        $("#account #avatar").text(account['avatar_uid'])
+                    })
+
+                }).catch(error => {
+                    $("#account #uid").text('USER ACCOUNT NOT FOUND')
+                })
+
+
                 $("#account #login").html('Logout')
             } else {
                 $("#account #address").text("?")
@@ -141,14 +269,73 @@
             }
         }
 
-        function onAskQuestion() {
-            const data = $("#ask #data").val()
-            const from = $("#ask #from").val()
-            const to = $("#ask #to").val()
-            const icx = $("#ask #icx").val()
+        function onCreateAccount() {
+            const avatar = $("#create_account #avatar").val()
+            const username = $("#create_account #username").val()
+            speakyto.createUserAccount(avatar, username).then(userAccountUid => {
+                console.log("Account created : ", userAccountUid)
+                accountRefresh()
+            })
+        }
+
+        function onAskQuestion1() {
+            const data = $("#ask_1 #data").val()
+            const from = $("#ask_1 #from").val()
+            const to = $("#ask_1 #to").val()
+            const icx = $("#ask_1 #icx").val()
             speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
-                console.log("Question created : ", questionUid)
+                console.log("Question Level 1 created : ", questionUid)
                 questionsRefresh()
+                accountRefresh()
+            })
+        }
+
+        function onAskQuestion2() {
+            const data = $("#ask_2 #data").val()
+            const from = $("#ask_2 #from").val()
+            const to = $("#ask_2 #to").val()
+            const icx = $("#ask_2 #icx").val()
+            speakyto.createQuestionLevel2(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 2 created : ", questionUid)
+                questionsRefresh()
+                accountRefresh()
+            })
+        }
+
+        function onAskQuestion3() {
+            const word1 = $("#ask_3 #word1").val()
+            const word2 = $("#ask_3 #word2").val()
+            const from = $("#ask_3 #from").val()
+            const to = $("#ask_3 #to").val()
+            const icx = $("#ask_3 #icx").val()
+            speakyto.createQuestionLevel3(word1, word2, from, to, icx).then(questionUid => {
+                console.log("Question Level 3 created : ", questionUid)
+                questionsRefresh()
+                accountRefresh()
+            })
+        }
+
+        function onAskQuestion4() {
+            const data = $("#ask_4 #data").val()
+            const from = $("#ask_4 #from").val()
+            const to = $("#ask_4 #to").val()
+            const icx = $("#ask_4 #icx").val()
+            speakyto.createQuestionLevel4(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 4 created : ", questionUid)
+                questionsRefresh()
+                accountRefresh()
+            })
+        }
+
+        function onAskQuestion5() {
+            const data = $("#ask_5 #data").val()
+            const from = $("#ask_5 #from").val()
+            const to = $("#ask_5 #to").val()
+            const icx = $("#ask_5 #icx").val()
+            speakyto.createQuestionLevel5(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 5 created : ", questionUid)
+                questionsRefresh()
+                accountRefresh()
             })
         }
 
@@ -158,6 +345,7 @@
             speakyto.answerQuestion(questionUid, data).then(answerUid => {
                 console.log("Answer created : ", questionUid)
                 questionsRefresh()
+                accountRefresh()
             })
         }
 
@@ -168,6 +356,7 @@
                 ancilia.__txResult(tx['result']).then(() => {
                     console.log("Answer selected")
                     questionsRefresh()
+                    accountRefresh()
                 })
             })
         }
@@ -180,6 +369,7 @@
                     // Wait for the next block
                     console.log("Question cancelled")
                     questionsRefresh()
+                    accountRefresh()
                 })
             })
         }

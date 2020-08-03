@@ -19,11 +19,11 @@
     <script>
         // SpeakyTo constants
         const NETWORK = IconNetworks.YEOUIDO
-        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+        const SPEAKYTO_SCORE = 'cxcc72743ef0614030397918b5c51c2a4d6fcfc5dd'
 
         // Instanciate Ancilia + SpeakyTo
         const ancilia = new Ancilia(NETWORK)
-        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+        const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
     
     </head>
@@ -43,37 +43,86 @@
         <script>
         window.onload = () => {
             // init account
+            ancilia.logout()
             accountRefresh()
+            selectionListener()
         }
         
         function accountRefresh() {
-            
-            if (ancilia.isLoggedIn()) {
-                const address = ancilia.getLoggedInWallet()
-                $("auth").html('Redirecting To Login Page')
-                
-            } else {
-                
-                $("#auth").html('Checking Login')
-
-            }
-        }
-            
+            if(ancilia.isLoggedIn() ){
+               const address = ancilia.getLoggedInWallet()
+               speakyto.getUserUid(address).then(user_uid => {
+                   window.location.replace("/pages/qa_home.html")
+                   }).catch (error => {
+                   createUser()
+               })   
+            }  
+        }   
            function onLogin() {
-            if (ancilia.isLoggedIn()) {
-                //ancilia.logout()
-                $("login-button").html('Redirecting...')
-                window.location.replace("/pages/qa_home.html")
-                accountRefresh()
-            }
-            else {
-                ancilia.login().then(address => {
-                    $("login-button").html('Login')
-                    window.location.replace("/pages/qa_home.html")
-                    accountRefresh()
-                })
-            }
+               const address = ancilia.getLoggedInWallet()
+               ancilia.login().then(address => {
+                   accountRefresh()
+               })     
         } 
+            
+            function createUser(){
+                const userCreate = $("#main-container").prepend(`
+
+                <div id="create-account-container">
+                    <div id="create-account">
+                        <img src="/images/SpeakyTo_Typeography.png" id="header-logo">
+                        <h1>Select an avatar</h1>
+                        <div id="avatar-list">
+                                <img id="avatar-1" class="avatar-class" data-a="1" src="/images/user_avatars/avatar_1.png">
+                                <img id="avatar-2" class="avatar-class" data-a="2" src="/images/user_avatars/avatar_2.png">
+                                <img id="avatar-3" class="avatar-class" data-a="3" src="/images/user_avatars/avatar_3.png">   
+                                <img id="avatar-4" class="avatar-class" data-a="4" src="/images/user_avatars/avatar_4.png">
+                                <img id="avatar-5" class="avatar-class" data-a="5" src="/images/user_avatars/avatar_5.png">
+                                <img id="avatar-6" class="avatar-class" data-a="6" src="/images/user_avatars/avatar_6.png">
+                            </div>
+                        <div id="input-container">
+                            <span>Create a username</span>
+                            <span id="avatar-id" hidden>0</span>
+                            <input type="text" id="create-account-input">
+                            <button id="create-submit-button" onclick="onCreateAccount()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                `)
+                return userCreate
+            }
+            
+            function selectionListener(){
+                
+                $(document).on('click', '.avatar-class', function(){
+                    $(this).css("background-color", "dodgerblue") 
+                    $("#avatar-id").text($(this).attr("data-a"))
+                    $(this).siblings().css("background-color", "white")
+                })    
+            }
+            
+            function onCreateAccount(){
+                const avatar = $("#avatar-id").text()
+                
+                const username = $("#create-account-input").val()
+                
+                if (username == ''){
+                    alert("Please select a username")
+                    console.log(avatar)
+                }
+                
+                else if (avatar == "0"){
+                    alert("Please select an avatar")
+                }
+                
+                else {
+                    speakyto.createUserAccount(avatar, username).then(userAccountUid => {
+                    console.log("Account created: ", userAccountUid)
+                    accountRefresh()
+                    window.location.replace("/pages/qa_home.html")
+                        })
+                }
+            }
             
         </script>
     </body>

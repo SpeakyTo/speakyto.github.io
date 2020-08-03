@@ -18,11 +18,11 @@
     <script>
         // SpeakyTo constants
         const NETWORK = IconNetworks.YEOUIDO
-        const ICONTRANSLATE_SCORE = 'cxce93fd34c4ebb9f6a0c38dd2cb0a5cf2b757c189'
+        const SPEAKYTO_SCORE = 'cxcc72743ef0614030397918b5c51c2a4d6fcfc5dd'
 
         // Instanciate Ancilia + SpeakyTo
         const ancilia = new Ancilia(NETWORK)
-        const speakyto = new SpeakyTo(ancilia, ICONTRANSLATE_SCORE)
+        const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
     
     <link rel="stylesheet" href="/styles/ask_page_styles.css"></link>
@@ -36,7 +36,7 @@
                 <div id="ask-level-choice-container">
                     <div id="image-info-container">
                     <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="300px">
-                        <h3 style="text-align: center; color:white; background-color: blueviolet; padding: 20px; border-radius: 50px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
+                        <h3 style="text-align: center; color:white; background-color: blueviolet; padding: 20px; border-radius: 15px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
                     </div>
                     <div id="choices-container">
                         <div class="choices-list-item-container">
@@ -51,21 +51,11 @@
                         </div>
                         <div class="choices-list-item-container">
                             <span id="image-box"></span>
-                                <div class="choices-list-item" data-value="0x1" name="howtopronounce">
-                                    <span class="list-level-type">Level 1</span>
-                                    <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> How To Pronounce</h3>
-                                        <p style="margin: 0;"> Ask a simple, "how to pronounce" question.</p>
-                                    </div> 
-                                </div>      
-                        </div>
-                        <div class="choices-list-item-container">
-                            <span id="image-box"></span>
                                 <div class="choices-list-item" data-value="0x2" name="whatdoesthismean">
                                     <span class="list-level-type">Level 2</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> What Does This Mean?</h3>
-                                        <p style="margin: 0;"> What does this mean?</p>
+                                        <h3 style="margin: 0;"> What Does This Word or Sentence Mean?</h3>
+                                        <p style="margin: 0;"> Ask what a specific word or sentence means</p>
                                     </div> 
                                 </div>      
                         </div>
@@ -94,7 +84,7 @@
                                 <div class="choices-list-item" data-value="0x5" name="asksomethingelse">
                                     <span class="list-level-type">Level 5</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> Ask Something Else</h3>
+                                        <h3 style="margin: 0;"> Ask Any Question</h3>
                                         <p style="margin: 0;"> Ask something creative and different</p>
                                     </div> 
                                 </div>      
@@ -175,9 +165,9 @@
             if (ancilia.isLoggedIn()) {
                 const address = ancilia.getLoggedInWallet()
                 $("#user-address").text(address)
-
-                speakyto.getUserLevel(address).then(level => {
-                    //const levelTest = "0x5"
+                speakyto.getUserUid(address).then(user_uid => {
+                  speakyto.getUserLevel(user_uid).then(level => {
+                    console.log(user_uid)
                     console.log(level)
                     console.log(listItem.data("value"))
 
@@ -254,10 +244,8 @@
                         }
                     })
                     $("#user-level").text(level)      
+                  })
                 })
-                speakyto.getUserExperience(address).then(experience => {
-                    $("#user-experience").text(experience)
-                })  
             }
         }
         
@@ -283,27 +271,20 @@
                     $("#question-type-mid").text("To")
                     $("#question-type-end").text("?")
                     $("#info-level-status").text("Level 1")
+                    $("#submit-question-button").attr("onclick","onAskQuestion1()")
                     closeContainer()
                       
                 }
                 
-                else if ($(this).data("value") == "0x1" && $(this).attr("name") == "howtopronounce"){
-                    location.hash = "How-To-Prounounce"
-                    $("#question-type-header").text("How To Pronounce")
-                    $("#question-type-before").text("From")
-                    $("#question-type-mid").text("To")
-                    $("#question-type-end").text("?")
-                    $("#info-level-status").text("Level 1")
-                    closeContainer()
-                }
-                
+
                 else if ($(this).data("value") == "0x2" && $(this).attr("name") == "whatdoesthismean"){
                     location.hash = "What-Does-This-Mean"
-                    $("#question-type-header").text("What Does This Mean")
+                    $("#question-type-header").text("What Does This Word or Sentence Mean")
                     $("#question-type-before").text("From")
                     $("#question-type-mid").text("To")
                     $("#question-type-end").text("?")
                     $("#info-level-status").text("Level 2")
+                    $("#submit-question-button").attr("onclick","onAskQuestion2()")
                     closeContainer()
                 }
                 
@@ -314,6 +295,7 @@
                     $("#question-type-mid").text("To")
                     $("#question-type-end").text("?")
                     $("#info-level-status").text("Level 3")
+                    $("#submit-question-button").attr("onclick","onAskQuestion3()")
                     closeContainer()
                 }
                 
@@ -324,16 +306,18 @@
                     $("#question-type-mid").text("To")
                     $("#question-type-end").text("?")
                     $("#info-level-status").text("Level 4")
+                    $("#submit-question-button").attr("onclick","onAskQuestion4()")
                     closeContainer()
                 }
                 
                 else if ($(this).data("value") == "0x5" && $(this).attr("name") == "asksomethingelse"){
                     location.hash = "Ask-Something-Else"
-                    $("#question-type-header").text("Ask Something Else")
+                    $("#question-type-header").text("Ask Any Question")
                     $("#question-type-before").text("From")
                     $("#question-type-mid").text("To")
                     $("#question-type-end").text("?")
                     $("#info-level-status").text("Level 5")
+                    $("#submit-question-button").attr("onclick","onAskQuestion5()")
                     closeContainer()
                 }
                 
@@ -391,14 +375,63 @@
             
         }
         
-        function onAskQuestion() {
+        function onAskQuestion1() {
             const data = $("#question-input").val()
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
             console.log(data,from,to,icx)
             speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
-                console.log("Question created : ", questionUid)
+                console.log("Question Level 1 created : ", questionUid)
+                backToQA()
+            })
+        }
+        
+        function onAskQuestion2() {
+            const data = $("#question-input").val()
+            const from = $("#from-lang").val()
+            const to = $("#to-lang").val()
+            const icx = $("#icx-reward").val()
+            console.log(data,from,to,icx)
+            speakyto.createQuestionLevel2(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 2 created : ", questionUid)
+                backToQA()
+            })
+        }
+        
+        function onAskQuestion3() {
+            const data = $("#question-input").val()
+            const from = $("#from-lang").val()
+            const to = $("#to-lang").val()
+            const icx = $("#icx-reward").val()
+            console.log(data,from,to,icx)
+            speakyto.createQuestionLevel3(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 3 created : ", questionUid)
+                backToQA()
+            })
+        }
+        
+        function onAskQuestion4() {
+            const data = $("#question-input").val()
+            const from = $("#from-lang").val()
+            const to = $("#to-lang").val()
+            const icx = $("#icx-reward").val()
+            console.log(data,from,to,icx)
+            speakyto.createQuestionLevel4(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 4 created : ", questionUid)
+                backToQA()
+            })
+        }
+        
+        function onAskQuestion5() {
+            const data = $("#question-input").val()
+            const from = $("#from-lang").val()
+            const to = $("#to-lang").val()
+            const icx = $("#icx-reward").val()
+            console.log(data,from,to,icx)
+            speakyto.createQuestionLevel5(data, from, to, icx).then(questionUid => {
+                console.log("Question Level 5 created : ", questionUid)
+                backToQA()
             })
         }
         

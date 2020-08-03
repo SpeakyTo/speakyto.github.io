@@ -20,6 +20,7 @@ const IconNetworks = Object.freeze({
 //  Exceptions
 class UnconfirmedTransaction extends Error { }
 class LoggedInCancelled extends Error { }
+class WrongEventSignature extends Error { }
 
 // ================================================
 //  Ancilia Implementation
@@ -120,6 +121,21 @@ class Ancilia {
         this.irc2Decimals(contract).then(decimals => {
             return convertDecimalsToUnit(amount, decimals)
         })
+    }
+
+    // Event log
+    async getEventLog(txHash, eventLogSignature) {
+        const txResult = await this.__txResult(txHash)
+
+        const eventLog = txResult['eventLogs'].filter(eventLogs => {
+            return eventLogs['indexed'][0] === eventLogSignature
+        })[0]
+
+        if (eventLog === undefined) {
+            throw WrongEventSignature(txResult['eventLogs']);
+        }
+
+        return eventLog
     }
 
     // ICONex Connect Extension =============================================================
