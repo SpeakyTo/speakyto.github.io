@@ -39,11 +39,13 @@
                 <div id="qa-dashboard">
                     <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index.html'" >
                     <div id="user-container">
-                        <h2 style="color: white;" class="user-content"> Welcome Back</h2>
-                        <span id="user-account" class="user-content"></span>
-                        <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
+                        <div id="welcome-box">
+                            <h2 style="color: white;" class="user-content"> Welcome Back</h2>
+                            <span id="user-account" class="user-content"></span>
                         </div>
-                    <hr style="border: 2px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
+                        <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
+                    </div>
+                    <hr style="border: px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
                     <div id="qa-dashboard-links-container">
                         <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
                         <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
