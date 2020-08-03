@@ -45,9 +45,7 @@
                         </div>
                     <hr style="border: 2px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
                     <div id="qa-dashboard-links-container">
-                        <button class="qa-dashboard-content" onclick="askQuestion()">Ask a question</button>
                         <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
-                        <!--<button class="qa-dashboard-content" onclick="qaBackButton()">View Questions</button>-->
                         <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
                         </div>
                 </div>
@@ -155,8 +153,7 @@
                 $("#questions-and-answers").hide()
                 $("#questions-and-answers").empty()
                 $("#questions-list").show()
-                $("#qa-section-nav").show()
-                $("#qa-section-level-meter").show()
+                $("#qa-section-top-content").show()
                 
                  //Scroll to top of viewport
                 $("#questions-list").animate({scrollTop: 0}, 'slow')
@@ -362,6 +359,15 @@
             
             
         function otherRefresh() {
+            
+            //Push History
+            
+            const state = {'page_id': "qa_home"}
+            const title = ''
+            const url ='qa_home.html'
+            history.pushState(state, title, url)
+            //
+            
             document.getElementById("point-slider-target").disabled = true
             
             speakyto.getSupportedLanguages().then(supported_languages => {
@@ -444,8 +450,7 @@
                 $('#qa-section-container').animate({scrollTop: 0}, 'slow')
                 $("#questions-and-answers").show()
                 $("#questions-list").hide()
-                $("#qa-section-nav").hide()
-                $("#qa-section-level-meter").hide()
+                $("#qa-section-top-content").hide()
                 
                 
                 
