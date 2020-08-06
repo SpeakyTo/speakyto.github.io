@@ -309,6 +309,7 @@
                     }
                     
                     else if ($(this).val() == "Default"){
+                        $("#sort-lang").text("Filter by language")
                         $(".question-container").show()
                         $("#sort-lang-container").remove()
                         
@@ -399,7 +400,7 @@
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
                 </div>`)        
             
-            $("#qa-section-container").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="background-color: red; position: absolute; width: 10%; height: 50px; left: 400; border-radius: 0px; display:none;">View Last Question</button>`)
+            $("#qa-section-nav").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="background-color: red; width: 100%; height: 50px;   display:none;">View Last Question</button>`)
             
             $("#qa-section-nav").show()
             const questionViewer = (question =>{
