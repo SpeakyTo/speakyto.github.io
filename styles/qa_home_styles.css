@@ -1069,7 +1069,7 @@ h2.user-content{
     width: 100%;
     min-height: 100%;
     position: absolute;
-    background-color: white;
+    background-color: rgb(33,33,33)
 }
 
 #my-profile-page{
