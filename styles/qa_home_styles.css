@@ -1,5 +1,12 @@
 /* Begin CSS Styles */
 
+
+@media only screen and (min-width: 1024px) and (max-width: 1536px){
+    *{
+        zoom: 97%;
+    }
+}
+
 *{
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -1071,7 +1078,7 @@ h2.user-content{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
