@@ -5,6 +5,7 @@
     *{
         zoom: 97%;
     }
+    
 }
 
 *{
@@ -472,7 +473,7 @@ h2.user-content{
 
 .exp-style{
     text-align: center;
-    font-size: 10px;
+    font-size: 14px;
     border-radius: 10px;
     width: 100%;
     color: white;
