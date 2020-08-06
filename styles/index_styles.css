@@ -40,10 +40,46 @@ button:hover{
     
 }
 
+#header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+}
+
+#header-image{
+    width: 150px;
+    height: auto;
+    margin: 0 200 0 25;
+    filter: brightness(100)
+}
+
+#header-image:hover{
+    cursor: pointer;
+}
+
+.header-contents{
+    margin: 0 100 0 100;
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+.header-contents:hover{
+    color: blueviolet;
+    cursor: pointer;
+}
+
 #main-container{
     /* background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);*/
     background-color: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -54,17 +90,16 @@ button:hover{
     padding: 50px;
     background-color: white;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
     width: 100%;
     height: 100%;
     background-image: url("/images/SpeakyTo_Hero_Simple.png");
-    background-position: right
+    background-position: right;
 }
 
 #page-contents{
-    
     padding: 50px;
     margin: 0 20 0 20;
     border-radius: 100px;
@@ -72,10 +107,115 @@ button:hover{
     background-color: blueviolet;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    align-self: center;
     height: auto;
     width: 40%;
 }
+
+#section-1{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+
+.section-1-contents{
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    color: black; 
+}
+
+
+#speaky-ask-img{
+    width: 600px;
+    height: auto;
+}
+
+#speaky-answer-img{
+    width: 700px;
+    height: auto;
+}
+
+#hero-qa-container{
+    padding: 150 0 150 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;  
+}
+
+#spkt-token{
+    
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px black;
+}
+
+#ask-page-img{
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px black;
+    height: 480px;
+    
+}
+
+#speaky-q-reward-img{
+    width: 600px;
+    height: auto;
+    transform: scaleX(-1);
+}
+
+#speaky-icx-reward-img{
+    margin: 0 100 350 100;
+    width: 300px;
+    height: auto;
+}
+
+#speaky-a-reward-img{
+    width: 600px;
+    height: auto;
+}
+
+#section-2{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    background-color: rgb(33,33,33);
+}
+
+.section-2-contents{
+    padding: 0 300 0 300;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    color: white; 
+}
+
+#hero-qa-container{
+    padding: 150px;
+    margin: 0 50 0 50;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 600px;  
+}
+
+
+
+
 
 #get-started-button{
     background-color: blue;

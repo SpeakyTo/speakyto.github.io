@@ -20,7 +20,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #fff;
+  background: black;
   margin: -4px 0 0 -4px;
 }
 
@@ -130,11 +130,12 @@ button:hover{
 }
 
 #main-container-loader{
-    background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
+    color: black;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100%;
-    max-width: 100%;
+    width: 100%;
     
 }

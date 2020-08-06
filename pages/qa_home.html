@@ -28,52 +28,46 @@
     <link rel="stylesheet" href="/styles/qa_home_styles.css"></link>  
     </head>        
     <body>
-        <div id='loader-screen' style="background-color:white; height:100vh; width:100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; ">
-            <img src="/images/SpeakyTo_Logo_V1.png" width="250px" height="330px" id="loader-image">    
+        <div id="pre-load"></div>
+        <div id='loader-screen'>
+            <img src="/images/SpeakyTo_Logo_V1.png" id="loader-image"> 
             <h1 style="text-align: center"> Getting things ready...</h1>
-            <span id="history-check" data-qn-number='none' hidden></span> 
         </div>
     <div id="main-container">
         <div id="content-container-wrap">
             <div id="content-container">
                 <div id="qa-dashboard">
                     <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index.html'" >
+                    <div id="qa-dashboard-links-container">
+                        <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
+                        <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
+                    </div>
                     <div id="user-container">
                         <div id="welcome-box">
                             <h2 style="color: white;" class="user-content"> Welcome Back</h2>
                             <span id="user-account" class="user-content"></span>
-                        </div>
-                        <button id="my-profile" onclick="viewMyProfile()">My Profile</button>
-                    </div>
-                    <hr style="border: px solid rgb(255,255,255); width: 100%; margin: 10px 0px 10px 0px;">
-                    <div id="qa-dashboard-links-container">
-                        <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
-                        <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
-                        </div>
-                </div>
-
-                <!--<div id="qa-section-sidebar">
-                    <button class="qa-section-buttons" onclick="qaBackButton()">Back</button>
-
-                </div>-->
-                <div id="qa-section-container">
-                    <div id="qa-section-top-content">
-                        <div id="qa-section-level-meter">
-                            <img id="level-meter-img"src="/images/avatar.png" alt="avatar" class="user-content">
                             <span id="level" class="my-level"></span>
+                        </div>
+                        <div id="qa-section-level-meter">
+                           <img id="level-meter-img" src="/images/assets/SPKT_Token_72.png" alt="level=meter-img" class="user-content">
                             <div class="exp-level-container">
                                 <div id="point-slider-container">
-                                    <span id="next-level" class="exp-style" style="font-size: 14px;"></span>
-                                    <span id="exp-notify" class="exp-style" style="background-image:none;">Experience To Next Level</span>
                                     <div id="slider-content">
-                                        <span style="color:white; font-size: 14px;margin: 0;">Ask and Answer Questions To Gain Experience!</span>
+                                        <div id="slider-levels-text">
+                                            <span id="exp-level" class="exp-style"></span>
+                                            <span style="color: white;">/</span>
+                                            <span id="next-level" class="exp-style"></span>
+                                        </div>
                                         <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
                                     </div>
-                                    <span id="exp-level" class="exp-style" style="font-size: 14px;"></span>
-                                    <!--<span class="exp-style" style="background-image:none;">Current Experience</span>-->
                                 </div>  
                             </div>
                         </div>
+                        <button id="my-profile">My Profile</button>
+                    </div>
+                </div>
+                <div id="qa-section-container">
+                    <div id="qa-section-top-content">
                     </div>
                     <div id="questions-and-answers"></div>
                 </div>
@@ -85,17 +79,25 @@
         window.onload = () => {
             
             // init account
-            //historyListener()
+            historyListener()
             accountRefresh()
             userLoader()
             questionsListView()
+            questionListener()
             otherRefresh()
             sortedLanguages()
             sortedLevels()
+            buttonPreloadListeners()
+            
+            $("#pre-load").load("/scripts/loader.html")
+            $("#pre-load").hide()
+            
+            $(document).ready(function (){
+                $("#loader-screen").fadeOut(200, function(){})
+            })
         }
     
         function userLoader(){
-            window.location.hash = ''
             if (ancilia.isLoggedIn()){
                 const address = ancilia.getLoggedInWallet()
                 
@@ -104,54 +106,41 @@
                         
                         // Load Avatar
                         const avatarID = parseInt(account['avatar_uid'])
-                        const getAvatar = $("#user-container").prepend(`
-                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `)
+                        const getAvatar = $("#welcome-box").prepend(`
+                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `).insertAfter("")
                         
                         
                         //Load Username
                         console.log(account)
-                        $("#user-account").text("Username: " + account['username'])
+                        $("#user-account").text(account['username'])
                         return getAvatar
                     })
                 })
             }
         }
             
-        
-        function historyListener(){
-            
-            if ($("#question-section").length === 0){
-                
-                $("#history-check").text("false")
-                window.location.hash = ''
-                }
-            
-            let lastUrl = null
-            
-            window.addEventListener("popstate", (event) =>{
-                console.log(event)
-                
-                if ($("#question-section").length > 0 && lastUrl === null && $("#history-check").text("false") ){
-                    lastUrl = $("#history-check").attr("data-qn-number")
-                    qaBackButton()
-                    $("#history-check").text("true")
-                }
-                
-                else if ($("#question-section").length === 0 && lastUrl !== null && $("#history-check").text("true") ){
-                    activateQA()
-                    lastUrl = null
-                    $("#history-check").text("false")
-                }
+        function questionListener(){
+            $(document).ready(function(){
+                $(document).on("click", ".question-container, .my-question-button, #last-question", function(e){
+                    activateQA(this)
+                }) 
             })
-            if ($("#sort-lang-container").is(':visible') || $("#sort-levels-container").is(':visible') || $("#my-profile-page-container").is(':visible')){
-                    $("#sort-lang-container").hide()
-                    $("#sort-levels-container").hide()
-                    $("#my-profile-page-container").hide()
-                }
         }
-            
+        
+        function historyListener(){ 
+            $(document).ready(function (){
+                function changeHistory(){
+                    const hash = (window.location.hash)
+                    if (hash.length === 0){
+                        qaBackButton()
+                    } 
+                }
+               window.addEventListener('hashchange', changeHistory, false)
+            })   
+        }       
         
             function qaBackButton(){
+                $("#last-question").show()
                 $("#questions-and-answers").hide()
                 $("#questions-and-answers").empty()
                 $("#questions-list").show()
@@ -160,15 +149,23 @@
                  //Scroll to top of viewport
                 $("#questions-list").animate({scrollTop: 0}, 'slow')
                 
-                
+                otherRefresh()
             }
             
             function closeProfilePage(){
                     $("#my-profile-page-container").remove()
                 }
             
+            function buttonPreloadListeners(){
+                $("#my-profile").click(function(){
+                    $("#pre-load").fadeIn(300, function(){})
+                    setTimeout(function(){viewMyProfile()}, 200)
+                })
+                
+                
+            }
             function viewMyProfile(){
-                window.location.hash = ''
+                qaBackButton()
                 if(ancilia.isLoggedIn()){
                     
                    const address = ancilia.getLoggedInWallet()
@@ -203,8 +200,12 @@
                                 </div>
                             </div>
                             `)
-                                accountRefresh()
-                                getMyQuestions()
+                           accountRefresh()
+                           getMyQuestions()
+                           //questionListener()
+                           $(document).ready(function(){
+                               $("#pre-load").fadeOut(200, function(){})
+                           })
                        })
                    })
                 }
@@ -251,7 +252,7 @@
                                 <span class="my-question-style" style="background-color:blueviolet; color:white;"> You asked... </span>
                                 <span class="my-question-style">${question['data']}?</span>
                                 <span class="my-question-style"> From ${iso_6391_name(question['from_language'])} To ${iso_6391_name(question['to_language'])}</span>
-                                <button id="${parseInt(question['uid'])}" class="my-question-button" onclick="activateQA(this)" value="${questionValue}"> View question</button>
+                                <button id="${parseInt(question['uid'])}" class="my-question-button" data-questionid="${questionValue}"> View question</button>
                             </div>
                             `)   
                         }
@@ -364,7 +365,7 @@
             
             //Push History
             
-            const state = {'page_id': "qa_home"}
+            const state = {'page_id': "qa_home", 'type': "qa_home"}
             const title = ''
             const url ='qa_home.html'
             history.pushState(state, title, url)
@@ -394,9 +395,11 @@
                     <div id="qa-section-nav">
                     <button class="qa-section-nav-content" onclick="askQuestion()" style="background-color: #6002ee;">Ask A Question</button>
                     <button id="sort-lang" class="qa-section-nav-content" onclick="sortByLanguage()">Filter by language</button>
-                    <button id ="sort-levels" class="qa-section-nav-content" onclick="sortByLevel()">Sort By Levels</button>
+                    <!--<button id ="sort-levels" class="qa-section-nav-content" onclick="sortByLevel()">Sort By Levels</button>-->
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
-                </div>`)            
+                </div>`)        
+            
+            $("#qa-section-container").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="background-color: red; position: absolute; width: 10%; height: 50px; left: 400; border-radius: 0px; display:none;">View Last Question</button>`)
             
             $("#qa-section-nav").show()
             const questionViewer = (question =>{
@@ -407,15 +410,12 @@
                 const userLevel = ""
                 return `
                         <div id="question-list-style">
-                            <span id="question-list-state" class="question-list-state-style">${question['state']}<span class="question-level">Level: ${parseInt(question['level'])}</span><span class="q-level">${userLevel}</span></span>
+                            <span id="question-list-state" class="question-list-state-style"><span class="question-level"><span id="sort-from">${iso_6391_name(question['from_language'])}</span>
+                                <span id="sort-to"> to ${iso_6391_name(question['to_language'])}</span></span><span class="q-level">${userLevel}</span></span>
                             <div id=question-list-text>
-                                <span></span>
-                                <span id="question-list-text"> "${question['data']}"</span>
-                                <span id="sort-from"> from ${iso_6391_name(question['from_language'])}</span>
-                                <span> to ${iso_6391_name(question['to_language'])} ?</span>
+                                <span id="question-list-text"> Asked: ${question['data']} ?</span>
                             </div>
-                            <button onclick="activateQA(this)" id="btnAQ-${i}" value=${i} class="view-question-button"> View Question </button>  
-                        <div>`
+                        </div>`
             })
             
 
@@ -425,43 +425,59 @@
             
             speakyto.getQuestions(0).then(questions => {
                 questions.forEach(question => { 
+                    const questionValue = parseInt(question['uid']) - 1
+                    let userName = ''
                     console.log(question)
                     x = i++
                     if (question['state'] == "CANCELLED"){
                         // Skip
-                    } else {
-                     
-                    const questionID = questionViewer(question)
-                    const questionListAppend = $(`<div id=${questionID} class="question-container">` + questionsList(question) + "</div")
-                    $("#questions-list").append(questionListAppend)      
+                    }  
+                    
+                    
+                    else {                     
+                        const questionID = questionViewer(question)
+                        const questionListAppend = $(`<div id="${parseInt(question['uid'])}" data-questionid=${questionValue} class="question-container">` + questionsList(question) + "</div")
+                        $("#questions-list").append(questionListAppend)   
                         
+                        if (question['state'] === "ANSWERED"){
+                            $("#question-list-style").css("background-color", "white")
+                            $("#question-list-style").css("color", "black")
+                            $("#question-list-style").css("box-shadow", "0px 5px 5px rgba(0,255,0, 0.3)")
+                            $("#question-list-style").append("<div style='display: flex; flex-direction: row; justify-content: space-around; font-size: 24px; align-items: center; width: 50%; padding: 15px; background-color: #00E672; color: white; border-radius:6px;'> Answered <img src='/images/assets/check-mark.png' style='width:64px; height:64px;'></img></div>")
+                        }
+                        
+                        $("#sort-to").text(function () {
+                            return $(this).text().replace("; Castilian", "")
+                        })   
                     }
                 })
             })
-            
-            $(document).ready(function (){
-                $("#loader-screen").toggle()
-            }) 
-            
+                
         }
             function scrollTopQA(){
-                    $('#qa-section-container').animate({scrollTop: 0}, 'slow') 
+                $("#text-input-area").hide()  
+                $('#qa-section-container').animate({scrollTop: 0}, 'slow') 
+                replyBox()
                 }
             
-            function activateQA(e){  
+            function activateQA(e){ 
+                $("#pre-load").fadeIn(200,function(){})
+                
+                setTimeout(function(){
                 $('#qa-section-container').animate({scrollTop: 0}, 'slow')
                 $("#questions-and-answers").show()
                 $("#questions-list").hide()
                 $("#qa-section-top-content").hide()
+                $("#last-question").hide()
                 
                 
-                
-                let qn = ''
-                // Get question history state
-                
-                    const get_id = e.id
-                    qn = $('#' + get_id).val() 
-                    $("#history-check").attr("data-qn-number", qn)
+                let qn = ''      
+                const get_id = e.id
+                qn = $('#' + get_id).attr("data-questionid") 
+                console.log(qn)
+                $("#last-question").attr("data-questionid", qn)
+                    
+
                 // Is user profile open?
                 
                 if ($("#my-profile-page-container").length > 0){
@@ -473,7 +489,7 @@
                 speakyto.getQuestions(0).then(questions => {
                     document.location.href = `#${questions[qn]['uid']}`
                     const qaSection = $("#questions-and-answers").append(`
-            <button style="padding:10px; margin:5 0 5 0; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 50px; height: 50px; border:none; position:fixed; clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>     
+            <!--<button style="padding:10px; margin:5 0 5 0; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 50px; height: 50px; border:none; position:fixed; clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>-->     
             <div id="question-section">
                 <h2 class="qa-headings-style-q">Question</h2>
                 <div id="question">
@@ -510,7 +526,7 @@
                    // Create Answers Section
                     
                     $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    $("#answer-section").append(`<h1 style="color:white;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:#ee0290; color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
+                    $("#answer-section").append(`<h1 style="color:black;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:#ee0290; color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
                     speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
                         console.log(answers.length)
                         if(answers.length >= 1){
@@ -552,7 +568,8 @@
                 
                 $(document).ready(function() {
                     
-                    const currentUser = $("#user-account").text()
+                    const currentUserInitial = $("#user-account").text()
+                    const currentUser = currentUserInitial
                     
                     const questionUserInitial = $("#question-user").text()
                     const questionUser = questionUserInitial.replace("User: ", "")
@@ -576,7 +593,9 @@
                         $("#reply-button").hide()
                         
                     }
-                })               
+                })  
+            },200)
+                setTimeout(function() {$("#pre-load").fadeOut(200,function(){})}, 200)
                 
         }
             
@@ -663,7 +682,6 @@
                     speakyto.getUserUid(address).then(user_uid => {
                         
                         speakyto.getUserAccount(user_uid).then(account => {
-                        console.log(account['username'])
                         $("#user-account-profile").text(account['username'])   
                         })
                         
@@ -677,7 +695,6 @@
                             const minExp = document.getElementById("point-slider-target")
                             const maxExp = document.getElementById("point-slider-target")
                             const currExp = parseInt(experience)
-                            console.log(currExp)
                             document.getElementById("point-slider-target").value = currExp
                             $("#experience").text(currExp.toLocaleString() + " SPKT")
                             $("#exp-level").text(currExp.toLocaleString() + " SPKT")

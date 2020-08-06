@@ -36,11 +36,11 @@
                 <div id="ask-level-choice-container">
                     <div id="image-info-container">
                     <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="300px">
-                        <h3 style="text-align: center; color:white; background-color: blueviolet; padding: 20px; border-radius: 15px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
+                        <h3 style="text-align: center; color:black; background-color: white; padding: 20px; border-radius: 15px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
                     </div>
                     <div id="choices-container">
                         <div class="choices-list-item-container">
-                            <span id="image-box"></span>
+                            <img id="image-box" src="/images/assets/SPKT_Token_lvl_1.png"></img>
                                 <div class="choices-list-item" data-value="0x1" name="howtosay">
                                     <span class="list-level-type">Level 1</span>
                                     <div class="choices-list-text">
@@ -50,7 +50,7 @@
                                 </div>      
                         </div>
                         <div class="choices-list-item-container">
-                            <span id="image-box"></span>
+                            <img id="image-box" src="/images/assets/SPKT_Token_lvl_2.png"></img>
                                 <div class="choices-list-item" data-value="0x2" name="whatdoesthismean">
                                     <span class="list-level-type">Level 2</span>
                                     <div class="choices-list-text">
@@ -60,7 +60,7 @@
                                 </div>      
                         </div>
                         <div class="choices-list-item-container">
-                            <span id="image-box"></span>
+                            <img id="image-box" src="/images/assets/SPKT_Token_lvl_3.png"></img>
                                 <div class="choices-list-item" data-value="0x3" name="whatsthedifference">
                                     <span class="list-level-type">Level 3</span>
                                     <div class="choices-list-text">
@@ -70,7 +70,7 @@
                                 </div>      
                         </div>
                         <div class="choices-list-item-container">
-                            <span id="image-box"></span>
+                            <img id="image-box" src="/images/assets/SPKT_Token_lvl_4.png"></img>
                                 <div class="choices-list-item" data-value="0x4" name="showmeanexample">
                                     <span class="list-level-type">Level 4</span>
                                     <div class="choices-list-text">
@@ -80,7 +80,7 @@
                                 </div>      
                         </div>
                         <div class="choices-list-item-container">
-                            <span id="image-box"></span>
+                            <img id="image-box" src="/images/assets/SPKT_Token_lvl_5.png"></img>
                                 <div class="choices-list-item" data-value="0x5" name="asksomethingelse">
                                     <span class="list-level-type">Level 5</span>
                                     <div class="choices-list-text">
@@ -144,7 +144,7 @@
                     </div>
                     
                     </div>
-                    <button id="submit-question-button" onclick="onAskQuestion()">Submit</button>
+                    <button id="submit-question-button">Submit</button>
                     
                 </div>
         </div> 
@@ -157,7 +157,58 @@
             levelsListener()
             getLanguages()
             questionTypeListener()
+            submitErrorListener()
             //listLang()
+        }
+        
+        function alertBox(){
+            const box = $("#main-container").prepend(`
+                        <div id="alert-box">
+                            <div id="alert-container">
+                                <div id="alert-container-contents">
+                                </div>
+                            </div>
+                        </div>
+            `)
+            
+            // Default Loader
+            
+            $("#alert-container-contents").load("/scripts/loader.html")
+            
+            return box
+            
+        }
+        
+        function catchErrorsAlert(){   
+            
+            $("#alert-container-contents").empty()
+            const noTransaction = $("#alert-container-contents").prepend(`
+                                    <h2>You cancelled your question</h2>
+                                    <button id="alert-close-button" class="alert-button-style">Close</button>
+            `)
+            $("#alert-close-button").click(function(){
+                $("#alert-box").remove()
+            })
+            return noTransaction
+        }
+        
+        function successAlert(){
+            
+            const successNotification = $("#alert-container-contents").prepend(`
+                                        <h2>Success!</h2>
+                                        <button id="alert-home-button" class="alert-button-style">View My Question</button>
+                                        <button id="alert-close-button" class="alert-button-style">Close</button>
+                                        <button id="alert-home-button" class="alert-button-style">Home</button>
+                                        
+            `)
+            $("#alert-close-button").click(function(){
+                $("#alert-box").remove()
+            })
+            $("#alert-home-button").click(function(){
+                backToQA()
+            })
+            return successNotification
+            
         }
         
         function levelsListener(){
@@ -375,15 +426,47 @@
             
         }
         
+        function submitErrorListener(){
+            $("#submit-question-button").click(function(){
+                const data = $("#question-input").val()
+                const from = $("#from-lang").val()
+                const to = $("#to-lang").val()
+                const icx = $("#icx-reward").val()
+                
+                //Check Values
+            
+                if (data.trim() == ''){
+                    alert("Please enter a question")
+                }
+                else if (icx.trim() == ''){
+                    alert("Please enter the ICX Reward")
+                }
+                
+                else if (from.trim() == ''){
+                    alert("Please select a language")
+                }
+
+                else if (to.trim() == ''){
+                    alert("Please select a language")
+                }
+                else {
+                    alertBox()
+                }
+            })
+        }
+        
         function onAskQuestion1() {
             const data = $("#question-input").val()
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
+            
             console.log(data,from,to,icx)
             speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
                 console.log("Question Level 1 created : ", questionUid)
-                backToQA()
+                successAlert()
+            }).catch((error) => {
+                 catchErrorsAlert()
             })
         }
         

@@ -46,6 +46,52 @@ span{
     
 }
 
+#alert-box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.7);
+}
+
+#alert-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    border-radius: 6px;
+    width: 25%;
+    height: 35%;
+}
+
+#alert-container-contents{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-button-style{
+    outline: 0;
+    border: none;
+    padding: 10px;
+    width: 25%;
+    color: white;
+    border-radius: 6px;
+    background-color: black;
+    cursor: pointer;
+    
+}
+
 #main-container{
     display: flex;
     flex-direction: column;
@@ -98,11 +144,9 @@ span{
     align-items: center;
 }
 
-#image-box{
-    border-radius: 10px;
-    width: 10%;
-    height: 50px;
-    background-color: blue;
+#image-box {
+    width: 72px;
+    margin: 0 15 0 15;
 }
 
 #image-info-container{
@@ -134,7 +178,7 @@ span{
     width: 40%;
     height: 50%;
     align-self: center;
-    background-color: red;
+    background-color: rgb(33,33,33);
     color: white;
 }
 
@@ -311,11 +355,11 @@ span{
 #submit-question-button{
     margin: 1%;
     padding: 15px;
-    width: 25%;
+    width: 20%;
     font-size: 18px;
     color: white;
     background-color: blue;
-    border-radius: 30px;
+    border-radius: 12px;
     outline: none;
     border: none;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.4);   
