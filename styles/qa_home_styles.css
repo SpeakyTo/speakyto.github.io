@@ -81,9 +81,45 @@ h1{
     clip-path: circle(45% at 50% 50%);
     background-color: blueviolet;
     animation-name: loader-image-anim;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-iteration-count: infinite;
 }
+
+#return-home{
+    display: flex; 
+    flex-direction: column; 
+    height: auto; 
+    width: 25%; 
+    background-color:white; 
+    padding: 50px; 
+    border-radius: 35px; 
+    box-shadow: 0px 0px 10px black;
+}
+
+#yesBTN{
+    margin: 0px 10px 0px 10px; 
+    background-color: blueviolet; 
+    color: white; 
+    font-weight: 600;
+    padding: 10px; 
+    border-radius: 10px; outline: none; 
+    border: none; 
+    width: 50%;
+}
+
+#noBTN{
+    margin: 0px 10px 0px 10px; 
+    background-color:red; 
+    color: white; 
+    font-weight: 600;
+    padding: 10px; 
+    border-radius: 10px; outline: none; 
+    border: none; 
+    width: 50%;
+}
+
+
+
 
 #main-container{
     display: flex;
@@ -1308,6 +1344,10 @@ h2.user-content{
     #hamburger{
         fill: white;
     }
+    
+    #return-home{
+        width: 75%;
+}
     
     #content-container{
         justify-content: center;
