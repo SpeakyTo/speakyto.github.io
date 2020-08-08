@@ -16,11 +16,6 @@
 }
 
 @media only screen and (min-width: 1920px) and (max-width: 4096px){
-    *{
-        zoom: 100%;
-        
-    }
-    
     #mobile-nav-bar{
         display: none;
     }
@@ -149,6 +144,7 @@ button:hover{
     width: 100%;
     min-height: 100%;
     background-image: url("/images/SpeakyTo_Hero_Simple.png");
+    background-repeat: no-repeat;
     background-size: 1920px 1080px;
 }
 
