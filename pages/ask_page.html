@@ -30,12 +30,13 @@
     </head>
     
     <body>
+        <div id="pre-load"></div>
         <div id="main-container">
             <img src="/images/SpeakyTo_Typeography.png" width="200px" onclick="window.location.href='qa_home.html'" style="cursor: pointer; margin-top: 15px;">
             <div id="ask-container">
                 <div id="ask-level-choice-container">
                     <div id="image-info-container">
-                    <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="172px">
+                    <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="212px" height="auto">
                         <h3 class="text-style"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
                     </div>
                     <div id="choices-container">
@@ -44,7 +45,7 @@
                                 <div class="choices-list-item" data-value="0x1" name="howtosay">
                                     <span class="list-level-type">Level 1</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> How To Say</h3>
+                                        <h3 class="list-text"> How To Say</h3>
                                         <p style="margin: 0;"> Ask a simple, "how to say" question.</p>
                                     </div> 
                                 </div>      
@@ -54,7 +55,7 @@
                                 <div class="choices-list-item" data-value="0x2" name="whatdoesthismean">
                                     <span class="list-level-type">Level 2</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> What Does This Word or Sentence Mean?</h3>
+                                        <h3 class="list-text"> What Does This Word or Sentence Mean?</h3>
                                         <p style="margin: 0;"> Ask what a specific word or sentence means</p>
                                     </div> 
                                 </div>      
@@ -64,7 +65,7 @@
                                 <div class="choices-list-item" data-value="0x3" name="whatsthedifference">
                                     <span class="list-level-type">Level 3</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> What's the difference?</h3>
+                                        <h3 class="list-text"> What's the difference?</h3>
                                         <p style="margin: 0;"> What's the difference between this and that?</p>
                                     </div> 
                                 </div>      
@@ -74,7 +75,7 @@
                                 <div class="choices-list-item" data-value="0x4" name="showmeanexample">
                                     <span class="list-level-type">Level 4</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> Show Me An Example</h3>
+                                        <h3 class="list-text"> Show Me An Example</h3>
                                         <p style="margin: 0;"> Ask for an example about a language</p>
                                     </div> 
                                 </div>      
@@ -84,7 +85,7 @@
                                 <div class="choices-list-item" data-value="0x5" name="asksomethingelse">
                                     <span class="list-level-type">Level 5</span>
                                     <div class="choices-list-text">
-                                        <h3 style="margin: 0;"> Ask Any Question</h3>
+                                        <h3 class="list-text"> Ask Any Question</h3>
                                         <p style="margin: 0;"> Ask something creative and different</p>
                                     </div> 
                                 </div>      
@@ -151,14 +152,22 @@
     
     <script>
         window.onload = () => {
+            
             // init account
-            accountRefresh()
-            selectionListener()
-            levelsListener()
-            getLanguages()
-            questionTypeListener()
-            submitErrorListener()
-            //listLang()
+            $("#pre-load").load("/scripts/loader.html")
+
+            
+            setTimeout(function(){
+                accountRefresh()
+                selectionListener()
+                levelsListener()
+                getLanguages()
+                questionTypeListener()
+                submitErrorListener()
+                $(document).ready(function (){  
+                $("#pre-load").fadeOut(200, function(){})
+                })
+            }, 200)
         }
         
         function alertBox(){

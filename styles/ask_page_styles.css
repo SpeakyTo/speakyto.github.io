@@ -1,6 +1,6 @@
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
-        zoom: 96%;
+        zoom: 97%;
     }
 }
 
@@ -22,6 +22,15 @@ span{
     text-align: center;
     box-shadow: 0px 5px rgba(0,0,0, 0);
     
+}
+
+
+#pre-load {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    z-index: 200;
 }
 
 .button-style{
@@ -108,7 +117,7 @@ span{
 }
 
 #ask-level-choice-container{
-    padding: 150px;
+    padding: 75px;
     background-color: rgba(255,255,255,1);
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     border-radius: 25px;
@@ -190,6 +199,12 @@ span{
     flex-shrink: 1;
     align-content: center;
     width: 100%;
+}
+
+.list-text{
+    font-size: 20px;
+    margin: 0; 
+    color: black;
 }
 
 
@@ -365,7 +380,8 @@ span{
     
 }
 .text-style{
-    font-size: 16px;
+    color: black;
+    font-size: 20px;
     text-align: center;
 }
 

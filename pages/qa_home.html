@@ -218,49 +218,54 @@
                 $("#mobile-nav-bar").hide()
                 $("body").css("overflow", "hidden")
                 qaBackButton()
-                if(ancilia.isLoggedIn()){
+                
+                setTimeout(function() {
                     
-                   const address = ancilia.getLoggedInWallet()
-                   speakyto.getUserUid(address).then(user_uid => {
-                       speakyto.getUserAccount(user_uid).then(account => {
-                           const getAvatar = parseInt(account['avatar_uid'])
-                           
-                           const profilePage = $("#main-container").prepend(`
-                            <div id="my-profile-page-container">
-                                <div id="my-profile-page">
-                                    <div id="my-profile-page-content-container">
-                                        <div id="my-profile-content">
-                                            <button onclick="closeProfilePage()" class="close-buttons">Close</button>
-                                            <h2> My Profile </h2>
-                                            <div id="split">
-                                                <div id="split-left">
-                                                    <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">
-                                                    <span class="profile-page-text"> Your address </span>
-                                                    <span id="my-user-id" hidden>${account['uid']}</span>
-                                                    <span id="address"></span>  
-                                                    <span class="profile-page-text"> Currently signed in as </span>
-                                                    <span id="user-account-profile"></span>        
+                    if(ancilia.isLoggedIn()){
+
+                       const address = ancilia.getLoggedInWallet()
+                       speakyto.getUserUid(address).then(user_uid => {
+                           speakyto.getUserAccount(user_uid).then(account => {
+                               const getAvatar = parseInt(account['avatar_uid'])
+
+                               const profilePage = $("#main-container").prepend(`
+                                <div id="my-profile-page-container">
+                                    <div id="my-profile-page">
+                                        <div id="my-profile-page-content-container">
+                                            <div id="my-profile-content">
+                                                <button onclick="closeProfilePage()" class="close-buttons">Close</button>
+                                                <h2> My Profile </h2>
+                                                <div id="split">
+                                                    <div id="split-left">
+                                                        <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">
+                                                        <span class="profile-page-text"> Your address </span>
+                                                        <span id="my-user-id" hidden>${account['uid']}</span>
+                                                        <span id="address"></span>  
+                                                        <span class="profile-page-text"> Currently signed in as </span>
+                                                        <span id="user-account-profile"></span>        
+                                                    </div>
+                                                    <div class="my-profile-page-content">
+                                                    <button id="my-questions-header-button" onclick="showMyQuestions()">View My Questions</button> 
+                                                    <span id="level" class="my-profile-stats"></span>
+                                                    <span id="experience" class="my-profile-stats"></span>
                                                 </div>
-                                                <div class="my-profile-page-content">
-                                                <button id="my-questions-header-button" onclick="showMyQuestions()">View My Questions</button> 
-                                                <span id="level" class="my-profile-stats"></span>
-                                                <span id="experience" class="my-profile-stats"></span>
-                                            </div>
+                                                </div>  
                                             </div>  
-                                        </div>  
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            `)
-                           accountRefresh()
-                           getMyQuestions()
-                           //questionListener()
-                           $(document).ready(function(){
-                               $("#pre-load").fadeOut(200, function(){})
+                                `)
+                               accountRefresh()
+                               getMyQuestions()
+                               //questionListener()
+                               $(document).ready(function(){
+                                   $("#pre-load").fadeOut(200, function(){})
+
+                               })
                            })
                        })
-                   })
-                }
+                    }
+                },1)
             }
             
             function closeMyQuestions(){
