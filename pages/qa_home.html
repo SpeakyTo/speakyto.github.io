@@ -294,12 +294,8 @@
                 </div>
                 <div id='my-questions'></div>`)
                 
-                if ($("#my-questions").length < 0){
-                    $("#my-questions").append(`<h1>You haven't asked any questions yet</h1>`)
-                    
-                } else {  
-                    $("#my-questions").empty()
-                }
+                
+                
                 
                 
                 speakyto.getQuestions(0).then(questions => {
@@ -320,6 +316,17 @@
                         }
                     })
                     
+                })
+                
+                $(document).ready(function(){
+                    if ($("#my-questions").length < 1){
+                    $("#my-questions").append(`<h1>You haven't asked any questions yet</h1>`)
+                    console.log("No questions!!!")
+                    
+                    } else {  
+                    $("#my-questions").empty()
+                        console.log("start!")
+                    }
                 })
                 
             }
@@ -526,7 +533,7 @@
                     const accountUid = $(this).attr("data-useruid")
                     speakyto.getUserAccount(accountUid).then(account =>{
                         console.log(x)
-                            $(this).find("#question-list-text").prepend(account['username'] + " ")
+                        $(this).find("#question-list-text").prepend(`<span style="color:blueviolet; font-weight:600;"> ${account['username']} </span>`)
                         })  
                 })
             })
