@@ -1,7 +1,33 @@
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
         zoom: 96%;
+        
     }
+    
+    #mobile-nav-bar{
+        display: none;
+    }
+    
+    #hamburger{
+        display: none;
+    }
+    
+}
+
+@media only screen and (min-width: 1920px) and (max-width: 4096px){
+    *{
+        zoom: 96%;
+        
+    }
+    
+    #mobile-nav-bar{
+        display: none;
+    }
+    
+    #hamburger{
+        display: none;
+    }
+    
 }
 
 *{
@@ -243,4 +269,150 @@ button:hover{
 #get-started-button:hover{
     background-color: dodgerblue;
     
+}
+
+@media only screen and (min-width: 300px) and (max-width: 1023px) {
+    html, body{
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    
+    #header{
+        display: none;
+    }
+    
+    #mobile-nav-bar{
+        padding: 15px;
+        width: 100%;
+        height: 50px;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        position: absolute;
+        z-index: 100;
+        background-color: rgb(33,33,33);
+    }
+    
+    #hamburger{
+        fill: white;
+    }
+    
+    #main-container{
+        width: 100%;
+        height: 100%;
+        
+    }
+    
+    h1{
+        font-size:  24px;
+    }
+    
+    h2{
+        font-size: 20px;
+        
+    }
+    
+    h3{
+        font-size: 16px;
+    }
+    
+    #page-container{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        background-image:none;
+        background-color: white;
+        background-image: url("/images/SpeakyTo_Hero_Simple.png");
+        background-size: 1500px;
+        background-repeat: no-repeat;
+        background-position: left;
+    }
+    
+    #page-contents{
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+        background-color: transparent;
+        margin: 75 0 0 0;
+        padding: 15;
+        width: 100%;
+        height: 75%;
+        box-shadow: none;
+    } 
+    
+    #page-contents h1, h2{
+        margin: 20 0 20 0;
+        font-weight: 600;
+        text-align: center;
+        color: black
+    }
+    #page-contents h3{
+        padding: 20px;
+        color: black;
+        line-height: 1.5
+    }
+    
+    #get-started-button{
+        text-align: center;
+        margin: 0;
+        width: 50%;
+    }
+    
+    #section-1{
+        padding: 5;
+        
+    }
+    
+    #hero-qa-container{
+        width: 100%;
+        padding: 15 0 15 0;
+        margin: 20 0 20 0;
+        flex-direction: column;
+        
+    }
+    
+    #speaky-ask-img{
+        margin: 25 0 25 0;
+        width: 400px;
+        height: auto;
+    }
+    
+    #speaky-icx-reward-img{
+        margin: 25 0 25 0;
+        width: 150px;
+        margin: 0;
+        height: auto;
+    }
+    
+    #speaky-answer-img{
+        width: 350px;
+        margin: 0;
+        height: auto;
+    }
+    
+    #section-2{
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin: 50 0 0 0;
+     
+    }
+    
+    .section-2-contents{
+        padding: 0;
+    }
+    
+
+    
+    #spkt-token{
+        width: 250px;
+        height: auto;
+    }
+    
+    #ask-page-img{
+        width: 350px;
+        height: auto
+    }
 }

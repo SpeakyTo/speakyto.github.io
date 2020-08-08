@@ -11,18 +11,6 @@
     
 }
 
-::-webkit-scrollbar{
-    width: 5px;
-}
-
-::-webkit-scrollbar-track{
-    background: #02a6f2
-}
-
-::-webkit-scrollbar-thumb{
-    background: #8000ff;
-}
-
 
 html, body{
     margin: 0;
@@ -375,4 +363,92 @@ span{
 #submit-question-button:hover{
     background-color: royalblue;
     
+}
+.text-style{
+    font-size: 16px;
+    text-align: center;
+}
+
+/*  Mobile & Tablet Styles  */
+/*  ----------------------  */
+
+
+@media only screen and (min-width: 300px) and (max-width: 1023px) {
+    
+    html, body{
+        overflow-y: scroll;
+    }
+    
+    #main-container{
+        width: 100%;
+        
+    }
+    
+    #ask-container{
+        width: 100%;
+        height: 100%;
+    }
+    
+    #ask-level-choice-container{
+        padding: 0;
+        flex-direction: column;
+    }
+    
+    #image-info-container{
+        width: 100%;
+    }
+    
+    #choices-container{
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    #image-box{
+        align-self: flex-start;
+        width: 32px;
+        margin: 2
+    }
+    
+    .choices-list-item-container{
+        flex-direction: column;
+    }
+    
+    #ask-form-level{
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    #ask-form-inner-section{
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    #info-interaction{
+        margin: 0;
+        width: 100%;
+    }
+    
+    #ask-box{
+        margin: 5;
+        width: 100%;
+    }
+    
+    #question-input{
+        width: 100%;
+        height: 100px;
+    }
+    
+    #from-to-container{
+        flex-direction: column;
+    }
+    
+    .lang-dropdown-button{
+        color: white;
+        background-color: darkblue;
+    }
+    
+    #submit-question-button{
+        margin: 10 0 10 0;
+        width: 100%;
+    }
 }

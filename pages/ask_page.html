@@ -1,6 +1,6 @@
 <html>
 <head>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     
     <!-- ICON SDK JS is required by Ancilia -->
@@ -35,8 +35,8 @@
             <div id="ask-container">
                 <div id="ask-level-choice-container">
                     <div id="image-info-container">
-                    <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="300px">
-                        <h3 style="text-align: center; color:black; background-color: white; padding: 20px; border-radius: 15px;"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
+                    <img src="/images/SpeakyTo_Logo_V1.png" alt="logo" width="172px">
+                        <h3 class="text-style"> Here you can ask a question depending on your current level. Answer more questions to unlock more levels!</h3>
                     </div>
                     <div id="choices-container">
                         <div class="choices-list-item-container">
@@ -307,6 +307,7 @@
             function closeContainer(){  
                 $("#ask-level-choice-container").css("display", "none")
                 $("#ask-form-level").css("display", "flex")
+                $('body').animate({scrollTop: 0}, 'slow')
             }
             
             function openContainer(){  

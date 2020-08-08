@@ -1,6 +1,6 @@
 <html>
 <head>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     
     <!-- ICON SDK JS is required by Ancilia -->
@@ -32,6 +32,9 @@
         <div id='loader-screen'>
             <img src="/images/SpeakyTo_Logo_V1.png" id="loader-image"> 
             <h1 style="text-align: center"> Getting things ready...</h1>
+        </div>
+        <div id="mobile-nav-bar">
+            <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.5 64"><title>menu_icon</title><rect y="26" width="63" height="12" rx="6" ry="6" /><rect x="0.5" width="63" height="12" rx="6" ry="6"/><rect x="0.5" y="52" width="63" height="12" rx="6" ry="6"/></svg>
         </div>
     <div id="main-container">
         <div id="content-container-wrap">
@@ -79,6 +82,7 @@
         window.onload = () => {
             
             // init account
+            mobileListener()
             historyListener()
             accountRefresh()
             userLoader()
@@ -103,7 +107,7 @@
                 
                 speakyto.getUserUid(address).then(user_uid => {
                     speakyto.getUserAccount(user_uid).then (account => {
-                        
+
                         // Load Avatar
                         const avatarID = parseInt(account['avatar_uid'])
                         const getAvatar = $("#welcome-box").prepend(`
@@ -115,6 +119,15 @@
                         $("#user-account").text(account['username'])
                         return getAvatar
                     })
+                }).catch(error => {
+                    
+                    const errorCode = error.toString()
+                    
+                    if (errorCode.includes("UserAccountDoesntExist")){
+                        ancilia.logout()
+                        window.location.replace('/pages/auth.html') 
+                    }
+ 
                 })
             }
         }
@@ -122,6 +135,7 @@
         function questionListener(){
             $(document).ready(function(){
                 $(document).on("click", ".question-container, .my-question-button, #last-question", function(e){
+                    
                     activateQA(this)
                 }) 
             })
@@ -137,8 +151,42 @@
                 }
                window.addEventListener('hashchange', changeHistory, false)
             })   
-        }       
-        
+        }   
+            
+        function mobileListener(){
+            
+            $(document).ready(function() {
+                
+                const minWidth = window.matchMedia("(min-width: 300px)")
+                const maxWidth = window.matchMedia("(max-width: 1023px)")
+                
+                if ((minWidth && maxWidth)) {
+                    $("#mobile-nav-bar").css("display", "flex")
+                }
+    
+                
+                else{
+                    $("#mobile-nav-bar").css("display", "none")
+                    
+                }
+                
+                 $("#hamburger").on("click", function(){
+                     
+                        if ($("#qa-dashboard").css("display") == "none") {
+                                $("#mobile-nav-bar").css("background-color", "transparent")
+                                $("#qa-dashboard").css("display", "flex")
+                                $("#hamburger").css("fill", "blueviolet")
+                        }
+                        else if ($("#qa-dashboard").css("display") == "flex") {
+                                $("#mobile-nav-bar").css("background-color", "rgb(33,33,33)") 
+                                $("#qa-dashboard").css("display", "none")
+                                $("#hamburger").css("fill", "white")
+
+                        }
+                })   
+            })
+            
+        }
             function qaBackButton(){
                 $("#last-question").show()
                 $("#questions-and-answers").hide()
@@ -153,7 +201,8 @@
             }
             
             function closeProfilePage(){
-                    $("#my-profile-page-container").remove()
+                $("#my-profile-page-container").remove()
+                $("#mobile-nav-bar").css("display", "flex")
                 }
             
             function buttonPreloadListeners(){
@@ -164,7 +213,9 @@
                 
                 
             }
+            
             function viewMyProfile(){
+                $("#mobile-nav-bar").hide()
                 qaBackButton()
                 if(ancilia.isLoggedIn()){
                     
@@ -183,10 +234,10 @@
                                             <div id="split">
                                                 <div id="split-left">
                                                     <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">
-                                                    <span> Your address </span>
+                                                    <span class="profile-page-text"> Your address </span>
                                                     <span id="my-user-id" hidden>${account['uid']}</span>
                                                     <span id="address"></span>  
-                                                    <span> Currently signed in as </span>
+                                                    <span class="profile-page-text"> Currently signed in as </span>
                                                     <span id="user-account-profile"></span>        
                                                 </div>
                                                 <div class="my-profile-page-content">
@@ -248,8 +299,8 @@
                         if ($("#my-user-id").text() == myQuestionID){
                             $("#my-questions").append(`
                             <div id="my-questions-container">
-                                <span class="my-question-style" style="background-color:dodgerblue; color:white;font-weight:600;">Status:  ${question['state']}</span>
-                                <span class="my-question-style" style="background-color:blueviolet; color:white;"> You asked... </span>
+                                <span class="my-question-style" style="background-color:black; color:white;font-weight:600;">Status:  ${question['state']}</span>
+                                <span class="my-question-style" style="background-color:black; color:white;"> You asked... </span>
                                 <span class="my-question-style">${question['data']}?</span>
                                 <span class="my-question-style"> From ${iso_6391_name(question['from_language'])} To ${iso_6391_name(question['to_language'])}</span>
                                 <button id="${parseInt(question['uid'])}" class="my-question-button" data-questionid="${questionValue}"> View question</button>
@@ -444,7 +495,7 @@
                             $("#question-list-style").css("background-color", "white")
                             $("#question-list-style").css("color", "black")
                             $("#question-list-style").css("box-shadow", "0px 5px 5px rgba(0,255,0, 0.3)")
-                            $("#question-list-style").append("<div style='display: flex; flex-direction: row; justify-content: space-around; font-size: 24px; align-items: center; width: 50%; padding: 15px; background-color: #00E672; color: white; border-radius:6px;'> Answered <img src='/images/assets/check-mark.png' style='width:64px; height:64px;'></img></div>")
+                            $("#question-list-style").append("<div id='question-list-answered'> Answered <img id='question-list-answered-img' src='/images/assets/check-mark.png' style=''></img></div>")
                         }
                         
                         $("#sort-to").text(function () {
@@ -484,13 +535,23 @@
                 if ($("#my-profile-page-container").length > 0){
                     $("#my-profile-page-container").remove()
                 }
+                    
+                const minWidth = window.matchMedia("(min-width: 300px)")
+                const maxWidth = window.matchMedia("(max-width: 1023px)")
                 
+                if ((minWidth && maxWidth)) {
+                    $("#qa-dashboard").hide()  
+                    $("#mobile-nav-bar").css("display", "flex")
+                    $("#mobile-nav-bar").css("background-color", "black")
+                    $("#hamburger").css("fill", "white")
+                }
+                    
                $("#qa-section-sidebar").css("display", "flex") 
                 
                 speakyto.getQuestions(0).then(questions => {
                     document.location.href = `#${questions[qn]['uid']}`
                     const qaSection = $("#questions-and-answers").append(`
-            <!--<button style="padding:10px; margin:5 0 5 0; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 50px; height: 50px; border:none; position:fixed; clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>-->     
+            <button style="padding:10px; margin:75 0 0 25; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 25px; height: 25px; border:none;  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>    
             <div id="question-section">
                 <h2 class="qa-headings-style-q">Question</h2>
                 <div id="question">
@@ -499,7 +560,7 @@
                         <span id="question-number" hidden>${qn}</span>
                         <span id="question-status">${questions[qn]['state']}</span>
                         <span id="question-user"></span>
-                        <span id="question-reward">${ancilia.convertDecimalsToUnit(questions[qn]['reward'], 18)} ICX</span>
+                        <span id="question-reward">Reward: ${ancilia.convertDecimalsToUnit(questions[qn]['reward'], 18)} ICX</span>
                     </div>
                     </div>
                         <!--<span id="from-to-translation">From ${iso_6391_name(questions[qn]['from_language'])} To ${iso_6391_name(questions[qn]['to_language'])}</span>-->
@@ -527,7 +588,7 @@
                    // Create Answers Section
                     
                     $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    $("#answer-section").append(`<h1 style="color:black;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="background-color:#ee0290; color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
+                    $("#answer-section").append(`<h1 style="color:black;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
                     speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
                         console.log(answers.length)
                         if(answers.length >= 1){
