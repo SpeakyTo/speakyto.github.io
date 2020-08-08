@@ -451,7 +451,7 @@
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
                 </div>`)        
             
-            $("#qa-section-nav").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="background-color: red; width: 100%; height: 50px;   display:none;">View Last Question</button>`)
+            $("#qa-section-nav").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="width: 100%; display:none;">View Last Question</button>`)
             
             $("#qa-section-nav").show()
             const questionViewer = (question =>{
@@ -536,15 +536,16 @@
                     $("#my-profile-page-container").remove()
                 }
                     
-                const minWidth = window.matchMedia("(min-width: 300px)")
-                const maxWidth = window.matchMedia("(max-width: 1023px)")
+                const minWidth = window.matchMedia("screen and (min-width: 300px)")
+                const maxWidth = window.matchMedia("screen and (max-width: 1024px)")
                 
-                if ((minWidth && maxWidth)) {
-                    $("#qa-dashboard").hide()  
+                if (minWidth.matches && maxWidth.matches) {
+                    $("#qa-dashboard").css("display", "none")
                     $("#mobile-nav-bar").css("display", "flex")
                     $("#mobile-nav-bar").css("background-color", "black")
                     $("#hamburger").css("fill", "white")
                 }
+            
                     
                $("#qa-section-sidebar").css("display", "flex") 
                 

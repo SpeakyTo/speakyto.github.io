@@ -108,18 +108,18 @@ a{
 h1{
     font-size: 40px;
     font-weight: 20;
-    color: white;
+    color: black;
 }
 
 h2{
-    color:white;
+    color:black;
     font-size: 30px;
     font-weight: 300;
     
 }
 
 h3{
-    color: white;
+    color: black;
     font-size: 25px;
     font-weight: 400;  
 }
@@ -130,7 +130,7 @@ button:hover{
 }
 
 #main-container{
-    background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
+    background-color: white;
     min-height: 100%;
     max-width: 100%;
     
