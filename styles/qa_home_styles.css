@@ -205,7 +205,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 75%;
+    min-height: 80%;
     width: 100%;
     overflow: hidden;
 }

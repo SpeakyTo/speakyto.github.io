@@ -319,14 +319,16 @@
                 })
                 
                 $(document).ready(function(){
-                    if ($("#my-questions").length < 1){
-                    $("#my-questions").append(`<h1>You haven't asked any questions yet</h1>`)
-                    console.log("No questions!!!")
-                    
-                    } else {  
-                    $("#my-questions").empty()
-                        console.log("start!")
+                    if ($("#my-questions").find("#my-questions-container").length === 0){
+                    $("#my-questions").append(`<h1 id="no-questions" style="color: blueviolet; font-weight: 600">You haven't asked any questions yet</h1>`)
+                        console.log("none found")
                     }
+                    
+                    else {
+                       $("#no-questions").remove() 
+                        
+                    }
+    
                 })
                 
             }
