@@ -3,7 +3,7 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
-        zoom: 97%;
+
     }
     
 }
@@ -37,8 +37,8 @@ a:focus{
 
 
 html, body{
+    height: 100%;
     margin:0;
-    overflow: hidden;
 }
 
 
@@ -65,9 +65,9 @@ h1{
 #pre-load{
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
-    z-index: 100;
+    z-index: 200;
 }
 
 @keyframes loader-image-anim{
@@ -88,14 +88,11 @@ h1{
 #main-container{
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: white;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 #header-logo{
@@ -113,17 +110,17 @@ h1{
     align-items: center;
     height: 100%;
     width: 100%;
-    overflow: hidden;
 }
 
 #content-container{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    border-radius: 25px;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     background-color: rgb(252,252,252);
+    overflow: hidden;
     /*background-image: linear-gradient(120deg, #5200FF, #FF0036);*/ 
 }
 
@@ -132,6 +129,8 @@ h1{
 /* Start Animations */
 
 #loader-screen{
+    background-color: white;
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,14 +147,17 @@ h1{
 
 #qa-dashboard{
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     flex-direction: column;
     padding: 25px 25px 25px 25px;
     box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
     background-color: rgb(35,35,35);
     z-index: 1;
     min-height: 100%;
-    width: 30%; 
-    
+    width: 25%; 
 }
 
 #user-container{
@@ -166,7 +168,7 @@ h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 75%;
+    height: 100%;
     width: 100%;
     overflow: hidden;
 }
@@ -369,13 +371,13 @@ h2.user-content{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background: rgb(33,33,33);
     border-radius: 6px;
     color: white;
     padding: 14px;
 }
 
 .question-level{
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
     padding: 5px;
     font-size: 16px;
     font-weight: 700;
@@ -556,10 +558,9 @@ h2.user-content{
     display: flex;
     flex-flow: column;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+    align-items: flex-end;
+    width: 75%;
+    min-height: 100%;
     background-color: whitesmoke;
 }
 
@@ -858,7 +859,7 @@ h2.user-content{
     background-color: whitesmoke;
     justify-content: center;
     align-items: center;
-    min-height: 100%;
+    height: 100vh;
     width: 100%;
 }
 
@@ -875,7 +876,7 @@ h2.user-content{
     display: flex;
     flex-direction: column;
     background-color: white;
-    height: auto;
+    height: 100%;
     width: 50%;
 }
 
@@ -1096,17 +1097,19 @@ h2.user-content{
 }
 
 #my-profile-page-container{
-    z-index: 10;
+    top: 0;
+    z-index: 12;
     display: block;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     position: absolute;
-    background-color: rgb(33,33,33)
+    background-color: rgb(33,33,33);
+    overflow: hidden;
 }
 
 #my-profile-page{
+    padding: 25 0 25 0;
     background-color: rgb(33,33,33);
-    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1126,7 +1129,6 @@ h2.user-content{
     align-items: center;
     min-height: 100%;
     width: 65%;
-    
 }
 
 #my-profile-content{
@@ -1236,7 +1238,7 @@ h2.user-content{
     padding: 20px;
     display: flex;
     width: 50%;
-    height: 100%;
+    height: 50%;
     box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
     flex-direction: column;
     justify-content: center;   
@@ -1307,6 +1309,10 @@ h2.user-content{
         fill: white;
     }
     
+    #content-container{
+        justify-content: center;
+    }
+    
     #qa-dashboard{
         padding: 30 25 30 25;
         display: none;
@@ -1337,6 +1343,11 @@ h2.user-content{
         margin: 0;
     }
     
+    #qa-section-container{
+        width: 100%;
+        
+    }
+    
     #qa-section-level-meter{
         padding: 10px
     }
@@ -1364,14 +1375,23 @@ h2.user-content{
     
     /*--------------*/
     
-    #my-profile-page-container{
-        width: 100%;
+    html, body{
         overflow-y: scroll;
+    }
+    
+    #my-profile-page-container{
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 10;
     }
     
     #my-profile-page{
         width: 100%;
+        height: 100%;
         padding: 0;
+        overflow: hidden;
         
     }
     #my-profile-page-content-container{
@@ -1428,6 +1448,7 @@ h2.user-content{
     }
     
     #split-left{
+        box-shadow: none;
         padding: 0;
         
     }
@@ -1545,6 +1566,10 @@ h2.user-content{
     .qa-headings-style-q{
         width: 100%;
         
+    }
+    
+    #questions-and-answers{
+        width: 100%;
     }
     
     #question-section{

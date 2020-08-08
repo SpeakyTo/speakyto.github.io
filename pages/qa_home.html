@@ -74,7 +74,6 @@
                     </div>
                     <div id="questions-and-answers"></div>
                 </div>
-                <div id="test"></div>
             </div>
         </div>
         
@@ -195,7 +194,7 @@
                 $("#qa-section-top-content").show()
                 
                  //Scroll to top of viewport
-                $("#questions-list").animate({scrollTop: 0}, 'slow')
+                $("body").animate({scrollTop: 0}, 'slow')
                 
                 otherRefresh()
             }
@@ -203,6 +202,7 @@
             function closeProfilePage(){
                 $("#my-profile-page-container").remove()
                 $("#mobile-nav-bar").css("display", "flex")
+                $("body").css("overflow-y", "scroll")
                 }
             
             function buttonPreloadListeners(){
@@ -216,6 +216,7 @@
             
             function viewMyProfile(){
                 $("#mobile-nav-bar").hide()
+                $("body").css("overflow", "hidden")
                 qaBackButton()
                 if(ancilia.isLoggedIn()){
                     
@@ -508,7 +509,7 @@
         }
             function scrollTopQA(){
                 $("#text-input-area").hide()  
-                $('#qa-section-container').animate({scrollTop: 0}, 'slow') 
+                $('body').animate({scrollTop: 0}, 'slow') 
                 replyBox()
                 }
             
