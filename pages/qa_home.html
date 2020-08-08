@@ -136,6 +136,7 @@
                 $(document).on("click", ".question-container, .my-question-button, #last-question", function(e){
                     
                     activateQA(this)
+                    $("body").animate({scrollTop: 0}, 'slow')
                 }) 
             })
         }

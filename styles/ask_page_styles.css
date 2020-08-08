@@ -401,6 +401,7 @@ span{
     }
     
     #ask-container{
+        padding: 20px;
         width: 100%;
         height: 100%;
     }
@@ -428,6 +429,12 @@ span{
     .choices-list-item-container{
         flex-direction: column;
     }
+    
+    .list-text{
+        font-size: 18px;
+        margin: 0; 
+        color: black;
+}
     
     #ask-form-level{
         width: 100%;
