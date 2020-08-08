@@ -3,7 +3,7 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
-
+        zoom: 97%;
     }
     
 }
