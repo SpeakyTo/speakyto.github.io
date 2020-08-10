@@ -208,10 +208,15 @@
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
                                     <h3 style="color: black; text-align: center;">You currently can't ask anymore questions at this level. Please try answering some to increase your experience!</h3>
+                                    <button id="alert-home-button" class="alert-button-style">Return To Questions</button>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
+                                    
             `)
             $("#alert-close-button").click(function(){
                 $("#alert-box").remove()
+            })
+            $("#alert-home-button").click(function(){
+                backToQA()
             })
             return noTransaction
         }
