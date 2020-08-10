@@ -592,6 +592,7 @@
             })
             
             const questionsList = (question => {
+                console.log(question)
                 const userLevel = ""
                 return `
                         <div id="question-list-style">
@@ -616,7 +617,7 @@
                     x = i++
                     
                     
-                    if (question['state'] == "CANCELLED" || question['uid'] === "0x2"){
+                    if (question['state'] == "CANCELLED"){
                         // Skip
                     }  
                     
