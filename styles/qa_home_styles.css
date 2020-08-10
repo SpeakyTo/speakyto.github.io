@@ -3,7 +3,7 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
-        zoom: 97%;
+
     }
     
 }
@@ -37,6 +37,7 @@ a:focus{
 
 
 body{
+    overflow: hidden;
     height: 100%;
     margin:0;
 }
@@ -73,6 +74,55 @@ h1{
 @keyframes loader-image-anim{
     to {background-color: blueviolet;}
     from {background-color: orangered;}
+}
+
+#alert-box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100%;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 300;
+    background-color: rgba(0,0,0,0.7);
+    overflow: hidden;
+}
+
+#alert-container{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: white;
+    border-radius: 6px;
+    width: 25%;
+    height: 35%;
+}
+
+#alert-container-contents{
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.alert-button-style{
+    outline: 0;
+    border: none;
+    padding: 10px;
+    margin: 5 0 5 0;
+    width: 80%;
+    color: white;
+    border-radius: 6px;
+    background-color: black;
+    cursor: pointer;
+    
 }
 
 #loader-image{
@@ -365,13 +415,18 @@ h2.user-content{
     padding: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-content: center;
     border-radius: 10px;
     width: 85%;
-    height: 75%;
+    height: 65%;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
     background-color: white;
+}
+
+#question-list-style > *{
+    margin: 10 0 10 0;
+    padding: 5px;
 }
 
 #question-list-answered{
@@ -379,8 +434,10 @@ h2.user-content{
     flex-direction: row; 
     justify-content: space-around; 
     font-size: 24px; 
-    align-items: center; 
-    width: 50%; 
+    align-items: center;
+    align-self: center;
+    width: 75%; 
+    height: 30%;
     padding: 15px; 
     background-color: #00E672; 
     color: white; 
@@ -411,6 +468,8 @@ h2.user-content{
     border-radius: 6px;
     color: white;
     padding: 14px;
+    width: 100%;
+    margin: 0;
 }
 
 .question-level{
@@ -425,7 +484,10 @@ h2.user-content{
     border-radius: 10px;  
 }
 
-#question-list-text{
+#question-list{
+    align-self: center;
+    justify-content: center;
+    align-items: center;
     margin: 25px 0px 10px 0px;
     word-wrap: break-word;
 }
@@ -597,8 +659,9 @@ h2.user-content{
     justify-content: space-between;
     align-items: flex-end;
     width: 75%;
-    min-height: 100%;
+    height: 100vh;
     background-color: whitesmoke;
+    overflow-y: scroll;
 }
 
 #qa-section-top-content{
@@ -614,11 +677,14 @@ h2.user-content{
 #questions-list{
     padding: 25px;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     height: 100%;
     width: 100%;
+}
 
+#questions-list > *{
+    flex: 0 1 50%;
+    
 }
 
 #questions-and-answers{
@@ -686,8 +752,7 @@ h2.user-content{
     border-right-color: transparent;
     border-left-color: transparent;
     border-style: solid;
-    border-radius: 30px;
-    
+    border-radius: 30px;    
 }
 
 
@@ -896,7 +961,7 @@ h2.user-content{
     background-color: whitesmoke;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100%;
     width: 100%;
 }
 
@@ -906,7 +971,7 @@ h2.user-content{
     width: 10%;
 }
 
-#answers{
+.answers{
     margin: 20px 0px 40px 0px;
     border-radius: 12px;
     box-shadow: 25px 25px 3px rgba(0,0,0,0.5);
@@ -975,6 +1040,7 @@ h2.user-content{
     color: black;
     height: 200px;
     width: 100%;
+    font-size: 16px;
 }
 
 #select-answer-button{
@@ -1013,7 +1079,7 @@ h2.user-content{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
@@ -1559,7 +1625,7 @@ h2.user-content{
     
     .question-container{
         width: 100%;
-        height: 50%;     
+        height: 100%;     
     }
     
     .reply-button-c{
@@ -1578,10 +1644,16 @@ h2.user-content{
     
     #question-list-style{
         padding: 50 25 50 25;
+        height: 80%;
         
     }
     
-    
+    #question-list-style > *{
+        padding: 20px;
+        margin: 0;
+        height: 100%;
+        
+    }
     
     #question-list-text{
         margin: 15 0 15 0;
@@ -1589,6 +1661,8 @@ h2.user-content{
     }
     
     .question-list-state-style{
+        align-self: center;
+        justify-content: center;
         margin: 15 0 15 0;
         background-color: white
         
@@ -1736,5 +1810,7 @@ h2.user-content{
         width: 50%;
         
     }
+    
+    
     
 }

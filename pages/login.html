@@ -52,7 +52,7 @@
             if(ancilia.isLoggedIn() ){
                const address = ancilia.getLoggedInWallet()
                speakyto.getUserUid(address).then(user_uid => {
-                   window.location.replace("/pages/qa_home.html")
+                   window.location.replace("/pages/qa_home")
                    }).catch (error => {
                    createUser()
                })   
@@ -108,7 +108,7 @@
                 
                 if (username == ''){
                     alert("Please select a username")
-                    console.log(avatar)
+                    
                 }
                 
                 else if (avatar == "0"){
@@ -117,9 +117,9 @@
                 
                 else {
                     speakyto.createUserAccount(avatar, username).then(userAccountUid => {
-                    console.log("Account created: ", userAccountUid)
+                    
                     accountRefresh()
-                    window.location.replace("/pages/qa_home.html")
+                    window.location.replace("/pages/qa_home")
                         })
                 }
             }

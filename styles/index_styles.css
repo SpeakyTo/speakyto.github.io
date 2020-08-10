@@ -144,7 +144,7 @@ button:hover{
     width: 100%;
     min-height: 100%;
     background-image: url("/images/SpeakyTo_Hero_Simple.png");
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-size: 1920px 1080px;
 }
 

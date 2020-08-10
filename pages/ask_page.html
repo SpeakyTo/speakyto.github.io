@@ -32,7 +32,7 @@
     <body>
         <div id="pre-load"></div>
         <div id="main-container">
-            <img src="/images/SpeakyTo_Typeography.png" width="200px" onclick="window.location.href='qa_home.html'" style="cursor: pointer; margin-top: 15px;">
+            <img src="/images/SpeakyTo_Typeography.png" width="200px" onclick="window.location.href='qa_home'" style="cursor: pointer; margin-top: 15px;">
             <div id="ask-container">
                 <div id="ask-level-choice-container">
                     <div id="image-info-container">
@@ -154,7 +154,7 @@
         window.onload = () => {
             
             // init account
-            $("#pre-load").load("/scripts/loader.html")
+            $("#pre-load").load("/scripts/loader")
 
             
             setTimeout(function(){
@@ -171,7 +171,8 @@
         }
         
         function alertBox(){
-            const box = $("#main-container").prepend(`
+            $("body").css("overflow-y", "hidden")
+            const box = $("body").prepend(`
                         <div id="alert-box">
                             <div id="alert-container">
                                 <div id="alert-container-contents">
@@ -182,7 +183,7 @@
             
             // Default Loader
             
-            $("#alert-container-contents").load("/scripts/loader.html")
+            $("#alert-container-contents").load("/scripts/loader")
             
             return box
             
@@ -192,7 +193,7 @@
             
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
-                                    <h2>You cancelled your question</h2>
+                                    <h2 style="color: black;">You cancelled your question</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -202,9 +203,9 @@
         }
         
         function successAlert(){
-            
+            $("#alert-container-contents").empty()
             const successNotification = $("#alert-container-contents").prepend(`
-                                        <h2>Success!</h2>
+                                        <h2 style="color: black;">Success!</h2>
                                         <button id="alert-home-button" class="alert-button-style">View My Question</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
                                         <button id="alert-home-button" class="alert-button-style">Home</button>
@@ -227,9 +228,9 @@
                 $("#user-address").text(address)
                 speakyto.getUserUid(address).then(user_uid => {
                   speakyto.getUserLevel(user_uid).then(level => {
-                    console.log(user_uid)
-                    console.log(level)
-                    console.log(listItem.data("value"))
+                    
+                    
+                    
 
                     listItem.each(function(){
                         if ($(this).data("value") != level && level == "0x1"){
@@ -409,10 +410,10 @@
         
         function accountRefresh() {
             if (ancilia.isLoggedIn()) {
-                console.log('currently logged in...')   
+                
                 
             } else {          
-                window.location.replace('/login.html')
+                window.location.replace('/login')
             }
         }
         
@@ -471,9 +472,10 @@
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
             
-            console.log(data,from,to,icx)
+            
             speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
-                console.log("Question Level 1 created : ", questionUid)
+                
+                sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
             }).catch((error) => {
                  catchErrorsAlert()
@@ -485,10 +487,13 @@
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
-            console.log(data,from,to,icx)
+            
             speakyto.createQuestionLevel2(data, from, to, icx).then(questionUid => {
-                console.log("Question Level 2 created : ", questionUid)
-                backToQA()
+                
+                sessionStorage.setItem('myAskedQuestion', questionUid)
+                successAlert()
+            }).catch((error) => {
+                 catchErrorsAlert()
             })
         }
         
@@ -497,10 +502,13 @@
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
-            console.log(data,from,to,icx)
+            
             speakyto.createQuestionLevel3(data, from, to, icx).then(questionUid => {
-                console.log("Question Level 3 created : ", questionUid)
-                backToQA()
+                
+                sessionStorage.setItem('myAskedQuestion', questionUid)
+                successAlert()
+            }).catch((error) => {
+                 catchErrorsAlert()
             })
         }
         
@@ -509,10 +517,13 @@
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
-            console.log(data,from,to,icx)
+            
             speakyto.createQuestionLevel4(data, from, to, icx).then(questionUid => {
-                console.log("Question Level 4 created : ", questionUid)
-                backToQA()
+                
+                sessionStorage.setItem('myAskedQuestion', questionUid)
+                successAlert()
+            }).catch((error) => {
+                 catchErrorsAlert()
             })
         }
         
@@ -521,15 +532,18 @@
             const from = $("#from-lang").val()
             const to = $("#to-lang").val()
             const icx = $("#icx-reward").val()
-            console.log(data,from,to,icx)
+            
             speakyto.createQuestionLevel5(data, from, to, icx).then(questionUid => {
-                console.log("Question Level 5 created : ", questionUid)
-                backToQA()
+                
+                sessionStorage.setItem('myAskedQuestion', questionUid)
+                successAlert()
+            }).catch((error) => {
+                 catchErrorsAlert()
             })
         }
         
         function backToQA(){
-            window.location.replace("/pages/qa_home.html")           
+            window.location.replace("/pages/qa_home")           
         }
         
         function selectionListener(){

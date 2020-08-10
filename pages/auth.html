@@ -44,12 +44,12 @@
         function accountRefresh() {
             
             if (ancilia.isLoggedIn()) {
-                window.location.replace("/pages/qa_home.html")
-                $("auth").html('Redirecting To Login Page')
+                window.location.replace("/pages/qa_home")
+                $("auth")('Redirecting To Login Page')
                 
             } else {
-                $("#auth").html('Checking Login')
-                window.location.replace("/pages/login.html")
+                $("#auth")('Checking Login')
+                window.location.replace("/pages/login")
             }
         }
             

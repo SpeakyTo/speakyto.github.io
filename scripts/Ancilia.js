@@ -180,7 +180,7 @@ class Ancilia {
             params: IconConverter.toRawTransaction(transaction),
             id: 1234
         }
-        console.log(jsonRpcQuery)
+        
         return this.__iconexJsonRpc(jsonRpcQuery)
     }
 
