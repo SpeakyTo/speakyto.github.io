@@ -57,9 +57,9 @@
                                 <div id="point-slider-container">
                                     <div id="slider-content">
                                         <div id="slider-levels-text">
-                                            <span id="exp-level" class="exp-style"></span>
-                                            <span style="color: white;">/</span>
-                                            <span id="next-level" class="exp-style"></span>
+                                            <span class="exp-style"></span>
+                                            <span style="color: white;">EXP</span>
+                                            <span class="exp-style"></span>
                                         </div>
                                         <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
                                     </div>
@@ -941,8 +941,8 @@
                             const maxExp = document.getElementById("point-slider-target")
                             const currExp = parseInt(experience)
                             document.getElementById("point-slider-target").value = currExp
-                            $("#experience").text(currExp.toLocaleString() + " SPKT")
-                            $("#exp-level").text(currExp.toLocaleString() + " SPKT")
+                            $("#experience").text("Experience: " + currExp.toLocaleString())
+                            $("#exp-level").text(currExp.toLocaleString())
                         
                         // Level 1
                             if (level == 1){
@@ -952,7 +952,7 @@
                                         minExp.min = 0
                                         maxExp.max = 999
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
 //                                   if (currExp >= maxExp && level == 1){
 //                                    alert("You made it to level 2!")
@@ -968,7 +968,7 @@
                                         minExp == 1000
                                         maxExp == 4000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
 //                                    if (currExp >= maxExp && level == 2){
 //                                    alert("You made it to level 3!")
@@ -983,7 +983,7 @@
                                         minExp == 4000
                                         maxExp == 12000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                       // $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
 //                                    if (currExp >= maxExp && level == 3){
 //                                    alert("You made it to level 4!")
@@ -999,7 +999,7 @@
                                         minExp == 12000
                                         maxExp == 24000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
 //                                    if (currExp >= maxExp && level == 4){
 //                                    alert("You made it to level 5!")
@@ -1015,10 +1015,10 @@
                                         minExp == 24000
                                         maxExp == 40000
                                         
-                                        $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
                                     }
 //                                    if (currExp >= maxExp && level == 5){
-                                    alert("You made it to level 6!")
+                                        //alert("You made it to level 6!")
 //                                   }
                                 }) 
                             }
