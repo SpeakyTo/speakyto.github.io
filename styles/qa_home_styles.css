@@ -3,7 +3,7 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1536px){
     *{
-
+        zoom: 98%;
     }
     
 }
@@ -38,7 +38,7 @@ a:focus{
 
 body{
     overflow: hidden;
-    height: 100%;
+    min-height: 100%;
     margin: 0px;
 }
 
@@ -238,11 +238,13 @@ h1{
     left: 0;
     bottom: 0;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 25px 25px 25px 25px;
     box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
     background-color: rgb(35,35,35);
     z-index: 1;
-    min-height: 100%;
+    min-height: 100vh;
     width: 25%; 
     overflow: hidden;
 }
@@ -260,6 +262,7 @@ h1{
     overflow: hidden;
 }
 
+
 #welcome-box{
     border-radius: 16px; 
     margin: 10px 0px 10px 0px;
@@ -269,11 +272,12 @@ h1{
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 400px;
     background-color: rgb(33,33,33);
 }
 
 .user-content{
+    align-self: center;
     text-align: center;
     padding: 15px;
     width: 100%;
@@ -305,6 +309,9 @@ h2.user-content{
 }
 
 #user-account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
     text-align: center;
     width: 100%;
@@ -519,7 +526,7 @@ h2.user-content{
     border-radius: 12px;
     padding: 5px 10px 5px 10px;
     display: flex;
-    height: 100%;
+    height: 100px;
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
@@ -659,7 +666,7 @@ h2.user-content{
     justify-content: space-between;
     align-items: flex-end;
     width: 75%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: whitesmoke;
     overflow-y: scroll;
 }
