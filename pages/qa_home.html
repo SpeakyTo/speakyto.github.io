@@ -209,7 +209,6 @@
                 $("#my-profile-page-container").remove()
                 $("#last-question").hide()
                 $("#mobile-nav-bar").css("display", "flex")
-                $("body").css("overflow", "hidden")
                 }
             
             function buttonPreloadListeners(){
@@ -395,7 +394,7 @@
             }
             
             function alertBox(){
-            $("body").css("overflow-y", "hidden")
+            $("body").css("overflow", "hidden")
             const box = $("body").prepend(`
                         <div id="alert-box">
                             <div id="alert-container">
