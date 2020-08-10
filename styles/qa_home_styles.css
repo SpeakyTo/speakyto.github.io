@@ -1482,9 +1482,6 @@ h2.user-content{
     
     /*--------------*/
     
-    html, body{
-        overflow-y: scroll;
-    }
     
     #my-profile-page-container{
         top: 0;
