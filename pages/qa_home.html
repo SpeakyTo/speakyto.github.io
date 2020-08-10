@@ -311,7 +311,7 @@
                             <div id="my-questions-container">
                                 <span class="my-question-style" style="background-color:black; color:white;font-weight:600;">Status:  ${question['state']}</span>
                                 <span class="my-question-style" style="background-color:black; color:white;"> You asked... </span>
-                                <span class="my-question-style">${question['data']}?</span>
+                                <span class="my-question-style">${question['data']}</span>
                                 <span class="my-question-style"> From ${iso_6391_name(question['from_language'])} To ${iso_6391_name(question['to_language'])}</span>
                                 <button id="${parseInt(question['uid'])}" class="my-question-button" data-questionid="${questionValue}"> View question</button>
                             </div>
@@ -612,7 +612,7 @@
                             <span id="question-list-state" class="question-list-state-style"><span class="question-level"><span id="sort-from">${iso_6391_name(question['from_language'])}</span>
                                 <span id="sort-to"> to ${iso_6391_name(question['to_language'])}</span></span><span class="q-level">${userLevel}</span></span>
                             <div id=question-list>
-                                <span id="question-list-text">asked: ${question['data']} ?</span>
+                                <span id="question-list-text">asked: ${question['data']}</span>
                             </div>
                         </div>`
             })
@@ -656,6 +656,7 @@
                         $(this).find("#question-list-text").prepend(`<span style="color:blueviolet; font-weight:600;"> ${account['username']} </span>`)
                         })
                     
+                    
                     if (questionState === "ANSWERED"){
                             $(this).find("#question-list-style").css("background-color", "white")
                             $(this).find("#question-list-style").css("color", "black")
@@ -663,9 +664,15 @@
                             $(this).find("#question-list-style").append("<div id='question-list-answered'> Answered <img id='question-list-answered-img' src='/images/assets/check-mark.png' style=''></img></div>")
                         }
                         
-                        $(this).find("#sort-to").text(function () {
-                            return $(this).text().replace("; Castilian", "")
+                    $(this).find("#sort-to").text(function () {
+                        return $(this).text().replace("; Castilian", "")
                         })
+                    $(this).find("#question-list-text").text(function() {
+                        return $(this).text().replace("?", "")
+                    })
+                    $(this).find("#question-list-text").text(function() {
+                        $(this).append("?")
+                    })
                 })
                 
                 
@@ -746,7 +753,7 @@
                     </div>
                     </div>
                         <!--<span id="from-to-translation">From ${iso_6391_name(questions[qn]['from_language'])} To ${iso_6391_name(questions[qn]['to_language'])}</span>-->
-                    <span id="question-text-area">How to say: ${questions[qn]['data']} from ${iso_6391_name(questions[qn]['from_language'])} to ${iso_6391_name(questions[qn]['to_language'])}?</span>
+                    <span id="question-text-area">How to say: ${questions[qn]['data']} from ${iso_6391_name(questions[qn]['from_language'])} to ${iso_6391_name(questions[qn]['to_language'])}</span>
                     <div id="question-reply-area">
                         <button id="close-question-button" class="close-question-button-style" value=${questions[qn]['uid']} onclick="onCancelQuestion(this)" style="display: none;">Close</button>
                         <button id="reply-button" class=reply-button-c onclick="replyBox()">Reply</button> 
