@@ -45,10 +45,10 @@
             
             if (ancilia.isLoggedIn()) {
                 window.location.replace("/pages/qa_home")
-                $("auth").('Redirecting To Login Page')
+                $("#auth").text('Redirecting To Login Page')
                 
             } else {
-                $("#auth").('Checking Login')
+                $("#auth").text('Checking Login')
                 window.location.replace("/pages/login")
             }
         }
