@@ -921,18 +921,17 @@
                         speakyto.answerQuestion(questionUid, $(data).val()).then(answerUid => {
                                 const questionInt = parseInt(questionUid)
                                 sessionStorage.setItem('myAskedQuestion', questionInt)
-                                
                                 successAnswered() 
                         }).catch(error => {
                             const thisError = error.toString()
                             if(thisError.includes("TypeError: Cannot read property 'result' of undefined")){
-                              catchSubmissionAlert()    
+                                catchSubmissionAlert()    
                             }
-                            
                             else{
                                 catchCloseAlert2()
-                            }
-                               
+                                $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                                <p style="color:red; font-weight: 600;">${thisError}</p>`)
+                            }      
                         })
                     }
             }
@@ -1084,15 +1083,20 @@
                     // Wait for the next block
                     successCloseQuestion()
                 }).catch(error => {
+                        const thisError = error.toString()
                         catchCloseAlert2()
+                        $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                        <p style="color:red; font-weight: 600;">${thisError}</p>`)
                     })
             }).catch(error => {
-                    const errorType = error.toString()
-                    if(errorType.includes("TypeError: Cannot read property 'result' of undefined")){
+                    const thisError = error.toString()
+                    if(thisError.includes("TypeError: Cannot read property 'result' of undefined")){
                         catchCloseAlert()  
                     }
                     else{
-                        catchCloseAlert2() 
+                        catchCloseAlert2()
+                        $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                        <p style="color:red; font-weight: 600;">${thisError}</p>`)
                     }
                 })
         }
@@ -1112,9 +1116,15 @@
                     successSelectAnswer()
                 }).catch(error => {
                     catchCloseAlert2()
+                    const thisError = error.toString()
+                    $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                    <p style="color:red; font-weight: 600;">${thisError}</p>`)
                 })
             }).catch(error => {
-                catchSelectAnswerAlert()
+                    const thisError = error.toString()
+                    catchCloseAlert2()
+                    $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                    <p style="color:red; font-weight: 600;">${thisError}</p>`)
             })
         }
             
