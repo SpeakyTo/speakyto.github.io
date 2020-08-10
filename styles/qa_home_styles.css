@@ -201,7 +201,7 @@ h1{
 #content-container{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -666,7 +666,7 @@ h2.user-content{
     justify-content: space-between;
     align-items: flex-end;
     width: 75%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: whitesmoke;
     overflow-y: scroll;
 }
