@@ -13,12 +13,12 @@
 
 
 body{
-    margin: 0;
+    margin: 0px;
     overflow: hidden;
 }
 
 span{
-    margin: 10;
+    margin: 10px;
     text-align: center;
     box-shadow: 0px 5px rgba(0,0,0, 0);
     
@@ -89,7 +89,7 @@ span{
     outline: 0;
     border: none;
     padding: 10px;
-    margin: 5 0 5 0;
+    margin: 5px 0px 5px 0px;
     width: 80%;
     color: white;
     border-radius: 6px;
@@ -103,9 +103,8 @@ span{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);*/
     background-color: white;
-    min-height: 100%;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -141,7 +140,7 @@ span{
 }
 
 .choices-list-item-container{
-    margin: 5;
+    margin: 5px;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -152,7 +151,7 @@ span{
 
 #image-box {
     width: 72px;
-    margin: 0 15 0 15;
+    margin: 0px 15px 0px 15px;
 }
 
 #image-info-container{
@@ -206,7 +205,7 @@ span{
 
 .list-text{
     font-size: 20px;
-    margin: 0; 
+    margin: 0px; 
     color: black;
 }
 
@@ -230,14 +229,14 @@ span{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-content: c;
+    align-content: center;
     width: 100%;
     height: 100%;
     
 }
 
 #info-interaction{
-    margin: 30;
+    margin: 30px;
     background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
     box-shadow: 0px 10px 5px rgba(0,0,0,0.2);
     color: white;
@@ -290,8 +289,8 @@ span{
 .lang-content-from {
     box-shadow: 0px 10px 5px rgba(0,0,0,0.5);
     display: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     position: absolute;
     height: 20%;
     overflow-y: scroll;
@@ -301,8 +300,8 @@ span{
 .lang-content-to {
     box-shadow: 0px 10px 5px rgba(0,0,0,0.5);
     display: none;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     position: absolute;
     height: 20%;
     overflow-y: scroll;
@@ -410,7 +409,7 @@ span{
     }
     
     #ask-level-choice-container{
-        padding: 0;
+        padding: 0px;
         flex-direction: column;
     }
     
@@ -424,9 +423,10 @@ span{
     }
     
     #image-box{
+        display: none;
         align-self: flex-start;
         width: 32px;
-        margin: 2
+        margin: 2px;
     }
     
     .choices-list-item-container{
@@ -435,7 +435,7 @@ span{
     
     .list-text{
         font-size: 18px;
-        margin: 0; 
+        margin: 0px; 
         color: black;
 }
     
@@ -450,12 +450,12 @@ span{
     }
     
     #info-interaction{
-        margin: 0;
+        margin: 0px;
         width: 100%;
     }
     
     #ask-box{
-        margin: 5;
+        margin: 5px;
         width: 100%;
     }
     
@@ -474,7 +474,7 @@ span{
     }
     
     #submit-question-button{
-        margin: 10 0 10 0;
+        margin: 10px 0px 10px 0px;
         width: 100%;
     }
 }

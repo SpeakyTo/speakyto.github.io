@@ -39,7 +39,7 @@ a:focus{
 body{
     overflow: hidden;
     height: 100%;
-    margin:0;
+    margin: 0px;
 }
 
 
@@ -113,10 +113,10 @@ h1{
 }
 
 .alert-button-style{
-    outline: 0;
+    outline: 0px;
     border: none;
     padding: 10px;
-    margin: 5 0 5 0;
+    margin: 5px 0px 5px 0px;
     width: 80%;
     color: white;
     border-radius: 6px;
@@ -177,7 +177,7 @@ h1{
     justify-content: center;
     align-items: center;
     background-color: white;
-    min-height: 100;
+    min-height: 100%;
     width: 100%;
 }
 
@@ -248,7 +248,7 @@ h1{
 }
 
 #user-container{
-    padding: 50 25 50 25;
+    padding: 50px 25px 50px 25px;
     border-radius: 25px;
     background: linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
     display: flex;
@@ -262,7 +262,7 @@ h1{
 
 #welcome-box{
     border-radius: 16px; 
-    margin: 10 0 10 0;
+    margin: 10px 0px 10px 0px;
     padding: 35px;
     display: flex;
     justify-content: center;
@@ -295,7 +295,7 @@ h2.user-content{
 }
 
 #address{
-    margin: 15 0 15 0;
+    margin: 15px 0px 15px 0px;
     border-radius: 12px;
     padding: 20px;
     background-color: rgb(35,35,35);
@@ -316,7 +316,7 @@ h2.user-content{
 }
 
 #user-account-profile{
-    margin: 15 0 15 0;
+    margin: 15px 0px 15px 0px;
     text-align: center;
     width: 75%;
     border-radius: 12px;
@@ -425,7 +425,7 @@ h2.user-content{
 }
 
 #question-list-style > *{
-    margin: 10 0 10 0;
+    margin: 10px 0px 10px 0px;
     padding: 5px;
 }
 
@@ -469,7 +469,7 @@ h2.user-content{
     color: white;
     padding: 14px;
     width: 100%;
-    margin: 0;
+    margin: 0px;
 }
 
 .question-level{
@@ -517,7 +517,7 @@ h2.user-content{
 #qa-section-level-meter{
     box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
     border-radius: 12px;
-    padding: 5 10 5 10;
+    padding: 5px 10px 5px 10px;
     display: flex;
     height: 100%;
     width: 100%;
@@ -556,7 +556,7 @@ h2.user-content{
 }
 
 #slider-content{
-    padding: 3;
+    padding: 3px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -566,7 +566,7 @@ h2.user-content{
 }
 
 .point-slider{
-    margin: 5;
+    margin: 5px;
     padding: 6px;
     border-color: white;
     border-style: solid;
@@ -608,7 +608,7 @@ h2.user-content{
 }
 
 .my-level{
-    padding: 2;
+    padding: 2px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -665,7 +665,7 @@ h2.user-content{
 }
 
 #qa-section-top-content{
-    margin-top: 10;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -708,7 +708,7 @@ h2.user-content{
 }
 
 .qa-section-nav-content{
-    padding: 0;
+    padding: 0px;
     box-shadow: 0px 5px 3px rgba(0,0,0,0.2);
     outline: none;
     border: none;
@@ -796,7 +796,7 @@ h2.user-content{
 }
 
 #question-avatar{
-    margin: 0 50 0 0;
+    margin: 0px 50px 0px 0px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     border-radius: 30px;
     background-color: rgb(33,33,33);
@@ -967,7 +967,7 @@ h2.user-content{
 
 #answer-this-button{
     background-color: blueviolet;
-    margin-left: 60;
+    margin-left: 60px;
     width: 10%;
 }
 
@@ -993,7 +993,7 @@ h2.user-content{
 }
 
 #answer-avatar{
-    margin: 0 0 0 50;
+    margin: 0px 0px 0px 50px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     border-radius: 30px;
     background-color: rgb(255,255,255);
@@ -1211,7 +1211,7 @@ h2.user-content{
 }
 
 #my-profile-page{
-    padding: 25 0 25 0;
+    padding: 25px 0px 25px 0px;
     background-color: rgb(33,33,33);
     display: flex;
     flex-direction: column;
@@ -1287,7 +1287,7 @@ h2.user-content{
 
 #my-profile-avatar{
     background-color: rgb(33,33,33);
-    margin: 20 0 20 0;
+    margin: 20px 0px 20px 0px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
     height: 300px;
@@ -1296,7 +1296,7 @@ h2.user-content{
 
 .my-profile-stats{
     display: flex;
-    margin: 15 0 15 0;
+    margin: 15px 0px 15px 0px;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -1310,7 +1310,7 @@ h2.user-content{
 
 #my-questions-header-button{
     box-shadow: 0px 0px 10px black;
-    margin: 15 0 15 0;
+    margin: 15px 0px 15px 0px;
     background-color: #6002ee;
     font-size: 18px;
     color: white;
@@ -1337,7 +1337,7 @@ h2.user-content{
 }
 
 #my-questions-container{
-    margin: 10 0 10 0;
+    margin: 10px 0px 10px 0px;
     padding: 20px;
     display: flex;
     width: 50%;
@@ -1421,7 +1421,7 @@ h2.user-content{
     }
     
     #qa-dashboard{
-        padding: 30 25 30 25;
+        padding: 30px 25px 30px 25px;
         display: none;
         position: absolute;
         width: 100%;
@@ -1447,7 +1447,7 @@ h2.user-content{
     }
     
     .user-content{
-        margin: 0;
+        margin: 0px;
     }
     
     #qa-section-container{
@@ -1476,7 +1476,7 @@ h2.user-content{
     
     .qa-section-nav-content{
         width: 100%;
-        margin: 25;
+        margin: 25px;
     }
     
     
@@ -1494,16 +1494,16 @@ h2.user-content{
     #my-profile-page{
         width: 100%;
         height: 100%;
-        padding: 0;
+        padding: 0px;
         overflow: hidden;
         
     }
     #my-profile-page-content-container{
         box-shadow: none;
         background-color: rgb(33,33,33);
-        border-radius: 0;
-        padding: 0;
-        margin: 50 0 25 0;
+        border-radius: 0px;
+        padding: 0px;
+        margin: 50px 0px 25px 0px;
         width: 100%;
         flex-direction: column;
         
@@ -1526,9 +1526,9 @@ h2.user-content{
     }
     
     .my-profile-page-content{
-        border-radius: 0;
-        padding: 0 5 0 5;
-        margin: 0;
+        border-radius: 0px;
+        padding: 0px 5px 0px 5px;
+        margin: 0px;
         width: 100%;
         background-color: transparent;
         flex-direction: column-reverse;
@@ -1537,7 +1537,7 @@ h2.user-content{
     #my-profile-content{
         box-shadow: none;
         background-color: rgb(33,33,33);
-        padding: 10 0 25 0;
+        padding: 10px 0px 25px 0px;
     }
     
     .close-buttons{
@@ -1553,7 +1553,7 @@ h2.user-content{
     
     #split-left{
         box-shadow: none;
-        padding: 0;
+        padding: 0px;
         
     }
     
@@ -1561,7 +1561,7 @@ h2.user-content{
         width: 128px;
         height: 128px;
         background-color: rgb(40,40,40);
-        margin: 5 0 5 0;
+        margin: 5px 0px 5px 0px;
     }
     
     #address{
@@ -1578,13 +1578,13 @@ h2.user-content{
         box-shadow: none;
         width: 75%;
         background-color: transparent;
-        border-radius: 0;
+        border-radius: 0px;
         font-size: 16px;
     }
     
     #my-questions-header-button{
         border-radius: 6px;
-        padding: 0;
+        padding: 0px;
         height: 75px;
     }
     
@@ -1592,14 +1592,14 @@ h2.user-content{
         background: none;
         color: lime;
         border-radius: 6px;
-        padding: 0;
+        padding: 0px;
         height: 25px;
         
     }
     
     .my-question-button{
         border-radius: 6px;
-        margin: 5 0 5 0;
+        margin: 5px 0px 5px 0px;
         background-color: white;
         color: black;
     }
@@ -1626,7 +1626,7 @@ h2.user-content{
     }
     
     .reply-button-c{
-        width: 35%
+        width: 35%;
         
     }
     
@@ -1636,31 +1636,31 @@ h2.user-content{
     }
     
     .close-question-button-style{
-        width: 35%
+        width: 35%;
     }
     
     #question-list-style{
-        padding: 50 25 50 25;
+        padding: 50px 25px 50px 25px;
         height: 80%;
         
     }
     
     #question-list-style > *{
         padding: 20px;
-        margin: 0;
+        margin: 0px;
         height: 100%;
         
     }
     
     #question-list-text{
-        margin: 15 0 15 0;
+        margin: 15px 0px 15px 0px;
         font-size: 16px;
     }
     
     .question-list-state-style{
         align-self: center;
         justify-content: center;
-        margin: 15 0 15 0;
+        margin: 15px 0px 15px 0px;
         background-color: white
         
     }
@@ -1698,7 +1698,7 @@ h2.user-content{
         background-color: dodgerblue;
         flex-direction: column;
         height: auto;
-        padding: 5 25 5 25;
+        padding: 5px 25px 5px 25px;
         
     }
     
@@ -1706,7 +1706,7 @@ h2.user-content{
         display: flex;
         align-self: flex-start;
         border-radius: 12px;
-        margin: 20;
+        margin: 20px;
         width: 128px;
         height: 128px;
     }
@@ -1763,7 +1763,7 @@ h2.user-content{
     #answer-header{
         flex-direction: column;
         height: auto;
-        padding: 30 25 30 25px;
+        padding: 30px 25px 30px 25px;
         
     }
     
@@ -1777,7 +1777,7 @@ h2.user-content{
         display: flex;
         align-self: flex-end;
         border-radius: 12px;
-        margin: 20;
+        margin: 20px;
         width: 128px;
         height: 128px;
     }
@@ -1803,7 +1803,7 @@ h2.user-content{
     }
     
     #answer-this-button{
-        margin: 0;
+        margin: 0px;
         width: 50%;
         
     }
