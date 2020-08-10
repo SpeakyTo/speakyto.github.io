@@ -419,7 +419,7 @@
             
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
-                                    <h2 style="color: black;">You cancelled your submission</h2>
+                                    <h2 style="color: black; text-align: center;">You cancelled your submission</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -432,7 +432,20 @@
             
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
-                                    <h2 style="color: black;">You cancelled closing your question</h2>
+                                    <h2 style="color: black; text-align: center;">You cancelled closing your question</h2>
+                                    <button id="alert-close-button" class="alert-button-style">Close</button>
+            `)
+            $("#alert-close-button").click(function(){
+                $("#alert-box").remove()
+            })
+            return noTransaction
+        }
+            
+            function catchCloseAlert2(){   
+            
+            $("#alert-container-contents").empty()
+            const noTransaction = $("#alert-container-contents").prepend(`
+                                    <h2 style="color: black; text-align: center;">Uh oh. Something went wrong.</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -445,7 +458,7 @@
             
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
-                                    <h2 style="color: black;">You cancelled Selecting an answer</h2>
+                                    <h2 style="color: black; text-align: center;">You cancelled Selecting an answer</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -458,7 +471,7 @@
             function successAnswered(){
             $("#alert-container-contents").empty()
             const successNotification = $("#alert-container-contents").prepend(`
-                                        <h2 style="color: black;">Answer successfully submitted</h2>
+                                        <h2 style="color: black; text-align: center;">Answer successfully submitted</h2>
                                         <button id="alert-home-button" class="alert-button-style">Back to question</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
@@ -475,7 +488,7 @@
             function successSelectAnswer(){
             $("#alert-container-contents").empty()
             const successNotification = $("#alert-container-contents").prepend(`
-                                        <h2 style="color: black;">Answer successfully selected</h2>
+                                        <h2 style="color: black; text-align: center;">Answer successfully selected</h2>
                                         <button id="alert-home-button" class="alert-button-style">Return To Questions</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
@@ -493,7 +506,7 @@
             function successCloseQuestion(){
             $("#alert-container-contents").empty()
             const successNotification = $("#alert-container-contents").prepend(`
-                                        <h2 style="color: black;">Successfully cancelled</h2>
+                                        <h2 style="color: black; text-align: center;">Successfully cancelled</h2>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -912,8 +925,12 @@
                                 successAnswered() 
                         }).catch(error => {
                             const thisError = error.toString()
-                            if(thisError.includes("Cannot read property")){
+                            if(thisError.includes("TypeError: Cannot read property 'result' of undefined")){
                               catchSubmissionAlert()    
+                            }
+                            
+                            else{
+                                catchCloseAlert2()
                             }
                                
                         })
@@ -1066,13 +1083,18 @@
                     ancilia.__txResult(tx['result']).then(() => {
                     // Wait for the next block
                     successCloseQuestion()
-                })
-            }).catch(error => {
-                        const errorType = error.toString()
-                        if(errorType.includes("Cannot read property")){
-                          catchCloseAlert()  
-                        }
+                }).catch(error => {
+                        catchCloseAlert2()
                     })
+            }).catch(error => {
+                    const errorType = error.toString()
+                    if(errorType.includes("TypeError: Cannot read property 'result' of undefined")){
+                        catchCloseAlert()  
+                    }
+                    else{
+                        catchCloseAlert2() 
+                    }
+                })
         }
             
             function askQuestion(){
@@ -1088,6 +1110,8 @@
                     // Wait for the state to be changed
                 ancilia.__txResult(tx['result']).then(() => {
                     successSelectAnswer()
+                }).catch(error => {
+                    catchCloseAlert2()
                 })
             }).catch(error => {
                 catchSelectAnswerAlert()

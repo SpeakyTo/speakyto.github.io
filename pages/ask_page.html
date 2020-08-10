@@ -194,7 +194,20 @@
             
             $("#alert-container-contents").empty()
             const noTransaction = $("#alert-container-contents").prepend(`
-                                    <h2 style="color: black;">You cancelled your question</h2>
+                                    <h2 style="color: black; text-align: center;">You cancelled your question</h2>
+                                    <button id="alert-close-button" class="alert-button-style">Close</button>
+            `)
+            $("#alert-close-button").click(function(){
+                $("#alert-box").remove()
+            })
+            return noTransaction
+        }
+        
+        function catchErrorsQuestions(){   
+            
+            $("#alert-container-contents").empty()
+            const noTransaction = $("#alert-container-contents").prepend(`
+                                    <h3 style="color: black; text-align: center;">You currently can't ask anymore questions at this level. Please try answering some to increase your experience!</h3>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
             $("#alert-close-button").click(function(){
@@ -475,11 +488,19 @@
             
             
             speakyto.createQuestionLevel1(data, from, to, icx).then(questionUid => {
-                
                 sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
-            }).catch((error) => {
-                 catchErrorsAlert()
+            }).catch(error => {
+                setTimeout(function() {
+                    const errorType = error.toString()
+                    console.log(errorType)
+                    if (errorType.includes("TooMuchOpenedQuestions")){
+                        catchErrorsQuestions()
+                    }
+                    else{
+                        catchErrorsAlert()    
+                    }
+                },100)
             })
         }
         
@@ -493,8 +514,17 @@
                 
                 sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
-            }).catch((error) => {
-                 catchErrorsAlert()
+            }).catch(error => {
+                setTimeout(function() {
+                    const errorType = error.toString()
+                    console.log(errorType)
+                    if (errorType.includes("TooMuchOpenedQuestions")){
+                        catchErrorsQuestions()
+                    }
+                    else{
+                        catchErrorsAlert()    
+                    }
+                },100)
             })
         }
         
@@ -508,8 +538,17 @@
                 
                 sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
-            }).catch((error) => {
-                 catchErrorsAlert()
+            }).catch(error => {
+                 setTimeout(function() {
+                    const errorType = error.toString()
+                    console.log(errorType)
+                    if (errorType.includes("TooMuchOpenedQuestions")){
+                        catchErrorsQuestions()
+                    }
+                    else{
+                        catchErrorsAlert()    
+                    }
+                },100)
             })
         }
         
@@ -523,8 +562,17 @@
                 
                 sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
-            }).catch((error) => {
-                 catchErrorsAlert()
+            }).catch(error => {
+                 setTimeout(function() {
+                    const errorType = error.toString()
+                    console.log(errorType)
+                    if (errorType.includes("TooMuchOpenedQuestions")){
+                        catchErrorsQuestions()
+                    }
+                    else{
+                        catchErrorsAlert()    
+                    }
+                },100)
             })
         }
         
@@ -538,8 +586,17 @@
                 
                 sessionStorage.setItem('myAskedQuestion', questionUid)
                 successAlert()
-            }).catch((error) => {
-                 catchErrorsAlert()
+            }).catch(error => {
+                 setTimeout(function() {
+                    const errorType = error.toString()
+                    console.log(errorType)
+                    if (errorType.includes("TooMuchOpenedQuestions")){
+                        catchErrorsQuestions()
+                    }
+                    else{
+                        catchErrorsAlert()    
+                    }
+                },100)
             })
         }
         
