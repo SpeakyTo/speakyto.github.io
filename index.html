@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/index_styles.css"></link>
-    </head>
-    <body>
-        <div id="mobile-nav-bar">
-            <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.5 64"><title>menu_icon</title><rect y="26" width="63" height="12" rx="6" ry="6" /><rect x="0.5" width="63" height="12" rx="6" ry="6"/><rect x="0.5" y="52" width="63" height="12" rx="6" ry="6"/></svg>
+    <link rel="stylesheet" href="styles/index_styles.css">
+    </link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="mobile-placeholder-wrap">
+        <div id="mobile-placeholder">
+            <img id="logo-v1" src="images/SpeakyTo_Logo_V1.png">
+            <h2 class="placeholder-text"> Please visit SpeakyTo on desktop. Mobile and Tablet is currently under development </h2>
         </div>
-        <div id="header">
-            <img id="header-image" src="images/SpeakyTo_Typeography.png" href="index">
-            <a class="header-contents" href="pages/auth" >Login</a>
-            <!--<a class="header-contents" href="pages/faq" >FAQ</a>
+    </div>
+    <div id="mobile-nav-bar">
+        <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.5 64">
+            <title>menu_icon</title>
+            <rect y="26" width="63" height="12" rx="6" ry="6" />
+            <rect x="0.5" width="63" height="12" rx="6" ry="6" />
+            <rect x="0.5" y="52" width="63" height="12" rx="6" ry="6" />
+        </svg>
+    </div>
+    <div id="header">
+        <img id="header-image" src="images/SpeakyTo_Typeography.png" href="index">
+        <a class="header-contents" href="pages/auth">Login</a>
+        <!--<a class="header-contents" href="pages/faq" >FAQ</a>
             <a class="header-contents" href="pages/about" >About</a>-->
-        </div>
+    </div>
+    <div id="main-wrap">
         <div id="main-container">
             <div id="page-container">
                 <div id="page-contents">
@@ -23,7 +39,7 @@
                     <a id="get-started-button" href="pages/auth">Get Started</a>
                 </div>
             </div>
-        </div> 
+        </div>
         <div id="section-1">
             <h1 class="section-1-contents"> Answer Questions and Get Rewarded </h1>
             <div id="hero-qa-container">
@@ -40,24 +56,31 @@
                 <img id="ask-page-img" src="images/assets/spkt_ask_page.png">
             </div>
         </div>
-        
-        <script>
-            window.onload = function(){
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'  
-                })
-                var mobileWidth = window.matchMedia("screen and (min-width: 480px) and (max-width: 640px)")
-                mobileWidth.addListener(isMobile)
+    </div>
+
+
+    <script>
+        window.onload = function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
+
+            isMobile()
+        }
+
+        function isMobile() {
+            const mobileWidth = window.matchMedia("screen and (min-width: 240px) and (max-width: 1024px)")
+            if (mobileWidth.matches) {
+                $("#mobile-placeholder").show()
+                $("#main-wrap").hide()
+                $("#main-wrap").remove()
+
+            } else {
+                $("#mobile-placeholder").hide()
             }
-            
-            function isMobile(e){
-                const mobileWidth = window.matchMedia("screen and (min-width: 480px) and (max-width: 640px)")
-                if (mobileWidth.matches){
-                    alert("Please visit SpeakyTo on desktop. Mobile is currently under development")
-                }   
-            }
-        </script>
-    </body>
-    
+        }
+    </script>
+</body>
+
 </html>

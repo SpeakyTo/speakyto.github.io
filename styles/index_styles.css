@@ -1,94 +1,120 @@
-@media only screen and (min-width: 1024px) and (max-width: 1536px){
-    *{
+@media only screen and (min-width: 1024px) and (max-width: 1536px) {
+    * {
         zoom: 96%;
-        
+
     }
-    
-    #mobile-nav-bar{
+
+    #mobile-nav-bar {
         display: none;
     }
-    
-    #hamburger{
+
+    #hamburger {
         display: none;
     }
-    
-    
+
+
 }
 
-@media only screen and (min-width: 1920px) and (max-width: 4096px){
-    #mobile-nav-bar{
+@media only screen and (min-width: 1920px) and (max-width: 4096px) {
+    #mobile-nav-bar {
         display: none;
     }
-    
-    #hamburger{
+
+    #hamburger {
         display: none;
     }
-    
+
 }
 
-@media only screen and (min-width: 1537px) and (max-width: 4096px){
-    html, body{
-    margin: 0px;
-    
+@media only screen and (min-width: 1537px) and (max-width: 4096px) {
+
+    html,
+    body {
+        margin: 0px;
+
     }
-    
-    #mobile-nav-bar{
+
+    #mobile-nav-bar {
         display: none;
     }
-    
-    #hamburger{
+
+    #hamburger {
         display: none;
     }
-    
-    #header{
+
+    #header {
         display: flex;
     }
-    
+
 }
 
-*{
+* {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-html, body{
+body {
     margin: 0px;
-    
+
 }
 
-a{
+a {
     color: deepskyblue;
     text-decoration-line: none;
-    
+
 }
 
-h1{
+h1 {
     font-size: 40px;
     font-weight: 200;
-    color:  white;
+    color: white;
 }
 
-h2{
-    color:white;
+h2 {
+    color: white;
     font-size: 25px;
     font-weight: 300;
-    
+
 }
 
-h3{
+h3 {
     color: white;
     font-size: 18px;
     font-weight: 400;
-    
-    
+
+
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
-    
+
 }
 
-#header{
+#mobile-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 25px;
+    z-index: 101;
+    min-height: 100vh;
+    width: 100%;
+    background-color: white;
+}
+
+#logo-v1 {
+    align-self: center;
+    width: auto;
+    height: 300px;
+}
+
+.placeholder-text {
+    margin: 25px 0px 25px 0px;
+    text-align: center;
+    color: black;
+}
+
+#header {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -97,33 +123,39 @@ button:hover{
     width: 100%;
     height: auto;
     position: absolute;
-    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
 }
 
-#header-image{
+#header-image {
     width: 150px;
     height: auto;
     margin: 0px 200px 0px 25px;
     filter: brightness(100)
 }
 
-#header-image:hover{
+#header-image:hover {
     cursor: pointer;
 }
 
-.header-contents{
+.header-contents {
     margin: 0px 100px 0px 100px;
     padding: 20px;
     font-size: 14px;
     font-weight: 600;
     color: white;
 }
-.header-contents:hover{
+
+.header-contents:hover {
     color: blueviolet;
     cursor: pointer;
 }
 
-#main-container{
+#main-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+#main-container {
     /* background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);*/
     background-color: white;
     display: flex;
@@ -132,9 +164,10 @@ button:hover{
     align-items: center;
     height: 100vh;
     width: 100%;
+
 }
 
-#page-container{
+#page-container {
     padding: 50px;
     background-color: white;
     display: flex;
@@ -145,14 +178,18 @@ button:hover{
     min-height: 100%;
     background-image: url("/images/SpeakyTo_Hero_Simple.png");
     background-repeat: repeat;
-    background-size: 1920px 1080px;
 }
 
-#page-contents{
+#page-container::after {
+    opacity: 0.5;
+    background-image: url("/images/hero-images/speaky-to-pattern-bg.svg");
+}
+
+#page-contents {
     padding: 50px;
     margin: 0px 20px 0px 20px;
     border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.9);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
     background-color: blueviolet;
     display: flex;
     flex-direction: column;
@@ -163,7 +200,17 @@ button:hover{
     width: 45%;
 }
 
-#section-1{
+#section-1::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image: url("/images/hero-images/speaky-to-pattern-bg.svg");
+    opacity: 0.1;
+    z-index: -1;
+}
+
+#section-1 {
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -171,68 +218,67 @@ button:hover{
     align-items: center;
     width: 100%;
     height: auto;
-    background-color: white;
 }
 
-.section-1-contents{
+.section-1-contents {
     text-align: center;
     width: 100%;
     font-weight: 600;
-    color: black; 
+    color: black;
 }
 
 
-#speaky-ask-img{
+#speaky-ask-img {
     width: 600px;
     height: auto;
 }
 
-#speaky-answer-img{
+#speaky-answer-img {
     width: 700px;
     height: auto;
 }
 
-#hero-qa-container{
+#hero-qa-container {
     padding: 150px 0px 150px 0px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;  
+    height: 100%;
 }
 
-#spkt-token{
-    
+#spkt-token {
+
     border-radius: 12px;
     box-shadow: 0px 0px 10px black;
 }
 
-#ask-page-img{
+#ask-page-img {
     border-radius: 12px;
     box-shadow: 0px 0px 10px black;
     height: 480px;
-    
+
 }
 
-#speaky-q-reward-img{
+#speaky-q-reward-img {
     width: 600px;
     height: auto;
     transform: scaleX(-1);
 }
 
-#speaky-icx-reward-img{
+#speaky-icx-reward-img {
     margin: 0px 100px 350px 100px;
     width: 300px;
     height: auto;
 }
 
-#speaky-a-reward-img{
+#speaky-a-reward-img {
     width: 600px;
     height: auto;
 }
 
-#section-2{
+#section-2 {
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -240,18 +286,18 @@ button:hover{
     align-items: center;
     width: 100%;
     height: auto;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
 }
 
-.section-2-contents{
+.section-2-contents {
     padding: 0px 300px 0px 300px;
     text-align: center;
     width: 100%;
     font-weight: 600;
-    color: white; 
+    color: white;
 }
 
-#hero-qa-container{
+#hero-qa-container {
     padding: 150px;
     margin: 0px 50px 0px 50px;
     display: flex;
@@ -259,17 +305,17 @@ button:hover{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 600px;  
+    height: 600px;
 }
 
 
 
 
 
-#get-started-button{
-    background-color: rgb(33,33,33);
+#get-started-button {
+    background-color: rgb(33, 33, 33);
     margin-top: 5%;
-    box-shadow: 0px 0px 10px rgba(0,0,0, 0.5); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     padding: 15px;
     color: white;
     border-radius: 12px;
@@ -277,28 +323,30 @@ button:hover{
     font-weight: 500;
     border: none;
     outline: none;
-    width: 30%;   
+    width: 30%;
     text-align: center;
-    
+
 }
 
 
-#get-started-button:hover{
+#get-started-button:hover {
     background-color: black;
-    
+
 }
 
 @media only screen and (min-width: 300px) and (max-width: 1023px) {
-    html, body{
+
+    html,
+    body {
         overflow-y: scroll;
         overflow-x: hidden;
     }
-    
-    #header{
+
+    #header {
         display: none;
     }
-    
-    #mobile-nav-bar{
+
+    #mobile-nav-bar {
         padding: 15px;
         width: 100%;
         height: 50px;
@@ -309,45 +357,40 @@ button:hover{
         align-items: flex-start;
         position: absolute;
         z-index: 100;
-        background-color: rgb(33,33,33);
+        background-color: rgb(33, 33, 33);
     }
-    
-    #hamburger{
+
+    #hamburger {
         fill: white;
     }
-    
-    #main-container{
-        width: 100%;
-        height: 100%;
-        
+
+
+    h1 {
+        font-size: 24px;
     }
-    
-    h1{
-        font-size:  24px;
-    }
-    
-    h2{
+
+    h2 {
         font-size: 20px;
-        
+
     }
-    
-    h3{
+
+    h3 {
         font-size: 16px;
     }
-    
-    #page-container{
+
+    #page-container {
         padding: 0px;
         margin: 0px;
         width: 100%;
-        background-image:none;
+        background-image: none;
         background-color: white;
         background-image: url("/images/SpeakyTo_Hero_Simple.png");
         background-size: 1500px;
         background-repeat: no-repeat;
         background-position: left;
     }
-    
-    #page-contents{
+
+    #page-contents {
         justify-content: center;
         align-items: center;
         border-radius: 0px;
@@ -357,78 +400,80 @@ button:hover{
         width: 100%;
         height: 75%;
         box-shadow: none;
-    } 
-    
-    #page-contents h1, h2{
+    }
+
+    #page-contents h1,
+    h2 {
         margin: 20px 0px 20px 0px;
         font-weight: 600;
         text-align: center;
         color: black
     }
-    #page-contents h3{
+
+    #page-contents h3 {
         padding: 20px;
         color: black;
         line-height: 1.5;
     }
-    
-    #get-started-button{
+
+    #get-started-button {
         text-align: center;
         margin: 0px;
         width: 50%;
     }
-    
-    #section-1{
+
+    #section-1 {
         padding: 5px;
-        
+
     }
-    
-    #hero-qa-container{
+
+    #hero-qa-container {
         width: 100%;
         padding: 15px 0px 15px 0px;
         margin: 20px 0px 20px 0px;
         flex-direction: column;
-        
+
     }
-    
-    #speaky-ask-img{
+
+    #speaky-ask-img {
         margin: 25px 0px 25px 0px;
         width: 400px;
         height: auto;
     }
-    
-    #speaky-icx-reward-img{
+
+    #speaky-icx-reward-img {
         margin: 25px 0px 25px 0px;
         width: 150px;
         margin: 0;
         height: auto;
     }
-    
-    #speaky-answer-img{
+
+    #speaky-answer-img {
         width: 350px;
         margin: 0px;
         height: auto;
     }
-    
-    #section-2{
+
+    #section-2 {
         justify-content: space-around;
         align-items: center;
         width: 100%;
         margin: 50px 0px 0px 0px;
-     
+
     }
-    
-    .section-2-contents{
+
+    .section-2-contents {
         padding: 0;
     }
-    
 
-    
-    #spkt-token{
+
+
+    #spkt-token {
         width: 250px;
         height: auto;
     }
-    
-    #ask-page-img{
+
+    #ask-page-img {
         width: 350px;
         height: auto
     }

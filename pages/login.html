@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/login_styles.css"></link>
-    
+    <link rel="stylesheet" href="/styles/login_styles.css">
+    </link>
+
     <!-- ICON SDK JS is required by Ancilia -->
     <script src="https://cdn.jsdelivr.net/gh/icon-project/icon-sdk-js@latest/build/icon-sdk-js.min.js"></script>
     <!-- Ancilia is required by SpeakyTo -->
@@ -26,49 +28,50 @@
         const ancilia = new Ancilia(NETWORK)
         const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
-    
-    </head>
 
-    <body>
-        <div id="main-container">
-            <div id="page-contents">
-                <div id="login-box">
-                    <img id="avatar" src="/images/avatar.png">
-                    <p>Login</p>
-                    <h3>Use The ICONex Chrome Extension</h3>
-                    <button id="login-button" onclick="onLogin()">Login</button>
-                    <p>Don't have the ICONex extension? Install <a href="https://chrome.google.com/webstore/detail/iconex/flpiciilemghbmfalicajoolhkkenfel?hl=en">here</a></p>
-                    <span style="font-size: 14px; text-align: center; color: red; font-weight: 600">For better security, please consider using a separate ICX wallet for SpeakyTo instead of your main wallet.</span>
-                </div>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="page-contents">
+            <div id="login-box">
+                <img id="avatar" src="/images/avatar.png">
+                <p>Login</p>
+                <h3>Use The ICONex Chrome Extension</h3>
+                <button id="login-button" onclick="onLogin()">Login</button>
+                <p>Don't have the ICONex extension? Install <a href="https://chrome.google.com/webstore/detail/iconex/flpiciilemghbmfalicajoolhkkenfel?hl=en">here</a></p>
+                <span style="font-size: 14px; text-align: center; color: red; font-weight: 600">For better security, please consider using a separate ICX wallet for SpeakyTo instead of your main wallet.</span>
             </div>
-        </div> 
-        <script>
+        </div>
+    </div>
+    <script>
         window.onload = () => {
             // init account
             ancilia.logout()
             accountRefresh()
             selectionListener()
         }
-        
+
         function accountRefresh() {
-            if(ancilia.isLoggedIn() ){
-               const address = ancilia.getLoggedInWallet()
-               speakyto.getUserUid(address).then(user_uid => {
-                   window.location.replace("/pages/qa_home")
-                   }).catch (error => {
-                   createUser()
-               })   
-            }  
-        }   
-           function onLogin() {
-               const address = ancilia.getLoggedInWallet()
-               ancilia.login().then(address => {
-                   accountRefresh()
-               })     
-        } 
-            
-            function createUser(){
-                const userCreate = $("#main-container").prepend(`
+            if (ancilia.isLoggedIn()) {
+                const address = ancilia.getLoggedInWallet()
+                speakyto.getUserUid(address).then(user_uid => {
+                    window.location.replace("/pages/qa_home")
+                }).catch(error => {
+                    createUser()
+                })
+            }
+        }
+
+        function onLogin() {
+            const address = ancilia.getLoggedInWallet()
+            ancilia.login().then(address => {
+                accountRefresh()
+            })
+        }
+
+        function createUser() {
+            const userCreate = $("#main-container").prepend(`
 
                 <div id="create-account-container">
                     <div id="create-account">
@@ -91,42 +94,37 @@
                     </div>
                 </div>
                 `)
-                return userCreate
-            }
-            
-            function selectionListener(){
-                
-                $(document).on('click', '.avatar-class', function(){
-                    $(this).css("background-color", "dodgerblue") 
-                    $("#avatar-id").text($(this).attr("data-a"))
-                    $(this).siblings().css("background-color", "white")
-                })    
-            }
-            
-            function onCreateAccount(){
-                const avatar = $("#avatar-id").text()
-                
-                const username = $("#create-account-input").val()
-                
-                if (username == ''){
-                    alert("Please select a username")
-                    
-                }
-                
-                else if (avatar == "0"){
-                    alert("Please select an avatar")
-                }
-                
-                else {
-                    speakyto.createUserAccount(avatar, username).then(userAccountUid => {
-                    
+            return userCreate
+        }
+
+        function selectionListener() {
+
+            $(document).on('click', '.avatar-class', function() {
+                $(this).css("background-color", "dodgerblue")
+                $("#avatar-id").text($(this).attr("data-a"))
+                $(this).siblings().css("background-color", "white")
+            })
+        }
+
+        function onCreateAccount() {
+            const avatar = $("#avatar-id").text()
+
+            const username = $("#create-account-input").val()
+
+            if (username == '') {
+                alert("Please select a username")
+
+            } else if (avatar == "0") {
+                alert("Please select an avatar")
+            } else {
+                speakyto.createUserAccount(avatar, username).then(userAccountUid => {
+
                     accountRefresh()
                     window.location.replace("/pages/qa_home")
-                        })
-                }
+                })
             }
-            
-        </script>
-    </body>
-    
+        }
+    </script>
+</body>
+
 </html>

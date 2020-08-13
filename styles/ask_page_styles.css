@@ -1,27 +1,27 @@
-@media only screen and (min-width: 1024px) and (max-width: 1536px){
-    *{
+@media only screen and (min-width: 1024px) and (max-width: 1536px) {
+    * {
         zoom: 97%;
     }
 }
 
-*{
+* {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     line-height: 1.5;
-    
+
 }
 
 
-body{
+body {
     margin: 0px;
     overflow: hidden;
 }
 
-span{
+span {
     margin: 10px;
     text-align: center;
-    box-shadow: 0px 5px rgba(0,0,0, 0);
-    
+    box-shadow: 0px 5px rgba(0, 0, 0, 0);
+
 }
 
 
@@ -33,7 +33,7 @@ span{
     z-index: 200;
 }
 
-.button-style{
+.button-style {
     padding: 10px;
     width: 20%;
     outline: none;
@@ -44,12 +44,12 @@ span{
     cursor: pointer;
 }
 
-#back-button{
+#back-button {
     margin: 5px;
-    
+
 }
 
-#alert-box{
+#alert-box {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -58,11 +58,11 @@ span{
     justify-content: center;
     align-items: center;
     z-index: 100;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     overflow: hidden;
 }
 
-#alert-container{
+#alert-container {
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -74,18 +74,18 @@ span{
     height: 35%;
 }
 
-#alert-container-contents{
+#alert-container-contents {
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 20px;
     width: 100%;
     height: 100%;
 }
 
-.alert-button-style{
+.alert-button-style {
     outline: 0;
     border: none;
     padding: 10px;
@@ -95,10 +95,10 @@ span{
     border-radius: 6px;
     background-color: black;
     cursor: pointer;
-    
+
 }
 
-#main-container{
+#main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -108,7 +108,7 @@ span{
     width: 100%;
 }
 
-#ask-container{
+#ask-container {
     padding: 2%;
     height: 100%;
     width: 75%;
@@ -118,10 +118,10 @@ span{
     align-items: center;
 }
 
-#ask-level-choice-container{
+#ask-level-choice-container {
     padding: 75px;
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     display: flex;
     flex-direction: row;
@@ -131,7 +131,7 @@ span{
     width: 100%;
 }
 
-#choices-container{
+#choices-container {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -139,7 +139,7 @@ span{
     width: 60%;
 }
 
-.choices-list-item-container{
+.choices-list-item-container {
     margin: 5px;
     display: flex;
     flex-direction: row;
@@ -154,17 +154,17 @@ span{
     margin: 0px 15px 0px 15px;
 }
 
-#image-info-container{
+#image-info-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 50px;
     width: 40%;
-    height: 100%;   
+    height: 100%;
 }
 
-.choices-list-item{
+.choices-list-item {
     z-index: 5;
     border-radius: 10px;
     display: flex;
@@ -173,27 +173,27 @@ span{
     align-items: center;
     width: 80%;
     overflow: hidden;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.list-level-type{
+.list-level-type {
     z-index: 4;
     padding: 13px;
     border-radius: 10px;
     width: 40%;
     height: 50%;
     align-self: center;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     color: white;
 }
 
-.choices-list-item:hover{
+.choices-list-item:hover {
     cursor: pointer;
-    background-color: rgb(250,250,250);
+    background-color: rgb(250, 250, 250);
 }
 
 
-.choices-list-text{
+.choices-list-text {
     padding: 10px;
     font-size: 14px;
     display: flex;
@@ -203,18 +203,18 @@ span{
     width: 100%;
 }
 
-.list-text{
+.list-text {
     font-size: 20px;
-    margin: 0px; 
+    margin: 0px;
     color: black;
 }
 
 
-#ask-form-level{
+#ask-form-level {
     z-index: 6;
     padding: 5%;
-    background-color: rgba(255,255,255,1);
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     display: none;
     flex-direction: column;
@@ -224,7 +224,7 @@ span{
     width: 100%;
 }
 
-#ask-form-inner-section{
+#ask-form-inner-section {
     padding: 1%;
     display: flex;
     flex-direction: row;
@@ -232,13 +232,13 @@ span{
     align-content: center;
     width: 100%;
     height: 100%;
-    
+
 }
 
-#info-interaction{
+#info-interaction {
     margin: 30px;
-    background: linear-gradient(140deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
-    box-shadow: 0px 10px 5px rgba(0,0,0,0.2);
+    background: linear-gradient(140deg, rgba(0, 159, 255, 1) 0%, rgba(164, 255, 0, 1) 100%);
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.2);
     color: white;
     border-radius: 16px;
     padding: 50px;
@@ -247,11 +247,11 @@ span{
     width: 50%;
     height: 350px;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 
-#ask-box{
+#ask-box {
     border-radius: 50px;
     display: flex;
     flex-direction: column;
@@ -260,18 +260,18 @@ span{
     width: 75%;
 }
 
-#from-to-container{
-    display: flex; 
-    flex-direction: row; 
-    justify-content: space-around;   
+#from-to-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     width: 80%;
 }
 
 
 
-.lang-dropdown-button{
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+.lang-dropdown-button {
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
     font-size: 16px;
     outline: none;
     border: none;
@@ -281,89 +281,89 @@ span{
     color: white;
 }
 
-.lang-dropdown-button:hover{
+.lang-dropdown-button:hover {
     cursor: pointer;
-    
+
 }
 
 .lang-content-from {
-    box-shadow: 0px 10px 5px rgba(0,0,0,0.5);
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.5);
     display: none;
     padding: 0px;
     margin: 0px;
     position: absolute;
     height: 20%;
     overflow-y: scroll;
-    
+
 }
 
 .lang-content-to {
-    box-shadow: 0px 10px 5px rgba(0,0,0,0.5);
+    box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.5);
     display: none;
     padding: 0px;
     margin: 0px;
     position: absolute;
     height: 20%;
     overflow-y: scroll;
-    
+
 }
 
-.lang-item:hover{
+.lang-item:hover {
     cursor: pointer;
     background-color: dodgerblue;
-    
+
 }
 
-.lang-item{
+.lang-item {
     font-size: 16px;
-    padding: 10px; 
+    padding: 10px;
     width: 115px;
     background-color: blue;
     color: white;
     text-align: center;
 }
 
-#question-input{
+#question-input {
     height: 20%;
     width: 50%;
 }
 
-.input-style{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+.input-style {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     font-size: 14px;
     resize: none;
-    border-color: rgba(0,0,0,0);
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 10px;
     padding: 10px;
     margin-top: 5%;
     margin-bottom: 5%;
     height: 100%;
-    width: 100%; 
+    width: 100%;
 }
 
-.input-style:focus{
-    outline:none;
-    border-color: orange;     
+.input-style:focus {
+    outline: none;
+    border-color: orange;
 }
 
-.input-style-small{
+.input-style-small {
     text-align: center;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     font-size: 18px;
     resize: none;
-    border-color: rgba(0,0,0,0);
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 10px;
     padding: 5px;
-    width: 25%; 
+    width: 25%;
 }
 
-.input-style-small:focus{
+.input-style-small:focus {
     outline: none;
     border-style: solid;
-    border-color: teal;     
+    border-color: teal;
 }
 
-#submit-question-button{
+#submit-question-button {
     margin: 1%;
     padding: 15px;
     width: 20%;
@@ -373,15 +373,16 @@ span{
     border-radius: 12px;
     outline: none;
     border: none;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);   
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
 
-#submit-question-button:hover{
+#submit-question-button:hover {
     background-color: royalblue;
-    
+
 }
-.text-style{
+
+.text-style {
     color: black;
     font-size: 20px;
     text-align: center;
@@ -392,88 +393,88 @@ span{
 
 
 @media only screen and (min-width: 300px) and (max-width: 1023px) {
-    
-    body{
+
+    body {
         overflow-y: scroll;
     }
-    
-    #main-container{
+
+    #main-container {
         width: 100%;
-        
+
     }
-    
-    #ask-container{
+
+    #ask-container {
         padding: 20px;
         width: 100%;
         height: 100%;
     }
-    
-    #ask-level-choice-container{
+
+    #ask-level-choice-container {
         padding: 0px;
         flex-direction: column;
     }
-    
-    #image-info-container{
+
+    #image-info-container {
         width: 100%;
     }
-    
-    #choices-container{
+
+    #choices-container {
         flex-direction: column;
         width: 100%;
     }
-    
-    #image-box{
+
+    #image-box {
         display: none;
         align-self: flex-start;
         width: 32px;
         margin: 2px;
     }
-    
-    .choices-list-item-container{
+
+    .choices-list-item-container {
         flex-direction: column;
     }
-    
-    .list-text{
+
+    .list-text {
         font-size: 18px;
-        margin: 0px; 
+        margin: 0px;
         color: black;
-}
-    
-    #ask-form-level{
+    }
+
+    #ask-form-level {
         width: 100%;
         flex-direction: column;
     }
-    
-    #ask-form-inner-section{
+
+    #ask-form-inner-section {
         flex-direction: column;
         width: 100%;
     }
-    
-    #info-interaction{
+
+    #info-interaction {
         margin: 0px;
         width: 100%;
     }
-    
-    #ask-box{
+
+    #ask-box {
         margin: 5px;
         width: 100%;
     }
-    
-    #question-input{
+
+    #question-input {
         width: 100%;
         height: 100px;
     }
-    
-    #from-to-container{
+
+    #from-to-container {
         flex-direction: column;
     }
-    
-    .lang-dropdown-button{
+
+    .lang-dropdown-button {
         color: white;
         background-color: darkblue;
     }
-    
-    #submit-question-button{
+
+    #submit-question-button {
         margin: 10px 0px 10px 0px;
         width: 100%;
     }

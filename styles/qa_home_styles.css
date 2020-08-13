@@ -1,69 +1,69 @@
 /* Begin CSS Styles */
 
 
-@media only screen and (min-width: 1024px) and (max-width: 1536px){
-    *{
+@media only screen and (min-width: 1024px) and (max-width: 1536px) {
+    * {
         zoom: 98%;
     }
-    
+
 }
 
-@media only screen and (min-width: 1920px) and (max-width: 4096px){
-    #qa-dashboard{
+@media only screen and (min-width: 1920px) and (max-width: 4096px) {
+    #qa-dashboard {
         display: show;
     }
-    
+
 }
 
 
-*{
+* {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
     line-height: 1.5;
 }
 
-a{
+a {
     text-decoration: none;
-    color: white;   
+    color: white;
 }
 
-a:hover{
-    text-decoration: none;
-}
-
-a:focus{
+a:hover {
     text-decoration: none;
 }
 
+a:focus {
+    text-decoration: none;
+}
 
-body{
+
+body {
     overflow: hidden;
     min-height: 100%;
     margin: 0px;
 }
 
 
-button{
+button {
 
-    cursor: pointer; 
+    cursor: pointer;
 }
 
-button:focus{
+button:focus {
     border: none;
     outline: none;
-    
+
 }
 
-span{
-    font-size: 18px;   
+span {
+    font-size: 18px;
 }
 
-h1{
-   font-family: 50px; 
-    
+h1 {
+    font-family: 50px;
+
 }
 
-#pre-load{
+#pre-load {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -71,12 +71,17 @@ h1{
     z-index: 200;
 }
 
-@keyframes loader-image-anim{
-    to {background-color: blueviolet;}
-    from {background-color: orangered;}
+@keyframes loader-image-anim {
+    to {
+        background-color: blueviolet;
+    }
+
+    from {
+        background-color: orangered;
+    }
 }
 
-#alert-box{
+#alert-box {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -85,11 +90,11 @@ h1{
     justify-content: center;
     align-items: center;
     z-index: 300;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     overflow: hidden;
 }
 
-#alert-container{
+#alert-container {
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -101,18 +106,18 @@ h1{
     height: 35%;
 }
 
-#alert-container-contents{
+#alert-container-contents {
     color: black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 20px;
     width: 100%;
     height: 100%;
 }
 
-.alert-button-style{
+.alert-button-style {
     outline: 0px;
     border: none;
     padding: 10px;
@@ -122,10 +127,10 @@ h1{
     border-radius: 6px;
     background-color: black;
     cursor: pointer;
-    
+
 }
 
-#loader-image{
+#loader-image {
     width: 300px;
     padding: 50px;
     clip-path: circle(45% at 50% 50%);
@@ -135,43 +140,45 @@ h1{
     animation-iteration-count: infinite;
 }
 
-#return-home{
-    display: flex; 
-    flex-direction: column; 
-    height: auto; 
-    width: 25%; 
-    background-color:white; 
-    padding: 50px; 
-    border-radius: 35px; 
+#return-home {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 25%;
+    background-color: white;
+    padding: 50px;
+    border-radius: 35px;
     box-shadow: 0px 0px 10px black;
 }
 
-#yesBTN{
-    margin: 0px 10px 0px 10px; 
-    background-color: blueviolet; 
-    color: white; 
+#yesBTN {
+    margin: 0px 10px 0px 10px;
+    background-color: blueviolet;
+    color: white;
     font-weight: 600;
-    padding: 10px; 
-    border-radius: 10px; outline: none; 
-    border: none; 
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
     width: 50%;
 }
 
-#noBTN{
-    margin: 0px 10px 0px 10px; 
-    background-color:red; 
-    color: white; 
+#noBTN {
+    margin: 0px 10px 0px 10px;
+    background-color: red;
+    color: white;
     font-weight: 600;
-    padding: 10px; 
-    border-radius: 10px; outline: none; 
-    border: none; 
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
     width: 50%;
 }
 
 
 
 
-#main-container{
+#main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,15 +188,15 @@ h1{
     width: 100%;
 }
 
-#header-logo{
-    filter:brightness(100) grayscale();
+#header-logo {
+    filter: brightness(100) grayscale();
     align-self: center;
     padding: 10px;
     width: 175px;
     cursor: pointer;
 }
 
-#content-container-wrap{
+#content-container-wrap {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,23 +205,23 @@ h1{
     width: 100%;
 }
 
-#content-container{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+#content-container {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    background-color: rgb(252,252,252);
+    background-color: rgb(252, 252, 252);
     overflow: hidden;
-    /*background-image: linear-gradient(120deg, #5200FF, #FF0036);*/ 
+    /*background-image: linear-gradient(120deg, #5200FF, #FF0036);*/
 }
 
 
 
 /* Start Animations */
 
-#loader-screen{
+#loader-screen {
     background-color: white;
     position: absolute;
     display: flex;
@@ -231,7 +238,7 @@ h1{
 
 /* Start Question & Answers Dashboard Styles */
 
-#qa-dashboard{
+#qa-dashboard {
     display: flex;
     position: fixed;
     top: 0;
@@ -241,18 +248,18 @@ h1{
     justify-content: center;
     align-items: center;
     padding: 25px 25px 25px 25px;
-    box-shadow: 0px 0px 10px rgb(0,0,0,0.3);
-    background-color: rgb(35,35,35);
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.3);
+    background-color: rgb(35, 35, 35);
     z-index: 1;
     min-height: 100vh;
-    width: 25%; 
+    width: 25%;
     overflow: hidden;
 }
 
-#user-container{
+#user-container {
     padding: 50px 25px 50px 25px;
     border-radius: 25px;
-    background: linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
+    background: linear-gradient(112deg, rgba(0, 159, 255, 1) 0%, rgba(164, 255, 0, 1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -263,8 +270,8 @@ h1{
 }
 
 
-#welcome-box{
-    border-radius: 16px; 
+#welcome-box {
+    border-radius: 16px;
     margin: 10px 0px 10px 0px;
     padding: 35px;
     display: flex;
@@ -273,42 +280,42 @@ h1{
     flex-direction: column;
     width: 100%;
     height: 400px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
 }
 
-.user-content{
+.user-content {
     align-self: center;
     text-align: center;
     padding: 15px;
     width: 100%;
     height: 100%;
-    
+
 }
 
-h2.user-content{
-    background-color: rgb(33,33,33);
+h2.user-content {
+    background-color: rgb(33, 33, 33);
     border-radius: 6px;
 }
 
-#avatar{
+#avatar {
     border-radius: 12px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-    background-color: rgb(33,33,33);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    background-color: rgb(33, 33, 33);
     height: 132px;
     width: 132px;
 }
 
-#address{
+#address {
     margin: 15px 0px 15px 0px;
     border-radius: 12px;
     padding: 20px;
-    background-color: rgb(35,35,35);
+    background-color: rgb(35, 35, 35);
     color: lime;
     font-size: 14px;
-    
+
 }
 
-#user-account{
+#user-account {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,20 +329,20 @@ h2.user-content{
     font-weight: 600;
 }
 
-#user-account-profile{
+#user-account-profile {
     margin: 15px 0px 15px 0px;
     text-align: center;
     width: 75%;
     border-radius: 12px;
     padding: 10px;
-    background-color: rgb(35,35,35);
+    background-color: rgb(35, 35, 35);
     color: lime;
     font-size: 16px;
 }
 
 
 
-#my-profile{
+#my-profile {
     margin: 15px;
     width: 100%;
     padding: 10px;
@@ -346,27 +353,27 @@ h2.user-content{
     font-weight: 600;
     outline: 0;
     border: 0;
-    box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-#my-profile:hover{
+#my-profile:hover {
     background-color: #6002FF;
 }
 
-.close-buttons{
-    width: 100px; 
+.close-buttons {
+    width: 100px;
     padding: 10px;
     border-radius: 6px;
-    background-color:black;
-    color:white;
+    background-color: black;
+    color: white;
     outline: none;
-    border:none;
+    border: none;
 }
 
 
-#ask-question-button{
+#ask-question-button {
     margin: 0px 10px 0px 10px;
-    background-color:#5200FF;
+    background-color: #5200FF;
     color: white;
     padding: 10px;
     font-size: 14px;
@@ -378,11 +385,13 @@ h2.user-content{
 }
 
 
-#questions-view-button:hover, #ask-question-button:hover, #my-questions-button:hover{
+#questions-view-button:hover,
+#ask-question-button:hover,
+#my-questions-button:hover {
     background-color: #526FFF;
 }
 
-#qa-dashboard-links-container{
+#qa-dashboard-links-container {
     padding: 15px;
     display: flex;
     flex-direction: row;
@@ -394,23 +403,23 @@ h2.user-content{
 
 }
 
-.qa-dashboard-content{
+.qa-dashboard-content {
     padding: 5px;
     width: 100%;
     text-align: center;
     border: none;
     outline: none;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     font-size: 16px;
-    color: white;   
+    color: white;
 }
 
-.qa-dashboard-content:hover{
-    background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(45,253,135,0) 100%);
+.qa-dashboard-content:hover {
+    background: linear-gradient(90deg, rgba(34, 193, 195, 1) 0%, rgba(45, 253, 135, 0) 100%);
 }
 
 
-.question-container{
+.question-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -418,7 +427,7 @@ h2.user-content{
     width: 50%;
 }
 
-#question-list-style{
+#question-list-style {
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -427,38 +436,38 @@ h2.user-content{
     border-radius: 10px;
     width: 85%;
     height: 65%;
-    box-shadow: 0px 5px 5px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
 }
 
-#question-list-style > *{
+#question-list-style > * {
     margin: 10px 0px 10px 0px;
     padding: 5px;
 }
 
-#question-list-answered{
-    display: flex; 
-    flex-direction: row; 
-    justify-content: space-around; 
-    font-size: 24px; 
+#question-list-answered {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 24px;
     align-items: center;
     align-self: center;
-    width: 75%; 
+    width: 75%;
     height: 30%;
-    padding: 15px; 
-    background-color: #00E672; 
-    color: white; 
-    border-radius:6px;
+    padding: 15px;
+    background-color: #00E672;
+    color: white;
+    border-radius: 6px;
 }
 
-#question-list-answered-img{
-    width:64px; 
-    height:64px;    
+#question-list-answered-img {
+    width: 64px;
+    height: 64px;
 }
 
 
-#question-list-style:hover{
-    box-shadow: 0px 5px 10px rgba(33,33,33,0.5); 
+#question-list-style:hover {
+    box-shadow: 0px 5px 10px rgba(33, 33, 33, 0.5);
     cursor: pointer;
 }
 
@@ -467,7 +476,7 @@ h2.user-content{
     background-color: #00BFFF;
 }*/
 
-.question-list-state-style{
+.question-list-state-style {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -479,19 +488,19 @@ h2.user-content{
     margin: 0px;
 }
 
-.question-level{
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+.question-level {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     padding: 5px;
     font-size: 16px;
     font-weight: 700;
     text-align: center;
-    background: linear-gradient(90deg, rgba(0,172,255,1) 0%, rgba(145,0,255,1) 100%);
+    background: linear-gradient(90deg, rgba(0, 172, 255, 1) 0%, rgba(145, 0, 255, 1) 100%);
     color: white;
     width: 85%;
-    border-radius: 10px;  
+    border-radius: 10px;
 }
 
-#question-list{
+#question-list {
     align-self: center;
     justify-content: center;
     align-items: center;
@@ -499,7 +508,7 @@ h2.user-content{
     word-wrap: break-word;
 }
 
-.view-question-button{
+.view-question-button {
     border-radius: 10px;
     background-color: blueviolet;
     color: white;
@@ -507,12 +516,11 @@ h2.user-content{
     outline: 0;
     width: 50%;
     height: 15%;
-    font-size: 14px;   
+    font-size: 14px;
 }
 
-.view-question-button:hover{
+.view-question-button:hover {
     background-color: darkviolet
-    
 }
 
 
@@ -521,8 +529,8 @@ h2.user-content{
 
 
 
-#qa-section-level-meter{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+#qa-section-level-meter {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     padding: 5px 10px 5px 10px;
     display: flex;
@@ -531,18 +539,18 @@ h2.user-content{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: rgb(30,30,30);
-    
+    background-color: rgb(30, 30, 30);
+
 }
 
-#level-meter-img{
+#level-meter-img {
     clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);
     height: 72px;
     width: 72px;
-    
+
 }
 
-#point-slider-container{
+#point-slider-container {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-around;
@@ -551,18 +559,18 @@ h2.user-content{
     height: 100%;
 }
 
-#slider-levels-text{
+#slider-levels-text {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-image:  linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,0.5) 100%);
+    background-image: linear-gradient(112deg, rgba(0, 159, 255, 1) 0%, rgba(164, 255, 0, 0.5) 100%);
     border-radius: 4px;
-    width: 100%; 
+    width: 100%;
     height: 100%;
 }
 
-#slider-content{
+#slider-content {
     padding: 3px;
     display: flex;
     flex-direction: column;
@@ -572,7 +580,7 @@ h2.user-content{
     height: 60%;
 }
 
-.point-slider{
+.point-slider {
     margin: 5px;
     padding: 6px;
     border-color: white;
@@ -580,7 +588,7 @@ h2.user-content{
     border-width: thin;
     -webkit-appearance: none;
     appearance: none;
-    background-image:  linear-gradient(112deg, rgba(0,159,255,1) 0%, rgba(164,255,0,1) 100%);
+    background-image: linear-gradient(112deg, rgba(0, 159, 255, 1) 0%, rgba(164, 255, 0, 1) 100%);
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -588,16 +596,16 @@ h2.user-content{
 }
 
 
-.point-slider::-webkit-slider-thumb{
+.point-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 0px;
     height: 0px;
     background-color: lime;
-    box-shadow: 100vw 0 0 calc(100vw - 0px) rgb(33,33,33) ;
+    box-shadow: 100vw 0 0 calc(100vw - 0px) rgb(33, 33, 33);
 }
 
 
-.exp-level-container{
+.exp-level-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -606,7 +614,7 @@ h2.user-content{
     height: 100%;
 }
 
-.exp-style{
+.exp-style {
     text-align: center;
     font-size: 14px;
     border-radius: 10px;
@@ -614,7 +622,7 @@ h2.user-content{
     color: white;
 }
 
-.my-level{
+.my-level {
     padding: 2px;
     display: flex;
     justify-content: center;
@@ -624,43 +632,43 @@ h2.user-content{
     font-size: 16px;
     font-weight: 800px;
     border-radius: 6px;
-    background: linear-gradient(90deg, rgba(0,172,255,1) 0%, rgba(145,0,255,1) 100%);
+    background: linear-gradient(90deg, rgba(0, 172, 255, 1) 0%, rgba(145, 0, 255, 1) 100%);
     width: 100%;
-    
+
 }
 
-#qa-section-sidebar{
+#qa-section-sidebar {
     padding: 20px;
     display: none;
     height: 90%;
-    width:10%;
+    width: 10%;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    box-shadow: 15px 0px 10px rgba(0,0,0,0.21);
-    
+    box-shadow: 15px 0px 10px rgba(0, 0, 0, 0.21);
+
 }
 
-.qa-section-buttons{
+.qa-section-buttons {
     margin-top: 100px;
     border-radius: 100px 25px 100px 100px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     font-size: 16px;
     padding: 10px;
     outline: 0px;
     border: 0px;
-    background-color: rgb(40,40,40);
+    background-color: rgb(40, 40, 40);
     width: 100%;
     height: 50px;
     color: white;
 }
 
-.qa-section-buttons:hover{
-    color:lime;
-    
+.qa-section-buttons:hover {
+    color: lime;
+
 }
 
-#qa-section-container{
+#qa-section-container {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -671,7 +679,7 @@ h2.user-content{
     overflow-y: scroll;
 }
 
-#qa-section-top-content{
+#qa-section-top-content {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
@@ -681,7 +689,7 @@ h2.user-content{
     height: 20%;
 }
 
-#questions-list{
+#questions-list {
     padding: 25px;
     display: flex;
     flex-flow: row wrap;
@@ -689,20 +697,20 @@ h2.user-content{
     width: 100%;
 }
 
-#questions-list > *{
+#questions-list > * {
     flex: 0 1 50%;
-    
+
 }
 
-#questions-and-answers{
+#questions-and-answers {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
 
-#qa-section-nav{
-    display: flex; 
+#qa-section-nav {
+    display: flex;
     padding: 30px;
     justify-content: center;
     align-items: center;
@@ -710,13 +718,13 @@ h2.user-content{
     color: black;
     outline: none;
     border-color: transparent;
-    width: 75%; 
-    height: 5%; 
+    width: 75%;
+    height: 5%;
 }
 
-.qa-section-nav-content{
+.qa-section-nav-content {
     padding: 0px;
-    box-shadow: 0px 5px 3px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.2);
     outline: none;
     border: none;
     margin: 50px;
@@ -728,14 +736,14 @@ h2.user-content{
     align-self: center;
     font-size: 16px;
     font-weight: 600;
-    
+
 }
 
-.qa-section-nav-content:hover{
+.qa-section-nav-content:hover {
     background-color: #6002FF;
 }
 
-.qa-headings-style-q{
+.qa-headings-style-q {
     width: 50%;
     color: black;
     padding: 20px;
@@ -746,10 +754,10 @@ h2.user-content{
     border-left-color: transparent;
     border-style: solid;
     border-radius: 30px;
-    
+
 }
 
-.qa-headings-style-a{
+.qa-headings-style-a {
     width: 50%;
     color: black;
     padding: 20px;
@@ -759,7 +767,7 @@ h2.user-content{
     border-right-color: transparent;
     border-left-color: transparent;
     border-style: solid;
-    border-radius: 30px;    
+    border-radius: 30px;
 }
 
 
@@ -768,8 +776,8 @@ h2.user-content{
 /* Start Question Section Styles */
 
 
-#question-section{
-    
+#question-section {
+
     padding: 50px;
     display: flex;
     justify-content: center;
@@ -780,9 +788,9 @@ h2.user-content{
     background-color: whitesmoke;
 }
 
-#question{
+#question {
     border-radius: 12px;
-    box-shadow: 25px 25px 3px rgba(0,0,0,0.5);
+    box-shadow: 25px 25px 3px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -790,7 +798,7 @@ h2.user-content{
     width: 50%;
 }
 
-#question-header{
+#question-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -802,17 +810,17 @@ h2.user-content{
     width: 100%
 }
 
-#question-avatar{
+#question-avatar {
     margin: 0px 50px 0px 0px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
-    background-color: rgb(33,33,33);
-    width : 150px;
+    background-color: rgb(33, 33, 33);
+    width: 150px;
     height: 150px;
-    
+
 }
 
-#question-header-contents{
+#question-header-contents {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -821,17 +829,17 @@ h2.user-content{
     width: 100%;
 }
 
-#question-status{
+#question-status {
     padding: 10px;
     font-size: 16px;
     border-radius: 15px;
     color: white;
     width: 100%;
-    background-color: rgb(33,33,33);
-    
+    background-color: rgb(33, 33, 33);
+
 }
 
-#question-user{
+#question-user {
     width: 100%;
     margin: 10px 0px 10px 0px;
     border-radius: 15px;
@@ -841,23 +849,23 @@ h2.user-content{
     font-size: 12px;
 }
 
-#from-to-translation{
+#from-to-translation {
     padding: 25px;
     font-size: 24px;
-    color: white;  
+    color: white;
     background-color: blueviolet;
 }
 
-#question-reward{
+#question-reward {
     width: 100%;
     padding: 15px;
     font-size: 14px;
-    color :white;
+    color: white;
     background-color: black;
     border-radius: 15px;
 }
 
-#question-text-area{
+#question-text-area {
     font-size: 16px;
     padding: 50px;
     color: black;
@@ -867,7 +875,7 @@ h2.user-content{
 }
 
 
-#question-reply-area{
+#question-reply-area {
     padding: 25px;
     display: flex;
     flex-direction: row;
@@ -878,7 +886,7 @@ h2.user-content{
     width: 100%;
 }
 
-.reply-button-c{
+.reply-button-c {
     padding: 10px;
     font-size: 14px;
     height: 50px;
@@ -891,12 +899,12 @@ h2.user-content{
     color: white;
 }
 
-.reply-button-c:hover{
+.reply-button-c:hover {
     background-color: #5200FF;
-    
+
 }
 
-.close-question-button-style{
+.close-question-button-style {
     border-radius: 6px;
     padding: 10px;
     font-size: 14px;
@@ -910,30 +918,30 @@ h2.user-content{
     color: white;
 }
 
-.close-question-button-style:hover{
+.close-question-button-style:hover {
     background-color: #DC234A;
 }
 
-#text-input-area{
+#text-input-area {
     display: none;
     height: auto;
     width: 100%;
 }
 
-.text-input{
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+.text-input {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     font-size: 18px;
     resize: none;
-    border-color: rgba(0,0,0,0);
+    border-color: rgba(0, 0, 0, 0);
     border-radius: 10px;
     padding: 20px;
     margin-top: 5%;
     margin-bottom: 5%;
     height: auto;
-    width: 100%; 
+    width: 100%;
 }
 
-.submit-button{
+.submit-button {
     margin-left: 35%;
     border-radius: 6px;
     padding: 10px;
@@ -943,15 +951,15 @@ h2.user-content{
     color: white;
     border: none;
     outline: none;
-    
-    
-    
+
+
+
 }
 
-.text-input:focus{
-    outline:none;
+.text-input:focus {
+    outline: none;
     border-color: orange;
-       
+
 }
 
 
@@ -961,7 +969,7 @@ h2.user-content{
 
 
 
-#answer-section{
+#answer-section {
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -972,16 +980,16 @@ h2.user-content{
     width: 100%;
 }
 
-#answer-this-button{
+#answer-this-button {
     background-color: blueviolet;
     margin-left: 60px;
     width: 10%;
 }
 
-.answers{
+.answers {
     margin: 20px 0px 40px 0px;
     border-radius: 12px;
-    box-shadow: 25px 25px 3px rgba(0,0,0,0.5);
+    box-shadow: 25px 25px 3px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -989,7 +997,7 @@ h2.user-content{
     width: 50%;
 }
 
-#answer-header{
+#answer-header {
     display: flex;
     flex-direction: row-reverse;
     padding: 25px 25px 5px 25px;
@@ -999,17 +1007,17 @@ h2.user-content{
     width: 100%
 }
 
-#answer-avatar{
+#answer-avatar {
     margin: 0px 0px 0px 50px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
-    background-color: rgb(255,255,255);
-    width : 150px;
+    background-color: rgb(255, 255, 255);
+    width: 150px;
     height: 150px;
-    
+
 }
 
-#answer-header-contents{
+#answer-header-contents {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -1019,7 +1027,7 @@ h2.user-content{
     width: 100%;
 }
 
-#answer-user{
+#answer-user {
     padding: 10px;
     font-size: 12px;
     border-radius: 12px;
@@ -1027,22 +1035,22 @@ h2.user-content{
     width: 100%;
     text-align: right;
     background-color: #5200FF;
-    
+
 }
 
-#answer-has-replied{
+#answer-has-replied {
     width: 100%;
-    text-align:right;
+    text-align: right;
     background-color: white;
     border-radius: 15px;
-    margin-top:10px;
+    margin-top: 10px;
     padding: 10px;
     color: darkblue;
     font-size: 18px;
     font-weight: 600;
 }
 
-#answer-text-area{
+#answer-text-area {
     padding: 50px;
     color: black;
     height: 200px;
@@ -1050,7 +1058,7 @@ h2.user-content{
     font-size: 16px;
 }
 
-#select-answer-button{
+#select-answer-button {
     padding: 10px;
     font-size: 14px;
     height: 75%;
@@ -1063,12 +1071,12 @@ h2.user-content{
     color: white;
 }
 
-#select-answer-button:hover{
-    background-color: springgreen;  
+#select-answer-button:hover {
+    background-color: springgreen;
     color: black;
 }
 
-#answer-select-area{
+#answer-select-area {
     padding: 25px;
     display: flex;
     flex-direction: row;
@@ -1080,52 +1088,52 @@ h2.user-content{
 
 /* Start Selection Box Styles */
 
-#sort-lang-container{
+#sort-lang-container {
     position: absolute;
     padding: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
     min-height: 100vh;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
 }
 
-#sort-lang-content-container{
+#sort-lang-content-container {
     padding: 50px;
     border-radius: 20px;
     display: flex;
-    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 25%;
     height: auto;
-    background-color: rgba(255,255,255,1);
-    
+    background-color: rgba(255, 255, 255, 1);
+
 }
 
-.sort-lang-options{
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+.sort-lang-options {
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
     margin: 2px;
     padding: 10px;
     border-radius: 10px;
     font-size: 14px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     color: white;
     text-align: center;
     height: 20%;
     width: 100%;
 }
 
-.sort-lang-options:hover{
+.sort-lang-options:hover {
     cursor: pointer;
     background-color: blue;
-    
+
 }
 
-.sort-lang-options-default{
+.sort-lang-options-default {
     margin: 2px;
     padding: 10px;
     border-radius: 10px;
@@ -1137,58 +1145,58 @@ h2.user-content{
     width: 100%;
 }
 
-#sort-levels-container{
+#sort-levels-container {
     position: absolute;
     padding: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
 }
 
-.sort-levels-options-default:hover{
+.sort-levels-options-default:hover {
     cursor: pointer;
-    background-color: rgb(35,35,35);
-    
+    background-color: rgb(35, 35, 35);
+
 }
 
-#sort-levels-content-container{
+#sort-levels-content-container {
     padding: 50px;
     border-radius: 20px;
     display: flex;
-    box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 25%;
     height: auto;
-    background-color: rgba(255,255,255,1);
-    
+    background-color: rgba(255, 255, 255, 1);
+
 }
 
-.sort-levels-options{
-    box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
+.sort-levels-options {
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
     margin: 2px;
     padding: 10px;
     border-radius: 10px;
     font-size: 14px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     color: white;
     text-align: center;
     height: 20%;
     width: 100%;
 }
 
-.sort-levels-options:hover{
+.sort-levels-options:hover {
     cursor: pointer;
     background-color: blue;
-    
+
 }
 
-.sort-levels-options-default{
+.sort-levels-options-default {
     margin: 2px;
     padding: 10px;
     border-radius: 10px;
@@ -1200,26 +1208,26 @@ h2.user-content{
     width: 100%;
 }
 
-.sort-levels-options-default:hover{
+.sort-levels-options-default:hover {
     cursor: pointer;
-    background-color: rgb(35,35,35);
-    
+    background-color: rgb(35, 35, 35);
+
 }
 
-#my-profile-page-container{
+#my-profile-page-container {
     top: 0;
     z-index: 12;
     display: block;
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     overflow: hidden;
 }
 
-#my-profile-page{
+#my-profile-page {
     padding: 25px 0px 25px 0px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1228,20 +1236,20 @@ h2.user-content{
     width: 100%;
 }
 
-#my-profile-page-content-container{
+#my-profile-page-content-container {
     background-color: white;
     border-radius: 35px;
     padding: 25px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     min-height: 100%;
     width: 65%;
 }
 
-#my-profile-content{
+#my-profile-content {
     border-radius: 12px;
     padding: 50px;
     display: flex;
@@ -1250,10 +1258,10 @@ h2.user-content{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-#split{
+#split {
     border-radius: 12px 0px 0px 12px;
 
     display: flex;
@@ -1262,26 +1270,26 @@ h2.user-content{
     align-items: center;
     height: 100%;
     width: 100%;
-    
+
 }
 
-#split-left{
+#split-left {
     border-radius: 12px;
     z-index: 12;
-    box-shadow: 10px 5px 2px rgba(0,0,0,0.2);
+    box-shadow: 10px 5px 2px rgba(0, 0, 0, 0.2);
     padding: 50px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;   
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
 
-.my-profile-page-content{
-    box-shadow: 10px 5px 2px rgba(0,0,0,0.2);
+.my-profile-page-content {
+    box-shadow: 10px 5px 2px rgba(0, 0, 0, 0.2);
     border-radius: 0px 12px 12px 0px;
-    background-color: rgb(33,33,33);
+    background-color: rgb(33, 33, 33);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1292,16 +1300,16 @@ h2.user-content{
     font-size: 16px;
 }
 
-#my-profile-avatar{
-    background-color: rgb(33,33,33);
+#my-profile-avatar {
+    background-color: rgb(33, 33, 33);
     margin: 20px 0px 20px 0px;
     border-radius: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     height: 300px;
     width: 300px;
 }
 
-.my-profile-stats{
+.my-profile-stats {
     display: flex;
     margin: 15px 0px 15px 0px;
     text-align: center;
@@ -1312,10 +1320,10 @@ h2.user-content{
     height: 100px;
     word-wrap: break-word;
     color: lime;
-    border-radius: 12px;  
+    border-radius: 12px;
 }
 
-#my-questions-header-button{
+#my-questions-header-button {
     box-shadow: 0px 0px 10px black;
     margin: 15px 0px 15px 0px;
     background-color: #6002ee;
@@ -1328,80 +1336,80 @@ h2.user-content{
     border: 0;
 }
 
-#my-questions-header-button:hover{
+#my-questions-header-button:hover {
     background-color: #6002FF;
 }
 
-#my-questions{
+#my-questions {
     display: none;
     width: 100%;
     height: 100%;
     flex-direction: column;
-    overflow-y: scroll; 
+    overflow-y: scroll;
     justify-content: flex-start;
     align-items: center;
-    
+
 }
 
-#my-questions-container{
+#my-questions-container {
     margin: 10px 0px 10px 0px;
     padding: 20px;
     display: flex;
     width: 50%;
     height: 50%;
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     flex-direction: column;
-    justify-content: center;   
+    justify-content: center;
     align-items: center;
 }
 
-.my-question-style{
+.my-question-style {
     font-size: 14px;
     padding: 15px;
     background-color: white;
     color: black;
-    width: 100%;   
+    width: 100%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.my-question-asked-style{
+.my-question-asked-style {
     padding: 10px;
     background-color: blueviolet;
     color: white;
     width: 50%;
 }
 
-.my-question-button{
+.my-question-button {
     padding: 10px;
     background-color: black;
     color: white;
     border: 0;
     outline: 0;
     width: 50%;
-    font-size: 14px;   
+    font-size: 14px;
 }
 
-.my-question-button:hover{
-    background-color: rgb(35,35,35);
-    
+.my-question-button:hover {
+    background-color: rgb(35, 35, 35);
+
 }
 
-#my-question-header-contents{
+#my-question-header-contents {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 /*  Mobile & Tablet Styles  */
 /*  ----------------------  */
 
 @media only screen and (min-width: 300px) and (max-width: 1024px) {
-    
-    #mobile-nav-bar{
+
+    #mobile-nav-bar {
         padding: 15px;
         width: 100%;
         height: 50px;
@@ -1412,127 +1420,128 @@ h2.user-content{
         align-items: flex-start;
         position: absolute;
         z-index: 100;
-        background-color: rgb(33,33,33);
+        background-color: rgb(33, 33, 33);
     }
-    
-    #hamburger{
+
+    #hamburger {
         fill: white;
     }
-    
-    #return-home{
+
+    #return-home {
         width: 75%;
-}
-    
-    #content-container{
+    }
+
+    #content-container {
         justify-content: center;
     }
-    
-    #qa-dashboard{
+
+    #qa-dashboard {
         padding: 30px 25px 30px 25px;
         display: none;
         position: absolute;
         width: 100%;
         height: 100%;
     }
-    
-    #user-container{
+
+    #user-container {
         height: 100vh;
     }
-    
-    #welcome-box{
+
+    #welcome-box {
         flex-shrink: 1;
         height: 75%;
     }
-    
+
     #welcome-box h2 {
         font-size: 0;
     }
-    
-    #avatar{
+
+    #avatar {
         height: 72px;
         width: 72px;
     }
-    
-    .user-content{
+
+    .user-content {
         margin: 0px;
     }
-    
-    #qa-section-container{
+
+    #qa-section-container {
         width: 100%;
-        
+
     }
-    
-    #qa-section-level-meter{
+
+    #qa-section-level-meter {
         padding: 10px
     }
-    
-    #qa-section-top-content{
+
+    #qa-section-top-content {
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
         height: 75%;
     }
-    
-    #qa-section-nav{
+
+    #qa-section-nav {
         flex-direction: row;
         flex-wrap: wrap;
         width: 100%;
         height: 100%;
-        
+
     }
-    
-    .qa-section-nav-content{
+
+    .qa-section-nav-content {
         width: 100%;
         margin: 25px;
     }
-    
-    
+
+
     /*--------------*/
-    
-    
-    #my-profile-page-container{
+
+
+    #my-profile-page-container {
         top: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
         z-index: 10;
     }
-    
-    #my-profile-page{
+
+    #my-profile-page {
         width: 100%;
         height: 100%;
         padding: 0px;
         overflow: hidden;
-        
+
     }
-    #my-profile-page-content-container{
+
+    #my-profile-page-content-container {
         box-shadow: none;
-        background-color: rgb(33,33,33);
+        background-color: rgb(33, 33, 33);
         border-radius: 0px;
         padding: 0px;
         margin: 50px 0px 25px 0px;
         width: 100%;
         flex-direction: column;
-        
+
     }
-    
-    #close-my-questions-button{
+
+    #close-my-questions-button {
         background-color: white;
         color: black
     }
-    
-    #my-questions-container{
+
+    #my-questions-container {
         width: 100%;
     }
-    
-    .my-profile-page-content::after{
+
+    .my-profile-page-content::after {
         content: "Stats & Questions";
         color: white;
         padding: 5px;
         font-size: 16px;
     }
-    
-    .my-profile-page-content{
+
+    .my-profile-page-content {
         border-radius: 0px;
         padding: 0px 5px 0px 5px;
         margin: 0px;
@@ -1540,176 +1549,176 @@ h2.user-content{
         background-color: transparent;
         flex-direction: column-reverse;
     }
-    
-    #my-profile-content{
+
+    #my-profile-content {
         box-shadow: none;
-        background-color: rgb(33,33,33);
+        background-color: rgb(33, 33, 33);
         padding: 10px 0px 25px 0px;
     }
-    
-    .close-buttons{
+
+    .close-buttons {
         color: black;
         background-color: white;
     }
-    
-    #split{
+
+    #split {
         box-shadow: none;
         width: 100%;
-        flex-direction: column;   
+        flex-direction: column;
     }
-    
-    #split-left{
+
+    #split-left {
         box-shadow: none;
         padding: 0px;
-        
+
     }
-    
-    #my-profile-avatar{
+
+    #my-profile-avatar {
         width: 128px;
         height: 128px;
-        background-color: rgb(40,40,40);
+        background-color: rgb(40, 40, 40);
         margin: 5px 0px 5px 0px;
     }
-    
-    #address{
+
+    #address {
         background-color: transparent;
         border-radius: 12px;
         font-size: 16px;
     }
-    
-    .profile-page-text{
+
+    .profile-page-text {
         color: white;
     }
-    
-    #user-account-profile{
+
+    #user-account-profile {
         box-shadow: none;
         width: 75%;
         background-color: transparent;
         border-radius: 0px;
         font-size: 16px;
     }
-    
-    #my-questions-header-button{
+
+    #my-questions-header-button {
         border-radius: 6px;
         padding: 0px;
         height: 75px;
     }
-    
-    .my-profile-stats{
+
+    .my-profile-stats {
         background: none;
         color: lime;
         border-radius: 6px;
         padding: 0px;
         height: 25px;
-        
+
     }
-    
-    .my-question-button{
+
+    .my-question-button {
         border-radius: 6px;
         margin: 5px 0px 5px 0px;
         background-color: white;
         color: black;
     }
-    
-    .my-question-style{
-        background-color: rgb(33,33,33);
+
+    .my-question-style {
+        background-color: rgb(33, 33, 33);
         color: white;
     }
-    
+
     /*--------------*/
-    #sort-lang-content-container{
+    #sort-lang-content-container {
         width: 100%;
     }
-    
-    #questions-list{
-        flex-direction: column;;
+
+    #questions-list {
+        flex-direction: column;
+        ;
         flex-wrap: nowrap;
-        
+
     }
-    
-    .question-container{
+
+    .question-container {
         width: 100%;
-        height: 100%;     
+        height: 100%;
     }
-    
-    .reply-button-c{
+
+    .reply-button-c {
         width: 35%;
-        
+
     }
-    
-    .submit-button{
+
+    .submit-button {
         display: flex;
         justify-content: center;
     }
-    
-    .close-question-button-style{
+
+    .close-question-button-style {
         width: 35%;
     }
-    
-    #question-list-style{
+
+    #question-list-style {
         padding: 50px 25px 50px 25px;
         height: 80%;
-        
+
     }
-    
-    #question-list-style > *{
+
+    #question-list-style > * {
         padding: 20px;
         margin: 0px;
         height: 100%;
-        
+
     }
-    
-    #question-list-text{
+
+    #question-list-text {
         margin: 15px 0px 15px 0px;
         font-size: 16px;
     }
-    
-    .question-list-state-style{
+
+    .question-list-state-style {
         align-self: center;
         justify-content: center;
         margin: 15px 0px 15px 0px;
         background-color: white
-        
     }
-    
-    #question-list-answered{
+
+    #question-list-answered {
         width: 100%;
-        height: 25%; 
+        height: 25%;
     }
-    
-    #question-list-answered-img{
+
+    #question-list-answered-img {
         width: 32px;
-        height: 32px; 
+        height: 32px;
     }
-    
-    .qa-headings-style-q{
+
+    .qa-headings-style-q {
         width: 100%;
-        
+
     }
-    
-    #questions-and-answers{
+
+    #questions-and-answers {
         width: 100%;
     }
-    
-    #question-section{
+
+    #question-section {
         width: 100%;
         padding: 20px;
     }
-    
-    #question{
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+
+    #question {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         width: 100%;
     }
-    
-    #question-header{
+
+    #question-header {
         background-color: dodgerblue;
         flex-direction: column;
         height: auto;
         padding: 5px 25px 5px 25px;
-        
+
     }
-    
-    #question-avatar{
+
+    #question-avatar {
         display: flex;
         align-self: flex-start;
         border-radius: 12px;
@@ -1717,70 +1726,70 @@ h2.user-content{
         width: 128px;
         height: 128px;
     }
-    
-    #question-number{
+
+    #question-number {
         font-size: 12px;
     }
-    
-    #question-status{
+
+    #question-status {
         width: 100%;
         font-size: 16px;
     }
-    
-    #question-user{
+
+    #question-user {
         font-size: 16px;
     }
-    
-    #question-reward{
+
+    #question-reward {
         font-size: 16px;
-        
+
     }
-    
-    #question-text-area{
+
+    #question-text-area {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         font-size: 16px;
-        
+
     }
-    
+
     /* --------- */
-    
-    #answer-placeholder{
+
+    #answer-placeholder {
         width: 100%;
-        text-align: center;  
+        text-align: center;
         font-size: 24px;
     }
-    
-    .qa-headings-style-a{
+
+    .qa-headings-style-a {
         width: 100%;
-        
+
     }
-    
-    #answer-section{
+
+    #answer-section {
         width: 100%;
         padding: 20px;
     }
-    
-    #answers{
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+
+    #answers {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         width: 100%;
     }
-    
-    #answer-header{
+
+    #answer-header {
         flex-direction: column;
         height: auto;
         padding: 30px 25px 30px 25px;
-        
+
     }
-    
-    #answer-header-contents{
+
+    #answer-header-contents {
         height: auto;
         padding: 0px;
-        
+
     }
-    
-    #answer-avatar{
+
+    #answer-avatar {
         display: flex;
         align-self: flex-end;
         border-radius: 12px;
@@ -1788,33 +1797,33 @@ h2.user-content{
         width: 128px;
         height: 128px;
     }
-    
-    #answer-number{
+
+    #answer-number {
         font-size: 12px;
     }
-    
-    #answer-status{
+
+    #answer-status {
         width: 100%;
         font-size: 16px;
     }
-    
-    #answer-user{
+
+    #answer-user {
         font-size: 16px;
     }
-     
-    #answer-text-area{
+
+    #answer-text-area {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        font-size: 16px;   
+        font-size: 16px;
     }
-    
-    #answer-this-button{
+
+    #answer-this-button {
         margin: 0px;
         width: 50%;
-        
+
     }
-    
-    
-    
+
+
+
 }

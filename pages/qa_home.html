@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta charset="utf-8" />
-    
+
     <!-- ICON SDK JS is required by Ancilia -->
     <script src="https://cdn.jsdelivr.net/gh/icon-project/icon-sdk-js@latest/build/icon-sdk-js.min.js"></script>
     <!-- Ancilia is required by SpeakyTo -->
@@ -25,23 +26,30 @@
         const ancilia = new Ancilia(NETWORK)
         const speakyto = new SpeakyTo(ancilia, SPEAKYTO_SCORE)
     </script>
-    
-    <link rel="stylesheet" href="/styles/qa_home_styles.css"></link>  
-    </head>        
-    <body>
-        <div id="pre-load"></div>
-        <div id='loader-screen'>
-            <img src="/images/SpeakyTo_Logo_V1.png" id="loader-image"> 
-            <h1 style="text-align: center"> Getting things ready...</h1>
-        </div>
-        <div id="mobile-nav-bar">
-            <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.5 64"><title>menu_icon</title><rect y="26" width="63" height="12" rx="6" ry="6" /><rect x="0.5" width="63" height="12" rx="6" ry="6"/><rect x="0.5" y="52" width="63" height="12" rx="6" ry="6"/></svg>
-        </div>
+
+    <link rel="stylesheet" href="/styles/qa_home_styles.css">
+    </link>
+</head>
+
+<body>
+    <div id="pre-load"></div>
+    <div id='loader-screen'>
+        <img src="/images/SpeakyTo_Logo_V1.png" id="loader-image">
+        <h1 style="text-align: center"> Getting things ready...</h1>
+    </div>
+    <div id="mobile-nav-bar">
+        <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 63.5 64">
+            <title>menu_icon</title>
+            <rect y="26" width="63" height="12" rx="6" ry="6" />
+            <rect x="0.5" width="63" height="12" rx="6" ry="6" />
+            <rect x="0.5" y="52" width="63" height="12" rx="6" ry="6" />
+        </svg>
+    </div>
     <div id="main-container">
         <div id="content-container-wrap">
             <div id="content-container">
                 <div id="qa-dashboard">
-                    <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index'" >
+                    <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index'">
                     <div id="qa-dashboard-links-container">
                         <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
                         <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
@@ -53,7 +61,7 @@
                             <span id="level" class="my-level"></span>
                         </div>
                         <div id="qa-section-level-meter">
-                           <img id="level-meter-img" src="/images/assets/SPKT_Token_72.png" alt="level=meter-img" class="user-content">
+                            <img id="level-meter-img" src="/images/assets/SPKT_Token_72.png" alt="level=meter-img" class="user-content">
                             <div class="exp-level-container">
                                 <div id="point-slider-container">
                                     <div id="slider-content">
@@ -64,7 +72,7 @@
                                         </div>
                                         <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                         <button id="my-profile">My Profile</button>
@@ -77,166 +85,169 @@
                 </div>
             </div>
         </div>
-        
+
         <script>
-        window.onload = () => { 
-            $("#mobile-nav-bar").hide()
-            setTimeout(function(){  
-                // init account
-                mobileListener()
-                historyListener()
-                accountRefresh()
-                userLoader()
-                questionsListView()
-                questionListener()
-                otherRefresh()
-                sortedLanguages()
-                sortedLevels()
-                buttonPreloadListeners()
+            window.onload = () => {
+                $("#mobile-nav-bar").hide()
+                setTimeout(function() {
+                    // init account
+                    mobileListener()
+                    historyListener()
+                    accountRefresh()
+                    userLoader()
+                    questionsListView()
+                    questionListener()
+                    otherRefresh()
+                    sortedLanguages()
+                    sortedLevels()
+                    buttonPreloadListeners()
 
-                $("#pre-load").load("/scripts/loader")
-                $("#pre-load").hide()
+                    $("#pre-load").load("/scripts/loader")
+                    $("#pre-load").hide()
 
-                $(document).ready(function (){
-                    $("#loader-screen").fadeOut(200, function(){})
-                })
-            }, 1000)
-        }
-    
-        function userLoader(){
-            if (ancilia.isLoggedIn()){
-                const address = ancilia.getLoggedInWallet()
-                
-                speakyto.getUserUid(address).then(user_uid => {
-                    speakyto.getUserAccount(user_uid).then (account => {
-
-                        // Load Avatar
-                        const avatarID = parseInt(account['avatar_uid'])
-                        
-                        const getAvatar = $("#welcome-box").prepend(`
-                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `).insertAfter("")
-                        
-                        
-                        //Load Username
-                        
-                        $("#user-account").text(account['username'])
-                        return getAvatar
+                    $(document).ready(function() {
+                        $("#loader-screen").fadeOut(200, function() {})
                     })
-                }).catch(error => {
-                    
-                    const errorCode = error.toString()
-                    
-                    if (errorCode.includes("UserAccountDoesntExist")){
-                        
-                        ancilia.logout()
-                        window.location.replace('/pages/auth') 
-                    }
- 
+                }, 1000)
+            }
+
+            function userLoader() {
+                if (ancilia.isLoggedIn()) {
+                    const address = ancilia.getLoggedInWallet()
+
+                    speakyto.getUserUid(address).then(user_uid => {
+                        speakyto.getUserAccount(user_uid).then(account => {
+
+                            // Load Avatar
+                            const avatarID = parseInt(account['avatar_uid'])
+
+                            const getAvatar = $("#welcome-box").prepend(`
+                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `).insertAfter("")
+
+
+                            //Load Username
+
+                            $("#user-account").text(account['username'])
+                            return getAvatar
+                        })
+                    }).catch(error => {
+
+                        const errorCode = error.toString()
+
+                        if (errorCode.includes("UserAccountDoesntExist")) {
+
+                            ancilia.logout()
+                            window.location.replace('/pages/auth')
+                        }
+
+                    })
+                }
+            }
+
+            function questionListener() {
+                $(document).ready(function() {
+                    $(document).on("click", ".question-container, .my-question-button, #last-question", function(e) {
+
+                        activateQA(this)
+                        $("body").animate({
+                            scrollTop: 0
+                        }, 'slow')
+                        $("#qa-section-container").css("overflow-y", "scroll")
+                    })
                 })
             }
-        }
-            
-        function questionListener(){
-            $(document).ready(function(){
-                $(document).on("click", ".question-container, .my-question-button, #last-question", function(e){
-                    
-                    activateQA(this)
-                    $("body").animate({scrollTop: 0}, 'slow')
-                    $("#qa-section-container").css("overflow-y", "scroll")
-                }) 
-            })
-        }
-        
-        function historyListener(){ 
-            $(document).ready(function (){
-                function changeHistory(){
-                    const hash = (window.location.hash)
-                    if (hash.length === 0){
-                        qaBackButton()
-                    } 
-                }
-               window.addEventListener('hashchange', changeHistory, false)
-            })   
-        }   
-            
-        function mobileListener(){
-            
-            $(document).ready(function() {
-                
-                const minWidth = window.matchMedia("(min-width: 300px)")
-                const maxWidth = window.matchMedia("(max-width: 1023px)")
-                
-                if ((minWidth && maxWidth)) {
-                    $("#mobile-nav-bar").css("display", "flex")
-                }
-    
-                
-                else{
-                    $("#mobile-nav-bar").css("display", "none")
-                    
-                }
-                
-                 $("#hamburger").on("click", function(){
-                     
-                        if ($("#qa-dashboard").css("display") == "none") {
-                                $("#mobile-nav-bar").css("background-color", "transparent")
-                                $("#qa-dashboard").css("display", "flex")
-                                $("#hamburger").css("fill", "blueviolet")
+
+            function historyListener() {
+                $(document).ready(function() {
+                    function changeHistory() {
+                        const hash = (window.location.hash)
+                        if (hash.length === 0) {
+                            qaBackButton()
                         }
-                        else if ($("#qa-dashboard").css("display") == "flex") {
-                                $("#mobile-nav-bar").css("background-color", "rgb(33,33,33)") 
-                                $("#qa-dashboard").css("display", "none")
-                                $("#hamburger").css("fill", "white")
+                    }
+                    window.addEventListener('hashchange', changeHistory, false)
+                })
+            }
+
+            function mobileListener() {
+
+                $(document).ready(function() {
+
+                    const minWidth = window.matchMedia("(min-width: 300px)")
+                    const maxWidth = window.matchMedia("(max-width: 1023px)")
+
+                    if ((minWidth && maxWidth)) {
+                        $("#mobile-nav-bar").css("display", "flex")
+                    } else {
+                        $("#mobile-nav-bar").css("display", "none")
+
+                    }
+
+                    $("#hamburger").on("click", function() {
+
+                        if ($("#qa-dashboard").css("display") == "none") {
+                            $("#mobile-nav-bar").css("background-color", "transparent")
+                            $("#qa-dashboard").css("display", "flex")
+                            $("#hamburger").css("fill", "blueviolet")
+                        } else if ($("#qa-dashboard").css("display") == "flex") {
+                            $("#mobile-nav-bar").css("background-color", "rgb(33,33,33)")
+                            $("#qa-dashboard").css("display", "none")
+                            $("#hamburger").css("fill", "white")
 
                         }
-                })   
-            })
-            
-        }
-            function qaBackButton(){
+                    })
+                })
+
+            }
+
+            function qaBackButton() {
                 $("#last-question").show()
                 $("#questions-and-answers").hide()
                 $("#questions-and-answers").empty()
                 $("#questions-list").show()
                 $("#qa-section-top-content").show()
-                
-                 //Scroll to top of viewport
-                $("#qa-section-container").animate({scrollTop: 0}, 'slow')
-                
+
+                //Scroll to top of viewport
+                $("#qa-section-container").animate({
+                    scrollTop: 0
+                }, 'slow')
+
                 otherRefresh()
             }
-            
-            function closeProfilePage(){
+
+            function closeProfilePage() {
                 $("#my-profile-page-container").remove()
                 $("#last-question").hide()
                 $("#mobile-nav-bar").css("display", "flex")
-                }
-            
-            function buttonPreloadListeners(){
-                $("#my-profile").click(function(){
-                    $("#pre-load").fadeIn(300, function(){})
-                    setTimeout(function(){viewMyProfile()}, 200)
-                })
-                
-                
             }
-            
-            function viewMyProfile(){
+
+            function buttonPreloadListeners() {
+                $("#my-profile").click(function() {
+                    $("#pre-load").fadeIn(300, function() {})
+                    setTimeout(function() {
+                        viewMyProfile()
+                    }, 200)
+                })
+
+
+            }
+
+            function viewMyProfile() {
                 $("#mobile-nav-bar").hide()
                 $("#last-question").hide()
                 $("body").css("overflow", "hidden")
                 qaBackButton()
-                
+
                 setTimeout(function() {
-                    
-                    if(ancilia.isLoggedIn()){
 
-                       const address = ancilia.getLoggedInWallet()
-                       speakyto.getUserUid(address).then(user_uid => {
-                           speakyto.getUserAccount(user_uid).then(account => {
-                               const getAvatar = parseInt(account['avatar_uid'])
+                    if (ancilia.isLoggedIn()) {
 
-                               const profilePage = $("#main-container").prepend(`
+                        const address = ancilia.getLoggedInWallet()
+                        speakyto.getUserUid(address).then(user_uid => {
+                            speakyto.getUserAccount(user_uid).then(account => {
+                                const getAvatar = parseInt(account['avatar_uid'])
+
+                                const profilePage = $("#main-container").prepend(`
                                 <div id="my-profile-page-container">
                                     <div id="my-profile-page">
                                         <div id="my-profile-page-content-container">
@@ -263,50 +274,50 @@
                                     </div>
                                 </div>
                                 `)
-                               accountRefresh()
-                               getMyQuestions()
-                               //questionListener()
-                               $(document).ready(function(){
-                                   $("#pre-load").fadeOut(200, function(){})
+                                accountRefresh()
+                                getMyQuestions()
+                                //questionListener()
+                                $(document).ready(function() {
+                                    $("#pre-load").fadeOut(200, function() {})
 
-                               })
-                           })
-                       })
+                                })
+                            })
+                        })
                     }
-                },1)
+                }, 1)
             }
-            
-            function closeMyQuestions(){
-                $("#my-questions").hide() 
-                $("#my-profile-content").show() 
+
+            function closeMyQuestions() {
+                $("#my-questions").hide()
+                $("#my-profile-content").show()
                 $("#my-question-header-contents").hide()
-                }
-            
-            function showMyQuestions(){
-                $("#my-profile-content").hide() 
+            }
+
+            function showMyQuestions() {
+                $("#my-profile-content").hide()
                 $("#my-question-header-contents").show()
                 $("#my-questions").css("display", "flex")
             }
-            
-            function getMyQuestions(){
-                
+
+            function getMyQuestions() {
+
                 $("#my-profile-page-content-container").append(`
                 <div id="my-question-header-contents" style="display: none;">
                     <button id="close-my-questions-button" onclick="closeMyQuestions()" class="close-buttons">Back</button>
                     <h1 id="my-questions-header" style="color: blueviolet; font-weight: 600;"> My Questions </h1>
                 </div>
                 <div id='my-questions'></div>`)
-                
-                
-                
-                
-                
+
+
+
+
+
                 speakyto.getQuestions(0).then(questions => {
-                    
+
                     questions.forEach(question => {
                         const myQuestionID = question['user_uid']
                         const questionValue = parseInt(question['uid']) - 1
-                        if ($("#my-user-id").text() == myQuestionID){
+                        if ($("#my-user-id").text() == myQuestionID) {
                             $("#my-questions").append(`
                             <div id="my-questions-container">
                                 <span class="my-question-style" style="background-color:black; color:white;font-weight:600;">Status:  ${question['state']}</span>
@@ -315,30 +326,28 @@
                                 <span class="my-question-style"> From ${iso_6391_name(question['from_language'])} To ${iso_6391_name(question['to_language'])}</span>
                                 <button id="${parseInt(question['uid'])}" class="my-question-button" data-questionid="${questionValue}"> View question</button>
                             </div>
-                            `)   
+                            `)
                         }
                     })
-                    
+
                 })
-                
-                $(document).ready(function(){
-                    if ($("#my-questions").find("#my-questions-container").length === 0){
-                    $("#my-questions").append(`<h1 id="no-questions" style="color: blueviolet; font-weight: 600">You haven't asked any questions yet</h1>`)
-                        
+
+                $(document).ready(function() {
+                    if ($("#my-questions").find("#my-questions-container").length === 0) {
+                        $("#my-questions").append(`<h1 id="no-questions" style="color: blueviolet; font-weight: 600">You haven't asked any questions yet</h1>`)
+
+                    } else {
+                        $("#no-questions").remove()
+
                     }
-                    
-                    else {
-                       $("#no-questions").remove() 
-                        
-                    }
-    
+
                 })
-                
+
             }
-            
-        
-            function sortByLanguage(){
-                speakyto.getSupportedLanguages().then(languages =>{
+
+
+            function sortByLanguage() {
+                speakyto.getSupportedLanguages().then(languages => {
                     $("#main-container").prepend(`
                     <div id="sort-lang-container">
                         <div id="sort-lang-content-container">
@@ -355,48 +364,44 @@
                     </div>`)
 
                 })
-                
-                $(document).ready(function(){
-                    
-                   if ($("#sort-lang-container").length > 0){
-                            $(window).click(function () {
+
+                $(document).ready(function() {
+
+                    if ($("#sort-lang-container").length > 0) {
+                        $(window).click(function() {
                             $("#sort-lang-container").remove()
-                            })
-                        } 
-                    
-                    else if ($("#sort-lang-container").length == 0){
-                           sortByLanguage()     
-                        }
-                    })
-                
+                        })
+                    } else if ($("#sort-lang-container").length == 0) {
+                        sortByLanguage()
+                    }
+                })
+
             }
-            
-            function sortedLanguages(){
-    
-                $(document).on("click", ".sort-lang-options", function(e){
+
+            function sortedLanguages() {
+
+                $(document).on("click", ".sort-lang-options", function(e) {
                     const langText = e.target.text
-                    if($(this).val() != "Default"){
+                    if ($(this).val() != "Default") {
                         $("#sort-lang").text(langText)
                         $(".question-container:not(:contains('" + langText + "'))").hide()
                         $(".question-container:contains('" + langText + "')").show()
                         $("#sort-lang-container").remove()
-                    }
-                    
-                    else if ($(this).val() == "Default"){
+                    } else if ($(this).val() == "Default") {
                         $("#sort-lang").text("Filter by language")
                         $(".question-container").show()
                         $("#sort-lang-container").remove()
-                        
+
                     }
-                    
+
                 })
-                
-                
+
+
             }
-            
-            function alertBox(){
-            $("body").css("overflow", "hidden")
-            const box = $("body").prepend(`
+
+            function alertBox() {
+                $("body").css("overflow", "hidden")
+                const box = $("body").prepend(`
                         <div id="alert-box">
                             <div id="alert-container">
                                 <div id="alert-container-contents">
@@ -404,121 +409,121 @@
                             </div>
                         </div>
             `)
-            
-            
-            
-            // Default Loader
-            
-            $("#alert-container-contents").load("/scripts/loader")
-            
-            return box
-            
-        }
-            
-            function catchSubmissionAlert(){   
-            
-            $("#alert-container-contents").empty()
-            const noTransaction = $("#alert-container-contents").prepend(`
+
+
+
+                // Default Loader
+
+                $("#alert-container-contents").load("/scripts/loader")
+
+                return box
+
+            }
+
+            function catchSubmissionAlert() {
+
+                $("#alert-container-contents").empty()
+                const noTransaction = $("#alert-container-contents").prepend(`
                                     <h2 style="color: black; text-align: center;">You cancelled your submission</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            })
-            return noTransaction
-        }
-            
-            function catchCloseAlert(){   
-            
-            $("#alert-container-contents").empty()
-            const noTransaction = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                return noTransaction
+            }
+
+            function catchCloseAlert() {
+
+                $("#alert-container-contents").empty()
+                const noTransaction = $("#alert-container-contents").prepend(`
                                     <h2 style="color: black; text-align: center;">You cancelled closing your question</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            })
-            return noTransaction
-        }
-            
-            function catchCloseAlert2(){   
-            
-            $("#alert-container-contents").empty()
-            const noTransaction = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                return noTransaction
+            }
+
+            function catchCloseAlert2() {
+
+                $("#alert-container-contents").empty()
+                const noTransaction = $("#alert-container-contents").prepend(`
                                     <h2 style="color: black; text-align: center;">Uh oh. Something went wrong.</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            })
-            return noTransaction
-        }
-            
-            function catchSelectAnswerAlert(){   
-            
-            $("#alert-container-contents").empty()
-            const noTransaction = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                return noTransaction
+            }
+
+            function catchSelectAnswerAlert() {
+
+                $("#alert-container-contents").empty()
+                const noTransaction = $("#alert-container-contents").prepend(`
                                     <h2 style="color: black; text-align: center;">You cancelled Selecting an answer</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            })
-            return noTransaction
-        }
-            
-            
-            function successAnswered(){
-            $("#alert-container-contents").empty()
-            const successNotification = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                return noTransaction
+            }
+
+
+            function successAnswered() {
+                $("#alert-container-contents").empty()
+                const successNotification = $("#alert-container-contents").prepend(`
                                         <h2 style="color: black; text-align: center;">Answer successfully submitted</h2>
                                         <button id="alert-home-button" class="alert-button-style">Back to question</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            })
-            $("#alert-home-button").click(function(e){
-                window.location.reload(true)
-            })
-            return successNotification
-            
-        }
-            
-            function successSelectAnswer(){
-            $("#alert-container-contents").empty()
-            const successNotification = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                $("#alert-home-button").click(function(e) {
+                    window.location.reload(true)
+                })
+                return successNotification
+
+            }
+
+            function successSelectAnswer() {
+                $("#alert-container-contents").empty()
+                const successNotification = $("#alert-container-contents").prepend(`
                                         <h2 style="color: black; text-align: center;">Answer successfully selected</h2>
                                         <button id="alert-home-button" class="alert-button-style">Return To Questions</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                $("#alert-box").remove()
-            }) 
-                $("#alert-home-button").click(function(){
-                window.location.reload()
-                $("#alert-box").remove()
-            })
-            return successNotification
-            
-        }
-            
-            function successCloseQuestion(){
-            $("#alert-container-contents").empty()
-            const successNotification = $("#alert-container-contents").prepend(`
+                $("#alert-close-button").click(function() {
+                    $("#alert-box").remove()
+                })
+                $("#alert-home-button").click(function() {
+                    window.location.reload()
+                    $("#alert-box").remove()
+                })
+                return successNotification
+
+            }
+
+            function successCloseQuestion() {
+                $("#alert-container-contents").empty()
+                const successNotification = $("#alert-container-contents").prepend(`
                                         <h2 style="color: black; text-align: center;">Successfully cancelled</h2>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-            $("#alert-close-button").click(function(){
-                window.location.reload()
-                $("#alert-box").remove()
-            })
-            return successNotification
-            
-        }
-        
-            
-            function sortByLevel(){
+                $("#alert-close-button").click(function() {
+                    window.location.reload()
+                    $("#alert-box").remove()
+                })
+                return successNotification
+
+            }
+
+
+            function sortByLevel() {
                 const listLevels = $("#main-container").prepend(`
                 <div id="sort-levels-container">
                     <div id="sort-levels-content-container">
@@ -530,84 +535,85 @@
                         <option value="Level6" class="sort-levels-options">Level 6</option>
                     </div>
                 </div>`)
-                
-                $(document).ready(function(){
-                    
-                   if ($("#sort-levels-container").length > 0){
-                            $(window).click(function () {
+
+                $(document).ready(function() {
+
+                    if ($("#sort-levels-container").length > 0) {
+                        $(window).click(function() {
                             $("#sort-levels-container").remove()
-                            })
-                        } 
-                    
-                    else if ($("#sort-levels-container").length == 0){
-                           sortByLevel()     
-                        }
-                    })
-            }   
-            
-            function sortedLevels(){
-                $(document).on("click", ".sort-levels-options", function(e){
+                        })
+                    } else if ($("#sort-levels-container").length == 0) {
+                        sortByLevel()
+                    }
+                })
+            }
+
+            function sortedLevels() {
+                $(document).on("click", ".sort-levels-options", function(e) {
                     const levelsText = e.target.text
                     $("#sort-levels").text(levelsText)
-                    
+
                     $(".question-container:not(:contains('" + levelsText + "'))").hide()
                     $(".question-container:contains('" + levelsText + "')").show()
                     $("#sort-levels-container").remove()
                 })
-                
+
             }
-            
-            
-            
-        function otherRefresh() {
-            
-            //Push History
-            
-            const state = {'page_id': "qa_home", 'type': "qa_home"}
-            const title = ''
-            const url ='qa_home'
-            history.pushState(state, title, url)
-            //
-            
-            document.getElementById("point-slider-target").disabled = true
-            
-            speakyto.getSupportedLanguages().then(supported_languages => {
-                $("#other #supported_languages").text(supported_languages)
-            })
-        }
-        
-        function questionsListView(){
-            $("#questions-list").empty()
-            
-            // Hide Dynamic Elements
-            $("#qa-section-sidebar").hide()
-            $("#sort-lang-container").remove()
-            $("#qa-section-container").append("<div id='questions-list'></div>")
-            
-            
-            
-            
-            $("#questions-and-answers").hide()
-                                              
-            $("#qa-section-top-content").append(`
+
+
+
+            function otherRefresh() {
+
+                //Push History
+
+                const state = {
+                    'page_id': "qa_home",
+                    'type': "qa_home"
+                }
+                const title = ''
+                const url = 'qa_home'
+                history.pushState(state, title, url)
+                //
+
+                document.getElementById("point-slider-target").disabled = true
+
+                speakyto.getSupportedLanguages().then(supported_languages => {
+                    $("#other #supported_languages").text(supported_languages)
+                })
+            }
+
+            function questionsListView() {
+                $("#questions-list").empty()
+
+                // Hide Dynamic Elements
+                $("#qa-section-sidebar").hide()
+                $("#sort-lang-container").remove()
+                $("#qa-section-container").append("<div id='questions-list'></div>")
+
+
+
+
+                $("#questions-and-answers").hide()
+
+                $("#qa-section-top-content").append(`
                     <div id="qa-section-nav">
                     <button class="qa-section-nav-content" onclick="askQuestion()" style="background-color: #6002ee;">Ask A Question</button>
                     <button id="sort-lang" class="qa-section-nav-content" onclick="sortByLanguage()">Filter by language</button>
                     <!--<button id ="sort-levels" class="qa-section-nav-content" onclick="sortByLevel()">Sort By Levels</button>-->
                     <!--<button id ="all-questions"class="qa-section-nav-content">View All Questions</button> -->
-                </div>`)        
-            
-            $("#qa-section-nav").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="width: 100%; display:none;">View Last Question</button>`)
-            
-            $("#qa-section-nav").show()
-            const questionViewer = (question =>{
-                return `${question['uid']}`
-            })
-            
-            const questionsList = (question => {
-                console.log(question)
-                const userLevel = ""
-                return `
+                </div>`)
+
+                $("#qa-section-nav").append(`<button class="qa-section-nav-content" id="last-question" data-questionid="" style="width: 100%; display:none;">View Last Question</button>`)
+
+                $("#qa-section-nav").show()
+                const questionViewer = (question => {
+                    return `${question['uid']}`
+                })
+
+                const questionsList = (question => {
+                    console.log(question)
+                    const userLevel = ""
+                    return `
                         <div id="question-list-style">
                             <span id="question-list-state" class="question-list-state-style"><span class="question-level"><span id="sort-from">${iso_6391_name(question['from_language'])}</span>
                                 <span id="sort-to"> to ${iso_6391_name(question['to_language'])}</span></span><span class="q-level">${userLevel}</span></span>
@@ -615,131 +621,135 @@
                                 <span id="question-list-text">asked: ${question['data']}</span>
                             </div>
                         </div>`
-            })
-            
-
-            // Assign Question Value
-            
-            let i = -1
-            
-            speakyto.getQuestions(0).then(questions => {
-                questions.forEach(question => { 
-                    const questionValue = parseInt(question['uid']) - 1
-                    let userName = ''
-                    
-                    x = i++
-                    
-                    
-                    if (question['state'] == "CANCELLED"){
-                        // Skip
-                    }  
-                    
-                    
-                    else {
-                        const questionID = questionViewer(question)
-                        const questionListAppend = $(`<div id="${parseInt(question['uid'])}" data-questionid=${questionValue} data-useruid=${question['user_uid']} data-state=${question['state']} class="question-container">` + questionsList(question) + "</div")
-                        
-                        $("#questions-list").append(questionListAppend)    
-                    }
                 })
-                
-                
-            })
-            $(document).ready(function(){
-                
-                $(".question-container").each(function(x){
-                    const accountUid = $(this).attr("data-useruid")
-                    const questionState = $(this).attr("data-state")
-                    
-                    speakyto.getUserAccount(accountUid).then(account =>{
-                        
-                        $(this).find("#question-list-text").prepend(`<span style="color:blueviolet; font-weight:600;"> ${account['username']} </span>`)
+
+
+                // Assign Question Value
+
+                let i = -1
+
+                speakyto.getQuestions(0).then(questions => {
+                    questions.forEach(question => {
+                        const questionValue = parseInt(question['uid']) - 1
+                        let userName = ''
+
+                        x = i++
+
+
+                        if (question['state'] == "CANCELLED") {
+                            // Skip
+                        } else {
+                            const questionID = questionViewer(question)
+                            const questionListAppend = $(`<div id="${parseInt(question['uid'])}" data-questionid=${questionValue} data-useruid=${question['user_uid']} data-state=${question['state']} class="question-container">` + questionsList(question) + "</div")
+
+                            $("#questions-list").append(questionListAppend)
+                        }
+                    })
+
+
+                })
+                $(document).ready(function() {
+
+                    $(".question-container").each(function(x) {
+                        const accountUid = $(this).attr("data-useruid")
+                        const questionState = $(this).attr("data-state")
+
+                        speakyto.getUserAccount(accountUid).then(account => {
+
+                            $(this).find("#question-list-text").prepend(`<span style="color:blueviolet; font-weight:600;"> ${account['username']} </span>`)
                         })
-                    
-                    
-                    if (questionState === "ANSWERED"){
+
+
+                        if (questionState === "ANSWERED") {
                             $(this).find("#question-list-style").css("background-color", "white")
                             $(this).find("#question-list-style").css("color", "black")
                             $(this).find("#question-list-style").css("box-shadow", "0px 5px 5px rgba(0,255,0, 0.3)")
                             $(this).find("#question-list-style").append("<div id='question-list-answered'> Answered <img id='question-list-answered-img' src='/images/assets/check-mark.png' style=''></img></div>")
                         }
-                        
-                    $(this).find("#sort-to").text(function () {
-                        return $(this).text().replace("; Castilian", "")
-                        })
-                    $(this).find("#question-list-text").text(function() {
-                        return $(this).text().replace("?", "")
-                    })
-                    $(this).find("#question-list-text").text(function() {
-                        $(this).append("?")
-                    })
-                })
-                
-                
-                let askedQuestion = sessionStorage.getItem("myAskedQuestion")
-                setTimeout(function(){
-                    if (askedQuestion !== null){
-                    
-                    
-                    
-                        $(`#${askedQuestion}`).trigger('click')
-                        
-                        $("body").animate({scrollTop: 0}, 'slow')
-                        $("#qa-section-container").css("overflow-y", "scroll") 
-                        sessionStorage.clear()
-                    }
-                }, 100)
-                
-            })
-            
-                
-        }
-            function scrollTopQA(){
-                $("#text-input-area").hide()  
-                $('#qa-section-container').animate({scrollTop: 0}, 'slow') 
-                replyBox()
-                }
-            
-            function activateQA(e){ 
-                $("#pre-load").fadeIn(200,function(){})
-                
-                setTimeout(function(){
-                $('#qa-section-container').animate({scrollTop: 0}, 'slow')
-                $("#questions-and-answers").show()
-                $("#questions-list").hide()
-                $("#qa-section-top-content").hide()
-                $("#last-question").hide()
-                
-                
-                let qn = ''      
-                const get_id = e.id
-                qn = $('#' + get_id).attr("data-questionid") 
-                
-                $("#last-question").attr("data-questionid", qn)
-                    
 
-                // Is user profile open?
-                
-                if ($("#my-profile-page-container").length > 0){
-                    $("#my-profile-page-container").remove()
-                }
-                    
-                const minWidth = window.matchMedia("screen and (min-width: 300px)")
-                const maxWidth = window.matchMedia("screen and (max-width: 1024px)")
-                
-                if (minWidth.matches && maxWidth.matches) {
-                    $("#qa-dashboard").css("display", "none")
-                    $("#mobile-nav-bar").css("display", "flex")
-                    $("#mobile-nav-bar").css("background-color", "black")
-                    $("#hamburger").css("fill", "white")
-                }
-            
-                    
-               $("#qa-section-sidebar").css("display", "flex") 
-                
-                speakyto.getQuestions(0).then(questions => {
-                    document.location.href = `#${questions[qn]['uid']}`
-                    const qaSection = $("#questions-and-answers").append(`
+                        $(this).find("#sort-to").text(function() {
+                            return $(this).text().replace("; Castilian", "")
+                        })
+                        $(this).find("#question-list-text").text(function() {
+                            return $(this).text().replace("?", "")
+                        })
+                        $(this).find("#question-list-text").text(function() {
+                            $(this).append("?")
+                        })
+                    })
+
+
+                    let askedQuestion = sessionStorage.getItem("myAskedQuestion")
+                    setTimeout(function() {
+                        if (askedQuestion !== null) {
+
+
+
+                            $(`#${askedQuestion}`).trigger('click')
+
+                            $("body").animate({
+                                scrollTop: 0
+                            }, 'slow')
+                            $("#qa-section-container").css("overflow-y", "scroll")
+                            sessionStorage.clear()
+                        }
+                    }, 100)
+
+                })
+
+
+            }
+
+            function scrollTopQA() {
+                $("#text-input-area").hide()
+                $('#qa-section-container').animate({
+                    scrollTop: 0
+                }, 'slow')
+                replyBox()
+            }
+
+            function activateQA(e) {
+                $("#pre-load").fadeIn(200, function() {})
+
+                setTimeout(function() {
+                    $('#qa-section-container').animate({
+                        scrollTop: 0
+                    }, 'slow')
+                    $("#questions-and-answers").show()
+                    $("#questions-list").hide()
+                    $("#qa-section-top-content").hide()
+                    $("#last-question").hide()
+
+
+                    let qn = ''
+                    const get_id = e.id
+                    qn = $('#' + get_id).attr("data-questionid")
+
+                    $("#last-question").attr("data-questionid", qn)
+
+
+                    // Is user profile open?
+
+                    if ($("#my-profile-page-container").length > 0) {
+                        $("#my-profile-page-container").remove()
+                    }
+
+                    const minWidth = window.matchMedia("screen and (min-width: 300px)")
+                    const maxWidth = window.matchMedia("screen and (max-width: 1024px)")
+
+                    if (minWidth.matches && maxWidth.matches) {
+                        $("#qa-dashboard").css("display", "none")
+                        $("#mobile-nav-bar").css("display", "flex")
+                        $("#mobile-nav-bar").css("background-color", "black")
+                        $("#hamburger").css("fill", "white")
+                    }
+
+
+                    $("#qa-section-sidebar").css("display", "flex")
+
+                    speakyto.getQuestions(0).then(questions => {
+                        document.location.href = `#${questions[qn]['uid']}`
+                        const qaSection = $("#questions-and-answers").append(`
             <button style="padding:10px; margin:75 0 0 25; background-color: black; box-shadow:0px 0px 10px black; color:white; outline: none; border-radius:6px; width: 25px; height: 25px; border:none;  clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);" onclick="qaBackButton()"></button>    
             <div id="question-section">
                 <h2 class="qa-headings-style-q">Question</h2>
@@ -764,30 +774,30 @@
                     </div>
                 </div>
             </div>`)
-                    
-                    //Append this question's username & avatar
-                    
-                    speakyto.getUserAccount(questions[qn]['user_uid']).then(account => {
-                        const getAvatar = parseInt(account['avatar_uid'])
-                        $("#question-header").prepend(`<img id="question-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">`)
-                      $("#question-user").text("User: " + account['username'])  
-                    })
-                    
-                    
-                   // Create Answers Section
-                    
-                    $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
-                    $("#answer-section").append(`<h1 style="color:black;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
-                    speakyto.getAnswers(questions[qn]['uid'], 0).then(answers =>{
-                        
-                        if(answers.length >= 1){
-                            $("#answer-placeholder").remove()
-                            $("#answer-this-button").remove()
+
+                        //Append this question's username & avatar
+
+                        speakyto.getUserAccount(questions[qn]['user_uid']).then(account => {
+                            const getAvatar = parseInt(account['avatar_uid'])
+                            $("#question-header").prepend(`<img id="question-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">`)
+                            $("#question-user").text("User: " + account['username'])
+                        })
+
+
+                        // Create Answers Section
+
+                        $("#questions-and-answers").append(`<div id="answer-section"> <h2 class="qa-headings-style-a"> Answers </h2>`)
+                        $("#answer-section").append(`<h1 style="color:black;" id="answer-placeholder">Be the first to answer this question!</h1> <button class="reply-button-c" style="color: white;" onclick="scrollTopQA()" id="answer-this-button">Answer This</button>`)
+                        speakyto.getAnswers(questions[qn]['uid'], 0).then(answers => {
+
+                            if (answers.length >= 1) {
+                                $("#answer-placeholder").remove()
+                                $("#answer-this-button").remove()
                             }
-                        answers.forEach(answer =>{
-                            
-                            
-                            const appendAnswers = $("#answer-section").append(`
+                            answers.forEach(answer => {
+
+
+                                const appendAnswers = $("#answer-section").append(`
                     <div data-answeruid="${answer['user_uid']}" class="answers"> 
                         <div id="answer-header">
                             <div id="answer-header-contents">
@@ -800,72 +810,74 @@
                             <button id="select-answer-button" class="answer-btn" value=${answer['uid']} onclick="onSelectAnswer()" style="display:none;">Select Answer</button> 
                         </div>
                     </div>
-                </div>`) 
-                            
+                </div>`)
+
+                            })
+                        })
+
+                    })
+
+                    // Are there answers?
+
+
+
+                    // Handle logic between user interaction buttons
+
+                    $(document).ready(function() {
+
+                        const currentUserInitial = $("#user-account").text()
+                        const currentUser = currentUserInitial
+
+                        const questionUserInitial = $("#question-user").text()
+                        const questionUser = questionUserInitial.replace("User: ", "")
+                        const questionStatus = $("#question-status").text()
+
+                        if (questionUser == currentUser) {
+                            $("#close-question-button").show()
+                            $("#select-answer-button").show()
+                            $("#reply-button").hide()
+
+                        } else if (questionUser != currentUser) {
+                            $("#close-question-button").hide()
+                            $("#select-answer-button").hide()
+                            $("#reply-button").show()
+
+                        }
+
+                        if (questionStatus == "ANSWERED") {
+                            $("#close-question-button").hide()
+                            $("#select-answer-button").hide()
+                            $("#reply-button").hide()
+
+                        }
+
+                        $(".answers").each(function(x) {
+
+                            const answerUID = $(this).attr("data-answeruid")
+                            speakyto.getUserAccount(answerUID).then(account => {
+                                const getAvatar = parseInt(account['avatar_uid'])
+                                $(this).find("#answer-header").prepend(`<img id="answer-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="answer-avatar" class="user-content">`)
+                                $(this).find("#answer-user").text("User: " + account['username'])
+                            })
                         })
                     })
-                    
-                })
-                
-                // Are there answers?
-                
-                    
-                
-                // Handle logic between user interaction buttons
-                
-                $(document).ready(function() {
-                    
-                    const currentUserInitial = $("#user-account").text()
-                    const currentUser = currentUserInitial
-                    
-                    const questionUserInitial = $("#question-user").text()
-                    const questionUser = questionUserInitial.replace("User: ", "")
-                    const questionStatus = $("#question-status").text()
-                    
-                    if (questionUser == currentUser){
-                        $("#close-question-button").show()
-                        $("#select-answer-button").show()
-                        $("#reply-button").hide()
-                        
-                    } else if (questionUser != currentUser) {
-                        $("#close-question-button").hide()
-                        $("#select-answer-button").hide()
-                        $("#reply-button").show()
-                        
-                    }
-                    
-                    if (questionStatus == "ANSWERED"){
-                        $("#close-question-button").hide()
-                        $("#select-answer-button").hide()
-                        $("#reply-button").hide()
-                        
-                    }
-                    
-                    $(".answers").each(function(x){
-                                
-                                const answerUID = $(this).attr("data-answeruid")
-                                speakyto.getUserAccount(answerUID).then(account =>{
-                                    const getAvatar = parseInt(account['avatar_uid'])
-                                    $(this).find("#answer-header").prepend(`<img id="answer-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="answer-avatar" class="user-content">`)
-                                    $(this).find("#answer-user").text("User: " + account['username']) 
-                                })  
-                            })
-                })  
-            },200)
-                setTimeout(function() {$("#pre-load").fadeOut(200,function(){})}, 200)
-                
-        }
-            
-            
-            // Toggles The Reply box
-            
-            function replyBox(){
-                $("#text-input-area").toggle()        
-                
+                }, 200)
+                setTimeout(function() {
+                    $("#pre-load").fadeOut(200, function() {})
+                }, 200)
+
             }
-            
-            function returnHome(){
-                
+
+
+            // Toggles The Reply box
+
+            function replyBox() {
+                $("#text-input-area").toggle()
+
+            }
+
+            function returnHome() {
+
                 $("body").prepend(`
                 <div id="returnHomeBox" style=" z-index: 2; position: absolute; display: flex; justify-content: center; align-items:center; background-color: rgba(0,0,0,0.9); width: 100%; height: 100%;" >
                 
@@ -877,266 +889,260 @@
                             </div>
                     </div> 
                 </div>`)
-                
+
                 $(document).ready(function() {
-                    $("#yesBTN").click(function (){
-                        $("#pre-load").fadeIn(500, function(){})
-                        setTimeout(function(){
-                                   window.location.replace("/index")
-                                   }, 700)     
+                    $("#yesBTN").click(function() {
+                        $("#pre-load").fadeIn(500, function() {})
+                        setTimeout(function() {
+                            window.location.replace("/index")
+                        }, 700)
                     })
-                    
-                    $("#noBTN").click(function () {
+
+                    $("#noBTN").click(function() {
                         $("#returnHomeBox").remove()
-                        
+
                     })
-                    
-                    if ($("#returnHomeBox").length > 0){
-                            $(window).click(function () {
+
+                    if ($("#returnHomeBox").length > 0) {
+                        $(window).click(function() {
                             $("#returnHomeBox").remove()
                         })
-                           
-                    } else if($('#returnHomeBox').length == 0) {
+
+                    } else if ($('#returnHomeBox').length == 0) {
                         returnHome()
                     }
-                    
-                    
+
+
                 })
-                
-                 
+
+
             }
-            
+
             // Alert Boxes
-            
+
             // Handles logic between answering questions
-            
+
             // Continue here...
-            
+
             function onAnswerQuestion(e) {
-                
+
                 const answerID = e.id
                 const questionUid = $("#" + answerID).val()
                 const textArea = "#text-data-"
-                const data = textArea.concat(questionUid)        
-                
-                if (!$(data).val()){
-                    
+                const data = textArea.concat(questionUid)
+
+                if (!$(data).val()) {
+
                     alert("Please Enter Your Answer")
-                    
-                    } else {
-                        alertBox()
-                        speakyto.answerQuestion(questionUid, $(data).val()).then(answerUid => {
-                                const questionInt = parseInt(questionUid)
-                                sessionStorage.setItem('myAskedQuestion', questionInt)
-                                successAnswered() 
-                        }).catch(error => {
-                            const thisError = error.toString()
-                            if(thisError.includes("TypeError: Cannot read property 'result' of undefined")){
-                                catchSubmissionAlert()    
-                            }
-                            else{
-                                catchCloseAlert2()
-                                $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+
+                } else {
+                    alertBox()
+                    speakyto.answerQuestion(questionUid, $(data).val()).then(answerUid => {
+                        const questionInt = parseInt(questionUid)
+                        sessionStorage.setItem('myAskedQuestion', questionInt)
+                        successAnswered()
+                    }).catch(error => {
+                        const thisError = error.toString()
+                        if (thisError.includes("TypeError: Cannot read property 'result' of undefined")) {
+                            catchSubmissionAlert()
+                        } else {
+                            catchCloseAlert2()
+                            $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
                                 <p style="color:red; font-weight: 600;">${thisError}</p>`)
-                            }      
-                        })
-                    }
+                        }
+                    })
+                }
             }
-            
+
             function accountRefresh() {
                 if (ancilia.isLoggedIn()) {
                     const address = ancilia.getLoggedInWallet()
                     $("#address").text(address)
                     $("#address-profile").text(address)
-                    
+
                     speakyto.getUserUid(address).then(user_uid => {
-                        
+
                         speakyto.getUserAccount(user_uid).then(account => {
-                        $("#user-account-profile").text(account['username'])   
+                            $("#user-account-profile").text(account['username'])
                         })
-                        
+
                         speakyto.getUserLevel(user_uid).then(level => {
-                        const levelVar = parseInt(level)
-                        $("#level").text("Level: " + levelVar)
-                        expTest = 1000
-                        levelTest = 2
-                        
-                        speakyto.getUserExperience(user_uid).then(experience => {
-                            const minExp = document.getElementById("point-slider-target")
-                            const maxExp = document.getElementById("point-slider-target")
-                            const currExp = parseInt(experience)
-                            document.getElementById("point-slider-target").value = currExp
-                            $("#experience").text("Experience: " + currExp.toLocaleString())
-                            $("#exp-level").text(currExp.toLocaleString())
-                        
-                        // Level 1
-                            if (level == 1){
-                                
-                                $(document).ready(function(){
-                                    if (currExp >= 0 && currExp <= 999 && level == 1){
-                                        minExp.min = 0
-                                        maxExp.max = 999
-                                        
-                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
-                                    }
-//                                   if (currExp >= maxExp && level == 1){
-//                                    alert("You made it to level 2!")
-//                                   }
-                                })    
-                            }
-                        
-                        // Level 2
-                            else if (level == 2){
-                                
-                                $(document).ready(function(){
-                                    if (currExp >= 1000 && currExp <= 3999 && level == 2){
-                                        minExp == 1000
-                                        maxExp == 4000
-                                        
-                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
-                                    }
-//                                    if (currExp >= maxExp && level == 2){
-//                                    alert("You made it to level 3!")
-//                                   }
-                                }) 
-                            }
-                        // Level 3
-                            else if (level == 3){
-                                
-                                $(document).ready(function(){
-                                    if (currExp >= 4000 && currExp <= 11999 && level == 3){
-                                        minExp == 4000
-                                        maxExp == 12000
-                                        
-                                       // $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
-                                    }
-//                                    if (currExp >= maxExp && level == 3){
-//                                    alert("You made it to level 4!")
-//                                   }
-                                }) 
-                            }
-                        
-                        // Level 4  
-                            else if (level == 4){
-                                
-                                $(document).ready(function(){
-                                    if (currExp >= 12000 && currExp <= 23999 && level == 4){
-                                        minExp == 12000
-                                        maxExp == 24000
-                                        
-                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
-                                    }
-//                                    if (currExp >= maxExp && level == 4){
-//                                    alert("You made it to level 5!")
-//                                   }
-                                }) 
-                            }
-                        
-                        // Level 5 
-                            else if (level == 5){
-                                
-                                $(document).ready(function(){
-                                    if (currExp >= 24000 && currExp <= 39999 && level == 5){
-                                        minExp == 24000
-                                        maxExp == 40000
-                                        
-                                        //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
-                                    }
-//                                    if (currExp >= maxExp && level == 5){
+                            const levelVar = parseInt(level)
+                            $("#level").text("Level: " + levelVar)
+                            expTest = 1000
+                            levelTest = 2
+
+                            speakyto.getUserExperience(user_uid).then(experience => {
+                                const minExp = document.getElementById("point-slider-target")
+                                const maxExp = document.getElementById("point-slider-target")
+                                const currExp = parseInt(experience)
+                                document.getElementById("point-slider-target").value = currExp
+                                $("#experience").text("Experience: " + currExp.toLocaleString())
+                                $("#exp-level").text(currExp.toLocaleString())
+
+                                // Level 1
+                                if (level == 1) {
+
+                                    $(document).ready(function() {
+                                        if (currExp >= 0 && currExp <= 999 && level == 1) {
+                                            minExp.min = 0
+                                            maxExp.max = 999
+
+                                            //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        }
+                                        //                                   if (currExp >= maxExp && level == 1){
+                                        //                                    alert("You made it to level 2!")
+                                        //                                   }
+                                    })
+                                }
+
+                                // Level 2
+                                else if (level == 2) {
+
+                                    $(document).ready(function() {
+                                        if (currExp >= 1000 && currExp <= 3999 && level == 2) {
+                                            minExp == 1000
+                                            maxExp == 4000
+
+                                            //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        }
+                                        //                                    if (currExp >= maxExp && level == 2){
+                                        //                                    alert("You made it to level 3!")
+                                        //                                   }
+                                    })
+                                }
+                                // Level 3
+                                else if (level == 3) {
+
+                                    $(document).ready(function() {
+                                        if (currExp >= 4000 && currExp <= 11999 && level == 3) {
+                                            minExp == 4000
+                                            maxExp == 12000
+
+                                            // $("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        }
+                                        //                                    if (currExp >= maxExp && level == 3){
+                                        //                                    alert("You made it to level 4!")
+                                        //                                   }
+                                    })
+                                }
+
+                                // Level 4  
+                                else if (level == 4) {
+
+                                    $(document).ready(function() {
+                                        if (currExp >= 12000 && currExp <= 23999 && level == 4) {
+                                            minExp == 12000
+                                            maxExp == 24000
+
+                                            //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        }
+                                        //                                    if (currExp >= maxExp && level == 4){
+                                        //                                    alert("You made it to level 5!")
+                                        //                                   }
+                                    })
+                                }
+
+                                // Level 5 
+                                else if (level == 5) {
+
+                                    $(document).ready(function() {
+                                        if (currExp >= 24000 && currExp <= 39999 && level == 5) {
+                                            minExp == 24000
+                                            maxExp == 40000
+
+                                            //$("#next-level").text(Math.abs(currExp - maxExp.max) + " SPKT")
+                                        }
+                                        //                                    if (currExp >= maxExp && level == 5){
                                         //alert("You made it to level 6!")
-//                                   }
-                                }) 
-                            }
-                            
-                            else if (level == 6){
-                                $("#next-level").text("You're at max level")
-                                $("#exp-notify").hide()
-                                minExp == 40000
-                                maxExp == Infinity
-                            }
+                                        //                                   }
+                                    })
+                                } else if (level == 6) {
+                                    $("#next-level").text("You're at max level")
+                                    $("#exp-notify").hide()
+                                    minExp == 40000
+                                    maxExp == Infinity
+                                }
+                            })
                         })
-                        })
-                        
+
                     })
 
-                    
-                    
-                    
+
+
+
                 } else {
                     window.location.replace("/index")
                 }
             }
-            
 
-                function onLogin() {
-                    
-                    $("#pre-load").fadeIn(500, function(){})
-                    setTimeout(function(){
-                        if (ancilia.isLoggedIn()) {
-                            window.location.replace('/index')
-                            ancilia.logout()
-                            accountRefresh()
-                        }   
-                     }, 700)
+
+            function onLogin() {
+
+                $("#pre-load").fadeIn(500, function() {})
+                setTimeout(function() {
+                    if (ancilia.isLoggedIn()) {
+                        window.location.replace('/index')
+                        ancilia.logout()
+                        accountRefresh()
+                    }
+                }, 700)
             }
-            
+
             function onCancelQuestion() {
                 const questionUid = $("#close-question-button").val()
-                
+
                 alertBox()
-                speakyto.cancelQuestion(questionUid).then(tx => {         
+                speakyto.cancelQuestion(questionUid).then(tx => {
                     // Wait for the state to be changed
                     ancilia.__txResult(tx['result']).then(() => {
-                    // Wait for the next block
-                    successCloseQuestion()
-                }).catch(error => {
+                        // Wait for the next block
+                        successCloseQuestion()
+                    }).catch(error => {
                         const thisError = error.toString()
                         catchCloseAlert2()
                         $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
                         <p style="color:red; font-weight: 600;">${thisError}</p>`)
                     })
-            }).catch(error => {
+                }).catch(error => {
                     const thisError = error.toString()
-                    if(thisError.includes("TypeError: Cannot read property 'result' of undefined")){
-                        catchCloseAlert()  
-                    }
-                    else{
+                    if (thisError.includes("TypeError: Cannot read property 'result' of undefined")) {
+                        catchCloseAlert()
+                    } else {
                         catchCloseAlert2()
                         $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
                         <p style="color:red; font-weight: 600;">${thisError}</p>`)
                     }
                 })
-        }
-            
-            function askQuestion(){
-                window.location.replace('ask_page')
-                
             }
-            
+
+            function askQuestion() {
+                window.location.replace('ask_page')
+
+            }
+
             function onSelectAnswer() {
                 alertBox()
                 const answerUid = $("#select-answer-button").val()
-                
+
                 speakyto.selectAnswer(answerUid).then(tx => {
                     // Wait for the state to be changed
-                ancilia.__txResult(tx['result']).then(() => {
-                    successSelectAnswer()
+                    ancilia.__txResult(tx['result']).then(() => {
+                        successSelectAnswer()
+                    }).catch(error => {
+                        catchCloseAlert2()
+                        const thisError = error.toString()
+                        $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
+                    <p style="color:red; font-weight: 600;">${thisError}</p>`)
+                    })
                 }).catch(error => {
-                    catchCloseAlert2()
                     const thisError = error.toString()
+                    catchCloseAlert2()
                     $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
                     <p style="color:red; font-weight: 600;">${thisError}</p>`)
                 })
-            }).catch(error => {
-                    const thisError = error.toString()
-                    catchCloseAlert2()
-                    $("#alert-container-contents").append(`<p style="color:black;">Only you can see this error. Please report (DM) it to @CreativeMatte on Twitter as a bug.</p>
-                    <p style="color:red; font-weight: 600;">${thisError}</p>`)
-            })
-        }
-            
-            
-            
+            }
         </script>
-    </body>
+</body>
+
 </html>
