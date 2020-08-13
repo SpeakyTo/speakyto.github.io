@@ -54,14 +54,16 @@
         }
 
         function accountRefresh() {
-
             if (ancilia.isLoggedIn()) {
-                window.location.replace("/pages/qa_home")
-                $("#auth").text('Redirecting To Login Page')
-
+                $("#auth").text('Redirecting...')
+                setTimeout(function() {
+                    window.location.replace("/pages/qa_home")
+                }, 1500)
             } else {
                 $("#auth").text('Checking Login')
-                window.location.replace("/pages/login")
+                setTimeout(function() {
+                    window.location.replace("/pages/login")
+                }, 1500)
             }
         }
     </script>
