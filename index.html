@@ -72,12 +72,12 @@
         function isMobile() {
             const mobileWidth = window.matchMedia("screen and (min-width: 240px) and (max-width: 1024px)")
             if (mobileWidth.matches) {
-                $("#mobile-placeholder").show()
+                $("#mobile-placeholder").css("display", "flex")
                 $("#main-wrap").hide()
                 $("#main-wrap").remove()
 
             } else {
-                $("#mobile-placeholder").hide()
+                $("#mobile-placeholder").css("display", "none")
             }
         }
     </script>
