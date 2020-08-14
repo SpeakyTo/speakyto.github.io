@@ -122,7 +122,7 @@
                             const avatarID = parseInt(account['avatar_uid'])
 
                             const getAvatar = $("#welcome-box").prepend(`
-                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content"> `).insertAfter("")
+                        <img id="avatar"src="/images/user_avatars/avatar_${avatarID}.png" alt="avatar" class="user-content-avatar"> `).insertAfter("")
 
 
                             //Load Username
@@ -256,7 +256,7 @@
                                                 <h2> My Profile </h2>
                                                 <div id="split">
                                                     <div id="split-left">
-                                                        <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">
+                                                        <img id="my-profile-avatar"src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content-avatar">
                                                         <span class="profile-page-text"> Your address </span>
                                                         <span id="my-user-id" hidden>${account['uid']}</span>
                                                         <span id="address"></span>  
@@ -779,7 +779,7 @@
 
                         speakyto.getUserAccount(questions[qn]['user_uid']).then(account => {
                             const getAvatar = parseInt(account['avatar_uid'])
-                            $("#question-header").prepend(`<img id="question-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content">`)
+                            $("#question-header").prepend(`<img id="question-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="avatar" class="user-content-avatar">`)
                             $("#question-user").text("User: " + account['username'])
                         })
 
@@ -856,7 +856,7 @@
                             const answerUID = $(this).attr("data-answeruid")
                             speakyto.getUserAccount(answerUID).then(account => {
                                 const getAvatar = parseInt(account['avatar_uid'])
-                                $(this).find("#answer-header").prepend(`<img id="answer-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="answer-avatar" class="user-content">`)
+                                $(this).find("#answer-header").prepend(`<img id="answer-avatar" src="/images/user_avatars/avatar_${getAvatar}.png" alt="answer-avatar" class="user-content-avatar">`)
                                 $(this).find("#answer-user").text("User: " + account['username'])
                             })
                         })

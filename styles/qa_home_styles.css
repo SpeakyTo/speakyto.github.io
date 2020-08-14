@@ -131,7 +131,9 @@ h1 {
 }
 
 #loader-image {
-    width: 300px;
+    max-width: 300px;
+    min-width: 299px;
+    height: auto;
     padding: 50px;
     clip-path: circle(45% at 50% 50%);
     background-color: blueviolet;
@@ -292,6 +294,12 @@ h1 {
 
 }
 
+.user-content-avatar {
+    padding: 15px;
+    max-height: 132px;
+    max-width: 132px;
+}
+
 h2.user-content {
     background-color: rgb(33, 33, 33);
     border-radius: 6px;
@@ -301,8 +309,8 @@ h2.user-content {
     border-radius: 12px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     background-color: rgb(33, 33, 33);
-    height: 132px;
-    width: 132px;
+    max-height: 132px;
+    max-width: 132px;
 }
 
 #address {
