@@ -815,7 +815,7 @@ h2.user-content {
     border-radius: 12px;
     background-color: blue;
     height: 200px;
-    width: 100%
+    width: 100%;
 }
 
 #question-avatar {
@@ -823,9 +823,8 @@ h2.user-content {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
     background-color: rgb(33, 33, 33);
-    width: 150px;
-    height: 150px;
-
+    width: 132px;
+    height: 132px;
 }
 
 #question-header-contents {
@@ -1020,8 +1019,8 @@ h2.user-content {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
-    width: 150px;
-    height: 150px;
+    width: 132px;
+    height: 132px;
 
 }
 
