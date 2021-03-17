@@ -742,11 +742,14 @@
                     const minWidth = window.matchMedia("screen and (min-width: 300px)")
                     const maxWidth = window.matchMedia("screen and (max-width: 1024px)")
 
-                    if (minWidth.matches && maxWidth.matches) {
+                    if (window.innerWidth < 1023) {
+                        $("#mobile-nav-bar").show()
                         $("#qa-dashboard").css("display", "none")
                         $("#mobile-nav-bar").css("display", "flex")
                         $("#mobile-nav-bar").css("background-color", "black")
                         $("#hamburger").css("fill", "white")
+                    } else {
+                        $("#mobile-nav-bar").hide()
                     }
 
 
