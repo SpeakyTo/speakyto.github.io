@@ -178,11 +178,15 @@
                     const minWidth = window.matchMedia("(min-width: 300px)")
                     const maxWidth = window.matchMedia("(max-width: 1023px)")
 
-                    if (window.innerWidth < maxWidth) {
-                        $("#mobile-nav-bar").css("display", "flex")
-                    } else if (window.innerWidth > maxWidth) {
-                        $("#mobile-nav-bar").css("display", "none")
+                    const mobileNavBar = () => {
+                        if (window.innerWidth < maxWidth) {
+                            $("#mobile-nav-bar").css("display", "flex")
+                        } else if (window.innerWidth > maxWidth) {
+                            $("#mobile-nav-bar").css("display", "none")
+                        }
                     }
+                    
+                    window.addEventListener('resize', mobileNavBar)
 
                     $("#hamburger").on("click", function () {
 
