@@ -1626,7 +1626,7 @@ h2.user-content {
         width: 100%;
         padding: 20px;
     }
-    #answers {
+    .answers {
         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
         width: 100%;
     }
