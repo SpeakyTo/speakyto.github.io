@@ -223,7 +223,12 @@
             function closeProfilePage() {
                 $("#my-profile-page-container").remove()
                 $("#last-question").hide()
-                $("#mobile-nav-bar").css("display", "flex")
+                if (window.innerWidth < 1024) {
+                    $("#mobile-nav-bar").css("display", "flex")
+                } else {
+                    $("#mobile-nav-bar").css("display", "none")
+                }
+
             }
 
             function buttonPreloadListeners() {
