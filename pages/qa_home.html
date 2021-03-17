@@ -176,7 +176,7 @@
                     const minWidth = window.matchMedia("(min-width: 300px)")
                     const maxWidth = window.matchMedia("(max-width: 1023px)")
 
-                    if (minWidth && maxWidth){
+                    if ((window.innerWidth <= maxWidth && window.innerWidth >= minWidth)){
                         $("#mobile-nav-bar").css("display", "flex")
                     } else {
                         $("#mobile-nav-bar").css("display", "none")
