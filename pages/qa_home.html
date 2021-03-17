@@ -175,9 +175,6 @@
 
                 $(document).ready(function () {
 
-                    const minWidth = window.matchMedia("(min-width: 300px)")
-                    const maxWidth = window.matchMedia("(max-width: 1023px)")
-
                     const navListener = () => {
                         if (window.innerWidth < 1023) {
                             $("#mobile-nav-bar").show()
@@ -185,6 +182,12 @@
                             $("#mobile-nav-bar").hide()
                         }
                     }
+                    navListener()
+                    
+                    const minWidth = window.matchMedia("(min-width: 300px)")
+                    const maxWidth = window.matchMedia("(max-width: 1023px)")
+
+
 
                     window.addEventListener("resize", navListener)
 
