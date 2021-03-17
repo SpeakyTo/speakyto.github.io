@@ -172,24 +172,21 @@
             }
 
             function mobileListener() {
+                const minWidth = window.matchMedia("(min-width: 300px)")
+                const maxWidth = window.matchMedia("(max-width: 1023px)"
+                )
+                const navListener = () => {
+                    if (window.innerWidth < 1023) {
+                        $("#mobile-nav-bar").show()
+                    } else {
+                        $("#mobile-nav-bar").hide()
+                    }
+                }
+                navListener()
+
+                window.addEventListener("resize", navListener)
 
                 $(document).ready(function () {
-
-                    const navListener = () => {
-                        if (window.innerWidth < 1023) {
-                            $("#mobile-nav-bar").show()
-                        } else {
-                            $("#mobile-nav-bar").hide()
-                        }
-                    }
-                    navListener()
-                    
-                    const minWidth = window.matchMedia("(min-width: 300px)")
-                    const maxWidth = window.matchMedia("(max-width: 1023px)")
-
-
-
-                    window.addEventListener("resize", navListener)
 
                     $("#hamburger").on("click", function () {
 
