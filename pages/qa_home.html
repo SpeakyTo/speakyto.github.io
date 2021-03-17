@@ -49,7 +49,8 @@
         <div id="content-container-wrap">
             <div id="content-container">
                 <div id="qa-dashboard">
-                    <img src="/images/SpeakyTo_Typeography.png" id="header-logo" onclick="window.location.href='/index'">
+                    <img src="/images/SpeakyTo_Typeography.png" id="header-logo"
+                        onclick="window.location.href='/index'">
                     <div id="qa-dashboard-links-container">
                         <button class="qa-dashboard-content" onclick="returnHome()">Home</button>
                         <button class="qa-dashboard-content" onclick="onLogin()">Logout</button>
@@ -61,7 +62,8 @@
                             <span id="level" class="my-level"></span>
                         </div>
                         <div id="qa-section-level-meter">
-                            <img id="level-meter-img" src="/images/assets/SPKT_Token_72.png" alt="level=meter-img" class="user-content">
+                            <img id="level-meter-img" src="/images/assets/SPKT_Token_72.png" alt="level=meter-img"
+                                class="user-content">
                             <div class="exp-level-container">
                                 <div id="point-slider-container">
                                     <div id="slider-content">
@@ -70,7 +72,8 @@
                                             <span style="color: white;">EXP</span>
                                             <span class="exp-style"></span>
                                         </div>
-                                        <input type="range" min="" max="" value="" class="point-slider" id="point-slider-target">
+                                        <input type="range" min="" max="" value="" class="point-slider"
+                                            id="point-slider-target">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +92,7 @@
         <script>
             window.onload = () => {
                 $("#mobile-nav-bar").hide()
-                setTimeout(function() {
+                setTimeout(function () {
                     // init account
                     mobileListener()
                     historyListener()
@@ -105,8 +108,8 @@
                     $("#pre-load").load("/scripts/loader")
                     $("#pre-load").hide()
 
-                    $(document).ready(function() {
-                        $("#loader-screen").fadeOut(200, function() {})
+                    $(document).ready(function () {
+                        $("#loader-screen").fadeOut(200, function () { })
                     })
                 }, 1000)
             }
@@ -145,8 +148,8 @@
             }
 
             function questionListener() {
-                $(document).ready(function() {
-                    $(document).on("click", ".question-container, .my-question-button, #last-question", function(e) {
+                $(document).ready(function () {
+                    $(document).on("click", ".question-container, .my-question-button, #last-question", function (e) {
 
                         activateQA(this)
                         $("body").animate({
@@ -158,7 +161,7 @@
             }
 
             function historyListener() {
-                $(document).ready(function() {
+                $(document).ready(function () {
                     function changeHistory() {
                         const hash = (window.location.hash)
                         if (hash.length === 0) {
@@ -171,18 +174,18 @@
 
             function mobileListener() {
 
-                $(document).ready(function() {
+                $(document).ready(function () {
 
                     const minWidth = window.matchMedia("(min-width: 300px)")
                     const maxWidth = window.matchMedia("(max-width: 1023px)")
 
-                    if ((window.innerWidth <= maxWidth && window.innerWidth >= minWidth)){
+                    if (window.innerWidth <= maxWidth) {
                         $("#mobile-nav-bar").css("display", "flex")
                     } else {
                         $("#mobile-nav-bar").css("display", "none")
                     }
 
-                    $("#hamburger").on("click", function() {
+                    $("#hamburger").on("click", function () {
 
                         if ($("#qa-dashboard").css("display") == "none") {
                             $("#mobile-nav-bar").css("background-color", "transparent")
@@ -221,9 +224,9 @@
             }
 
             function buttonPreloadListeners() {
-                $("#my-profile").click(function() {
-                    $("#pre-load").fadeIn(300, function() {})
-                    setTimeout(function() {
+                $("#my-profile").click(function () {
+                    $("#pre-load").fadeIn(300, function () { })
+                    setTimeout(function () {
                         viewMyProfile()
                     }, 200)
                 })
@@ -237,7 +240,7 @@
                 $("body").css("overflow", "hidden")
                 qaBackButton()
 
-                setTimeout(function() {
+                setTimeout(function () {
 
                     if (ancilia.isLoggedIn()) {
 
@@ -276,8 +279,8 @@
                                 accountRefresh()
                                 getMyQuestions()
                                 //questionListener()
-                                $(document).ready(function() {
-                                    $("#pre-load").fadeOut(200, function() {})
+                                $(document).ready(function () {
+                                    $("#pre-load").fadeOut(200, function () { })
 
                                 })
                             })
@@ -331,7 +334,7 @@
 
                 })
 
-                $(document).ready(function() {
+                $(document).ready(function () {
                     if ($("#my-questions").find("#my-questions-container").length === 0) {
                         $("#my-questions").append(`<h1 id="no-questions" style="color: blueviolet; font-weight: 600">You haven't asked any questions yet</h1>`)
 
@@ -364,10 +367,10 @@
 
                 })
 
-                $(document).ready(function() {
+                $(document).ready(function () {
 
                     if ($("#sort-lang-container").length > 0) {
-                        $(window).click(function() {
+                        $(window).click(function () {
                             $("#sort-lang-container").remove()
                         })
                     } else if ($("#sort-lang-container").length == 0) {
@@ -379,7 +382,7 @@
 
             function sortedLanguages() {
 
-                $(document).on("click", ".sort-lang-options", function(e) {
+                $(document).on("click", ".sort-lang-options", function (e) {
                     const langText = e.target.text
                     if ($(this).val() != "Default") {
                         $("#sort-lang").text(langText)
@@ -426,7 +429,7 @@
                                     <h2 style="color: black; text-align: center;">You cancelled your submission</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
                 return noTransaction
@@ -439,7 +442,7 @@
                                     <h2 style="color: black; text-align: center;">You cancelled closing your question</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
                 return noTransaction
@@ -452,7 +455,7 @@
                                     <h2 style="color: black; text-align: center;">Uh oh. Something went wrong.</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
                 return noTransaction
@@ -465,7 +468,7 @@
                                     <h2 style="color: black; text-align: center;">You cancelled Selecting an answer</h2>
                                     <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
                 return noTransaction
@@ -479,10 +482,10 @@
                                         <button id="alert-home-button" class="alert-button-style">Back to question</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
-                $("#alert-home-button").click(function(e) {
+                $("#alert-home-button").click(function (e) {
                     window.location.reload(true)
                 })
                 return successNotification
@@ -496,10 +499,10 @@
                                         <button id="alert-home-button" class="alert-button-style">Return To Questions</button>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     $("#alert-box").remove()
                 })
-                $("#alert-home-button").click(function() {
+                $("#alert-home-button").click(function () {
                     window.location.reload()
                     $("#alert-box").remove()
                 })
@@ -513,7 +516,7 @@
                                         <h2 style="color: black; text-align: center;">Successfully cancelled</h2>
                                         <button id="alert-close-button" class="alert-button-style">Close</button>
             `)
-                $("#alert-close-button").click(function() {
+                $("#alert-close-button").click(function () {
                     window.location.reload()
                     $("#alert-box").remove()
                 })
@@ -535,10 +538,10 @@
                     </div>
                 </div>`)
 
-                $(document).ready(function() {
+                $(document).ready(function () {
 
                     if ($("#sort-levels-container").length > 0) {
-                        $(window).click(function() {
+                        $(window).click(function () {
                             $("#sort-levels-container").remove()
                         })
                     } else if ($("#sort-levels-container").length == 0) {
@@ -548,7 +551,7 @@
             }
 
             function sortedLevels() {
-                $(document).on("click", ".sort-levels-options", function(e) {
+                $(document).on("click", ".sort-levels-options", function (e) {
                     const levelsText = e.target.text
                     $("#sort-levels").text(levelsText)
 
@@ -647,9 +650,9 @@
 
 
                 })
-                $(document).ready(function() {
+                $(document).ready(function () {
 
-                    $(".question-container").each(function(x) {
+                    $(".question-container").each(function (x) {
                         const accountUid = $(this).attr("data-useruid")
                         const questionState = $(this).attr("data-state")
 
@@ -666,20 +669,20 @@
                             $(this).find("#question-list-style").append("<div id='question-list-answered'> Answered <img id='question-list-answered-img' src='/images/assets/check-mark.png' style=''></img></div>")
                         }
 
-                        $(this).find("#sort-to").text(function() {
+                        $(this).find("#sort-to").text(function () {
                             return $(this).text().replace("; Castilian", "")
                         })
-                        $(this).find("#question-list-text").text(function() {
+                        $(this).find("#question-list-text").text(function () {
                             return $(this).text().replace("?", "")
                         })
-                        $(this).find("#question-list-text").text(function() {
+                        $(this).find("#question-list-text").text(function () {
                             $(this).append("?")
                         })
                     })
 
 
                     let askedQuestion = sessionStorage.getItem("myAskedQuestion")
-                    setTimeout(function() {
+                    setTimeout(function () {
                         if (askedQuestion !== null) {
 
 
@@ -708,9 +711,9 @@
             }
 
             function activateQA(e) {
-                $("#pre-load").fadeIn(200, function() {})
+                $("#pre-load").fadeIn(200, function () { })
 
-                setTimeout(function() {
+                setTimeout(function () {
                     $('#qa-section-container').animate({
                         scrollTop: 0
                     }, 'slow')
@@ -822,7 +825,7 @@
 
                     // Handle logic between user interaction buttons
 
-                    $(document).ready(function() {
+                    $(document).ready(function () {
 
                         const currentUserInitial = $("#user-account").text()
                         const currentUser = currentUserInitial
@@ -850,7 +853,7 @@
 
                         }
 
-                        $(".answers").each(function(x) {
+                        $(".answers").each(function (x) {
 
                             const answerUID = $(this).attr("data-answeruid")
                             speakyto.getUserAccount(answerUID).then(account => {
@@ -861,8 +864,8 @@
                         })
                     })
                 }, 200)
-                setTimeout(function() {
-                    $("#pre-load").fadeOut(200, function() {})
+                setTimeout(function () {
+                    $("#pre-load").fadeOut(200, function () { })
                 }, 200)
 
             }
@@ -889,21 +892,21 @@
                     </div> 
                 </div>`)
 
-                $(document).ready(function() {
-                    $("#yesBTN").click(function() {
-                        $("#pre-load").fadeIn(500, function() {})
-                        setTimeout(function() {
+                $(document).ready(function () {
+                    $("#yesBTN").click(function () {
+                        $("#pre-load").fadeIn(500, function () { })
+                        setTimeout(function () {
                             window.location.replace("/index")
                         }, 700)
                     })
 
-                    $("#noBTN").click(function() {
+                    $("#noBTN").click(function () {
                         $("#returnHomeBox").remove()
 
                     })
 
                     if ($("#returnHomeBox").length > 0) {
-                        $(window).click(function() {
+                        $(window).click(function () {
                             $("#returnHomeBox").remove()
                         })
 
@@ -982,7 +985,7 @@
                                 // Level 1
                                 if (level == 1) {
 
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
                                         if (currExp >= 0 && currExp <= 999 && level == 1) {
                                             minExp.min = 0
                                             maxExp.max = 999
@@ -998,7 +1001,7 @@
                                 // Level 2
                                 else if (level == 2) {
 
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
                                         if (currExp >= 1000 && currExp <= 3999 && level == 2) {
                                             minExp == 1000
                                             maxExp == 4000
@@ -1013,7 +1016,7 @@
                                 // Level 3
                                 else if (level == 3) {
 
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
                                         if (currExp >= 4000 && currExp <= 11999 && level == 3) {
                                             minExp == 4000
                                             maxExp == 12000
@@ -1029,7 +1032,7 @@
                                 // Level 4  
                                 else if (level == 4) {
 
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
                                         if (currExp >= 12000 && currExp <= 23999 && level == 4) {
                                             minExp == 12000
                                             maxExp == 24000
@@ -1045,7 +1048,7 @@
                                 // Level 5 
                                 else if (level == 5) {
 
-                                    $(document).ready(function() {
+                                    $(document).ready(function () {
                                         if (currExp >= 24000 && currExp <= 39999 && level == 5) {
                                             minExp == 24000
                                             maxExp == 40000
@@ -1078,8 +1081,8 @@
 
             function onLogin() {
 
-                $("#pre-load").fadeIn(500, function() {})
-                setTimeout(function() {
+                $("#pre-load").fadeIn(500, function () { })
+                setTimeout(function () {
                     if (ancilia.isLoggedIn()) {
                         window.location.replace('/index')
                         ancilia.logout()
